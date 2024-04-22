@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="SocketEventLibrary">
+      <HintPath>..\..\EventSocket\EventSocket\bin\Debug\net8.0\SocketEventLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
