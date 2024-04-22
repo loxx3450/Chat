@@ -18,6 +18,8 @@ namespace ServerSide
 
         public void HandleClient(SocketEvent socket)
         {
+            Console.WriteLine($"Client is connected at {DateTime.Now}");
+
             //Logic of handling clients after connection
         }
     }
