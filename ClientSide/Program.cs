@@ -4,18 +4,18 @@ using SocketEventLibrary.Sockets;
 const string hostname = "127.0.0.1";
 const int port = 80;
 
-SocketEventHandler socketHandler = new SocketEventHandler();
-
 ClientSocketEvent clientSocket = new ClientSocketEvent(hostname, port);
 
 SocketEvent socket = await clientSocket.GetSocketAsync();
 
-socketHandler.HandleSocket(socket);
+SocketEventHandler.HandleSocket(socket);
 
 while (true)
 {
     if (Console.ReadKey().Key == ConsoleKey.Escape)
     {
+        socket.Disconnect();
+
         break;
     }
 }

@@ -9,7 +9,7 @@ namespace ClientSide
 {
     internal class SocketEventHandler
     {
-        public void HandleSocket(SocketEvent socket)
+        public static void HandleSocket(SocketEvent socket)
         { 
             //logic of setting socket up
             //...

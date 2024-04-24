@@ -9,14 +9,7 @@ namespace ServerSide
 {
     internal class ClientHandler
     {
-        public ClientsCollection Clients { get; set; }
-
-        public ClientHandler(ClientsCollection clients) 
-        { 
-            Clients = clients;
-        }
-
-        public void HandleClient(SocketEvent socket)
+        public static void HandleClient(SocketEvent socket)
         {
             Console.WriteLine($"Client is connected at {DateTime.Now}");
 

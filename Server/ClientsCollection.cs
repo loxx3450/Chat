@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ServerSide
 {
-    internal class ClientsCollection
+    internal static class ClientsCollection
     {
-        private List<Client> clients;
+        private static List<Client> clients;
 
-        public void AddClient(Client client)
+        public static void AddClient(Client client)
         {
             clients.Add(client);
         }
