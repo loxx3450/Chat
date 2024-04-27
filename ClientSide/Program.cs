@@ -1,4 +1,4 @@
-﻿using ClientSide;
+﻿using ClientSide.Core;
 using SocketEventLibrary.Sockets;
 
 const string hostname = "127.0.0.1";
