@@ -15,6 +15,13 @@ namespace ServerSide
             clients.Add(client);
         }
 
+        public static Client GetClient(Func<Client, bool> predicate) 
+        {
+            //maybe validation
+
+            return clients.First(predicate);
+        }
+
         //Methods to get Clients in different ways
         //...
     }

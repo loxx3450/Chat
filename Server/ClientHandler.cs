@@ -14,6 +14,7 @@ namespace ServerSide
             Console.WriteLine($"Client is connected at {DateTime.Now}");
 
             //Logic of handling clients after connection
+            //ClientsCollection.AddClient(new Client(socket));
         }
     }
 }

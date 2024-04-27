@@ -23,11 +23,21 @@ namespace ServerSide
             serverSocket.StartAcceptingClients();
 
             serverSocket.OnClientIsConnected += ClientHandler.HandleClient;
+
+            //Starting all service Threads
         }
 
         public void Stop()
         {
             serverSocket.StopAcceptingClients();
+
+            //Interrupting all service Threads
         }
+
+        public void StartAcceptingClients()
+            => serverSocket.StartAcceptingClients();
+
+        public void StopAcceptingClients()
+            => serverSocket.StopAcceptingClients();
     }
 }
