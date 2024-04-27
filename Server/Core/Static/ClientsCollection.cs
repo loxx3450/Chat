@@ -8,7 +8,7 @@ namespace ServerSide.Core.Static
 {
     internal static class ClientsCollection
     {
-        private static List<Client> clients;
+        private static List<Client> clients = new List<Client>();
 
         public static void AddClient(Client client)
         {
