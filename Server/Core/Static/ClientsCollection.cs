@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerSide
+namespace ServerSide.Core.Static
 {
     internal static class ClientsCollection
     {
@@ -15,7 +15,7 @@ namespace ServerSide
             clients.Add(client);
         }
 
-        public static Client GetClient(Func<Client, bool> predicate) 
+        public static Client GetClient(Func<Client, bool> predicate)
         {
             //maybe validation
 

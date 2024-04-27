@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SocketEventLibrary;
 using SocketEventLibrary.Sockets;
 
-namespace ServerSide
+namespace ServerSide.Core
 {
     internal class Server
     {
