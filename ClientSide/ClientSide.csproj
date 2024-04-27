@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CommonLibrary\CommonLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ProtocolLibrary">
+      <HintPath>..\..\ChatPrototype\ProtocolLibrary\bin\Debug\net8.0\ProtocolLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="SocketEventLibrary">
       <HintPath>..\..\EventSocket\EventSocket\bin\Debug\net8.0\SocketEventLibrary.dll</HintPath>
     </Reference>
