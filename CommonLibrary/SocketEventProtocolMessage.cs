@@ -37,12 +37,14 @@ namespace CommonLibrary
 
         public static SocketEventMessage RecoverSocketEventMessage(MemoryStream memoryStream)
         {
+            int startPos = (int)memoryStream.Position;
+
             using StreamReader streamReader = new StreamReader(memoryStream, leaveOpen: true);
             
-            string keyStr = streamReader.ReadLine() ?? throw new ArgumentException();                       //TODO: own exceptions
+            string keyStr = streamReader.ReadLine() ?? throw new ArgumentException();                                   //TODO: own exceptions
 
             //StreamReader sets the position to end, during closing
-            memoryStream.Position = keyStr.Length + 2;                                                      //TODO
+            memoryStream.Position = startPos + keyStr.Length + 2;                                                       //TODO
 
             //Converts string representation of type in enum's variable
             MessageType key = (MessageType)Enum.Parse(typeof(MessageType), keyStr);

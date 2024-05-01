@@ -2,7 +2,7 @@
 {
     public enum MessageType
     {
-        MessageToServer,
-        MessageToClient,
+        RegistrationRequest,
+        RegistrationResponse
     }
 }

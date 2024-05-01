@@ -13,5 +13,10 @@ namespace ServerSide.Core.Handlers
         {
             //Logic of handling
         }
+
+        public static void HandleException(Exception ex)
+        {
+            //Logic of handling
+        }
     }
 }

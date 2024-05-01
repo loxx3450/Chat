@@ -1,4 +1,5 @@
 ﻿using CommonLibrary;
+using ProtocolLibrary.Message;
 using ServerSide.Core.Handlers;
 using ServerSide.Core.Static;
 using SocketEventLibrary.Sockets;
@@ -19,14 +20,15 @@ namespace ServerSide.Core
             //Logic of handling clients after connection
             Client client = new Client(socket);
 
-            //0.
-            ClientsCollection.AddClient(client);
-
             //1. Sets supported SocketMessage's Types for income
             socket.AddSupportedMessageType<SocketEventProtocolMessage>();
 
             //2. Subscribes on Events from Client
-            //socket.On(MessageType.)
+            socket.On(MessageType.RegistrationRequest, (message) =>
+            {
+                RegistrationHandler.TryToCreateUser((ProtocolMessage)message);
+                socket.Emit(RegistrationHandler.GetResponse());
+            });
 
             //3. Subscribes on service Events
             socket.OnThrowedException += ExceptionHandler.HandleException;
