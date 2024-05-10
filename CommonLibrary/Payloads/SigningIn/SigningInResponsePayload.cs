@@ -10,10 +10,11 @@ namespace CommonLibrary.Payloads.SigningIn
     public enum SigningInResponseType
     {
         Successed,
-        Failed
+        Failed,
+        SmthWentWrong
     }
 
-    internal class SigningInResponsePayload : JSONPayload
+    public class SigningInResponsePayload : JSONPayload
     {
         public SigningInResponseType ResponseType { get; set; }
 
