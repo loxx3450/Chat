@@ -3,6 +3,8 @@
     public enum MessageType
     {
         RegistrationRequest,
-        RegistrationResponse
+        RegistrationResponse,
+        SigningInRequest,
+        SigningInResponse,
     }
 }

@@ -8,13 +8,13 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace CommonLibrary.Payloads
+namespace CommonLibrary.Payloads.Registration
 {
     public class RegistrationRequestPayload : JSONPayload
     {
         public User User { get; set; }
 
-        public RegistrationRequestPayload(User user) 
+        public RegistrationRequestPayload(User user)
         {
             User = user;
         }

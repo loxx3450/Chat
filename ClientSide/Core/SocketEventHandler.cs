@@ -1,6 +1,7 @@
 ﻿using ClientSide.Core.Handlers;
 using CommonLibrary;
-using CommonLibrary.Payloads;
+using CommonLibrary.Payloads.Registration;
+using CommonLibrary.Payloads.SigningIn;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using SocketEventLibrary.Sockets;
@@ -34,6 +35,24 @@ namespace ClientSide.Core
                         break;
                     case RegistrationResponseType.UserAlreadyExists:
                         Console.WriteLine("User with such data already exists!");
+                        break;
+                }
+            });
+
+            socket.On(MessageType.SigningInResponse, (mes) =>
+            {
+                //TestCoed
+                SigningInResponsePayload payload = PayloadBuilder.GetPayload<SigningInResponsePayload>(((ProtocolMessage)mes).PayloadStream);
+                switch(payload.ResponseType) 
+                { 
+                    case SigningInResponseType.Successed:
+                        Console.WriteLine("You are signed in");
+                        break;
+                    case SigningInResponseType.Failed:
+                        Console.WriteLine("Your data is wrong");
+                        break;
+                    case SigningInResponseType.SmthWentWrong:
+                        Console.WriteLine("Sonmething went wrong during signing in");
                         break;
                 }
             });

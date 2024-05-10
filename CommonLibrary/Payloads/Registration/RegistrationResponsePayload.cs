@@ -5,21 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonLibrary.Payloads
+namespace CommonLibrary.Payloads.Registration
 {
     public enum RegistrationResponseType
     {
         UserAlreadyExists,
         Successed,
-        Failed
+        Failed,
+        SmthWentWrong
     }
 
     public class RegistrationResponsePayload : JSONPayload
     {
         public RegistrationResponseType ResponseType { get; set; }
 
-        public RegistrationResponsePayload(RegistrationResponseType responseType) 
-        { 
+        public RegistrationResponsePayload(RegistrationResponseType responseType)
+        {
             ResponseType = responseType;
         }
     }
