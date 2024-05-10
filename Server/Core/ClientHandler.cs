@@ -30,6 +30,12 @@ namespace ServerSide.Core
                 socket.Emit(RegistrationHandler.GetResponse());
             });
 
+            socket.On(MessageType.SigningInRequest, (message) =>
+            {
+                SigningInHandler.TryToSignIn((ProtocolMessage)message);
+                socket.Emit(SigningInHandler.GetResponse());
+            });
+
             //3. Subscribes on service Events
             socket.OnThrowedException += ExceptionHandler.HandleException;
             socket.OnDisconnecting += () => DisconnectionHandler.Disconnect(client);

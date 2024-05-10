@@ -53,12 +53,12 @@ namespace ServerSide.Core.Handlers
                 "SELECT " +
                     "CASE " +
                         "WHEN EXISTS " +
-                        "(" +
+                        "( " +
                             "SELECT 1 " +
-                            "FROM users" +
-                            $"WHERE login = {login} " +
-                                $"AND password = {password}" +
-                        ")" +
+                            "FROM users " +
+                            $"WHERE login = '{login}' " +
+                                $"AND password = '{password}'" +
+                        ") " +
                         "THEN 1 " +
                         "ELSE 0 " +
                     "END;", 
