@@ -40,7 +40,7 @@ namespace ServerSide.Core.Handlers
                         responseType = RegistrationResponseType.Failed;                         //TODO?: get errorMessage
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 ExceptionHandler.HandleException(ex);
             }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonLibrary.Payloads
+namespace CommonLibrary.Payloads.Registration
 {
     public enum RegistrationResponseType
     {
@@ -18,8 +18,8 @@ namespace CommonLibrary.Payloads
     {
         public RegistrationResponseType ResponseType { get; set; }
 
-        public RegistrationResponsePayload(RegistrationResponseType responseType) 
-        { 
+        public RegistrationResponsePayload(RegistrationResponseType responseType)
+        {
             ResponseType = responseType;
         }
     }

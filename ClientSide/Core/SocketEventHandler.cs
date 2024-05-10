@@ -1,6 +1,6 @@
 ﻿using ClientSide.Core.Handlers;
 using CommonLibrary;
-using CommonLibrary.Payloads;
+using CommonLibrary.Payloads.Registration;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using SocketEventLibrary.Sockets;
