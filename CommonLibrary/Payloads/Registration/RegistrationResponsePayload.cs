@@ -11,7 +11,8 @@ namespace CommonLibrary.Payloads.Registration
     {
         UserAlreadyExists,
         Successed,
-        Failed
+        Failed,
+        SmthWentWrong
     }
 
     public class RegistrationResponsePayload : JSONPayload

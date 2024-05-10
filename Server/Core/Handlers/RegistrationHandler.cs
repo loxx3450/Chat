@@ -1,5 +1,4 @@
 ﻿using CommonLibrary.Models;
-using CommonLibrary.Payloads;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using ServerSide.Core.Static;
@@ -11,11 +10,12 @@ using System.Threading.Tasks;
 using Npgsql;
 using System.Configuration;
 using CommonLibrary;
+using CommonLibrary.Payloads.Registration;
 
 namespace ServerSide.Core.Handlers
 {
 
-    internal class RegistrationHandler
+    internal class RegistrationHandler : IResponsibleHandler
     {
         //Will be used as a part of response
         private static RegistrationResponseType responseType;
@@ -42,6 +42,8 @@ namespace ServerSide.Core.Handlers
             }
             catch (Exception ex)
             {
+                responseType = RegistrationResponseType.SmthWentWrong;
+
                 ExceptionHandler.HandleException(ex);
             }
         }
