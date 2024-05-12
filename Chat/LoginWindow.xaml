@@ -1,0 +1,39 @@
+﻿<Window x:Class="Chat.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:local="clr-namespace:Chat"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        mc:Ignorable="d"
+        Title="{StaticResource AppTitle}" Height="720" Width="1200" WindowStyle="ThreeDBorderWindow"  WindowState="Maximized" Icon="Images/logo.png">
+
+    <Grid Background="#0d1117">
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Margin="20" Foreground="White" HorizontalAlignment="Center" FontSize="48">Sign in</TextBlock>
+            <svgc:SvgViewbox Source="Images/logo.svg" MaxHeight="90"/>
+
+
+            <Grid Margin="0,20">
+                <Border Margin="0, 20" CornerRadius="12" BorderThickness="2" BorderBrush="#30363d">
+                    <Rectangle Fill="#161b22"  Height="320" Width="500" RadiusX="12" RadiusY="12"/>
+                </Border>
+
+                <StackPanel Margin="30">
+                    <TextBlock Margin="0,15,0,0" Foreground="White" FontSize="24" HorizontalAlignment="Left">Login</TextBlock>
+                    <ui:TextBox Margin="0, 12" Foreground="White" FontSize="18" Background="#0d1117" BorderBrush="#30363d" />
+
+                    <TextBlock Margin="0, 12" Foreground="White" FontSize="24" HorizontalAlignment="Left">Password</TextBlock>
+                    <PasswordBox Foreground="White" Background="#0d1117" FontSize="18" BorderBrush="#30363d" BorderThickness="1"/>
+
+                    <ui:Button HorizontalAlignment="Stretch" Background="Green" Appearance="Success" Foreground="White" BorderBrush="#30363d" Margin="0, 35, 0, 0">
+                        <TextBlock FontSize="20" Text="Sign in"/>
+                    </ui:Button>
+                </StackPanel>
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+    
+</Window>
