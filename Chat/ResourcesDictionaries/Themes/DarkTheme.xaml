@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--Global-->
+    <SolidColorBrush x:Key="MainBackground">#0d1117</SolidColorBrush>
+    
+    <!--TitleBar-->
+    <SolidColorBrush x:Key="TitleBarBackground">#242f3d</SolidColorBrush>
+    <SolidColorBrush x:Key="MouseOverTitleBarButtonColor">#474747</SolidColorBrush>
+    <SolidColorBrush x:Key="IsPressedTitleBarButtonColor">#965659</SolidColorBrush>
+    
+    <!--LoginWindow-->
+    <SolidColorBrush x:Key="LoginWindowBorderBrush">#30363d</SolidColorBrush>
+</ResourceDictionary>
