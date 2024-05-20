@@ -12,10 +12,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border_main" Property="Background" Value="{StaticResource MouseOverTitleBarButtonColor}"/>
+                            <Setter TargetName="border_main" Property="Background" Value="{DynamicResource MouseOverTitleBarButtonColor}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border_main" Property="Background" Value="{StaticResource IsPressedTitleBarButtonColor}"/>
+                            <Setter TargetName="border_main" Property="Background" Value="{DynamicResource IsPressedTitleBarButtonColor}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

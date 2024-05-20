@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
 namespace Chat.UserControls
 {
@@ -22,6 +23,35 @@ namespace Chat.UserControls
     /// </summary>
     public partial class TitleBar : UserControl
     {
+        public static readonly DependencyProperty BackgroundProperty =
+            DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(TitleBar), 
+                new PropertyMetadata(null, (d, e) => (d as TitleBar).TitleBarGrid.Background = (Brush)e.NewValue));
+
+        public new Brush Background
+        {
+            get => (Brush)GetValue(BackgroundProperty);
+            set => SetValue(BackgroundProperty, value);
+        }
+
+
+        public static readonly DependencyProperty ButtonsForegroundProperty =
+            DependencyProperty.Register(nameof(ButtonsForeground), typeof(Brush), typeof(TitleBar),
+                new PropertyMetadata(null, (d, e) =>
+                {
+                    TitleBar titleBar = d as TitleBar;
+
+                    titleBar.buttonCloseIcon.Foreground = (Brush)e.NewValue;
+                    titleBar.buttonMazimizeIcon.Foreground = (Brush)e.NewValue;
+                    titleBar.buttonMinimizeIcon.Foreground = (Brush)e.NewValue;
+                    titleBar.buttonRestoreIcon.Foreground = (Brush)e.NewValue;
+                }));
+
+        public Brush ButtonsForeground
+        {
+            get => (Brush)GetValue(ButtonsForegroundProperty);
+            set => SetValue(ButtonsForegroundProperty, value);
+        }
+
         private Window Window
         {
             get => Window.GetWindow(this);

@@ -17,7 +17,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <userControls:TitleBar Grid.Row="0"/>
+        <userControls:TitleBar Grid.Row="0" Background="Transparent" ButtonsForeground="White"/>
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Center">
             <TextBlock Margin="20" Foreground="White" HorizontalAlignment="Center" FontSize="48">Sign in</TextBlock>
