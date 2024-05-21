@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:Chat"
-        xmlns:userControls="clr-namespace:Chat.UserControls"
+        xmlns:userControls="clr-namespace:Chat.Views.UserControls"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
         Height="720" Width="1200"

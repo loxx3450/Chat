@@ -16,14 +16,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
-namespace Chat.UserControls
+namespace Chat.Views.UserControls
 {
     /// <summary>
     /// Логика взаимодействия для TitleBar.xaml
     /// </summary>
     public partial class TitleBar : UserControl
     {
-        public static readonly DependencyProperty BackgroundProperty =
+        public static new readonly DependencyProperty BackgroundProperty =
             DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(TitleBar), 
                 new PropertyMetadata(null, (d, e) => (d as TitleBar).TitleBarGrid.Background = (Brush)e.NewValue));
 

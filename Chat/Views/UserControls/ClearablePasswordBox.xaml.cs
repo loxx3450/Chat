@@ -13,11 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Chat.UserControls
+namespace Chat.Views.UserControls
 {
     public partial class ClearablePasswordBox : UserControl
     {
-        public static readonly DependencyProperty BorderBrushProperty =
+        public new static readonly DependencyProperty BorderBrushProperty =
             DependencyProperty.Register(nameof(BorderBrush), typeof(Brush), typeof(ClearablePasswordBox), 
                 new PropertyMetadata(null, (d, e) => (d as ClearablePasswordBox).PassBoxBorder.BorderBrush = (Brush)e.NewValue));
 
@@ -28,7 +28,7 @@ namespace Chat.UserControls
         }
 
 
-        public static readonly DependencyProperty FontSizeProperty =
+        public new static readonly DependencyProperty FontSizeProperty =
             DependencyProperty.Register(nameof(FontSize), typeof(double), typeof(ClearablePasswordBox), 
                 new PropertyMetadata(2.0, (d, e) => (d as ClearablePasswordBox).PassBox.FontSize = (double)e.NewValue));
 
@@ -39,7 +39,7 @@ namespace Chat.UserControls
         }
 
 
-        public static readonly DependencyProperty BackgroundProperty =
+        public new static readonly DependencyProperty BackgroundProperty =
             DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(ClearablePasswordBox), 
                 new PropertyMetadata(null, (d, e) => (d as ClearablePasswordBox).PassBoxBackground.Fill = (Brush)e.NewValue));
 
