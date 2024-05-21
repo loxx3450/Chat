@@ -5,9 +5,10 @@
              xmlns:local="clr-namespace:Chat"
              StartupUri="Views/LoginWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary Source="ResourcesDictionaries/MainInfo.xaml">
+        <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ResourcesDictionaries/Themes/DarkTheme.xaml" />
+                <ResourceDictionary Source="ResourcesDictionaries/Themes/CommonTheme.xaml" />
                 <ResourceDictionary Source="Styles/TitleBarButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/WindowStyle.xaml" />
                 <ui:ControlsDictionary />

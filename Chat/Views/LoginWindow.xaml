@@ -12,51 +12,103 @@
         Style="{StaticResource WindowWithoutDefaultStyle}">
 
     <Grid Background="{StaticResource MainBackground}">
+        
+        <Grid.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="12"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource LoginWindowBorderBrush}"/>
+            </Style>
+
+            <Style TargetType="{x:Type Rectangle}">
+                <Setter Property="RadiusX" Value="12"/>
+                <Setter Property="RadiusY" Value="12"/>
+            </Style>
+        </Grid.Resources>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <userControls:TitleBar Grid.Row="0" Background="Transparent" ButtonsForeground="White"/>
+        <userControls:TitleBar Grid.Row="0" 
+                               Background="Transparent" ButtonsForeground="White">
+        </userControls:TitleBar>
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-            <TextBlock Margin="20" Foreground="White" HorizontalAlignment="Center" FontSize="48">Sign in</TextBlock>
-            <svgc:SvgViewbox Source="Images/logo.svg" MaxHeight="90"/>
+            
+            <TextBlock Margin="20" HorizontalAlignment="Center" FontSize="40" 
+                       Foreground="{DynamicResource MainForeground}" 
+                       Text="Sign in">
+            </TextBlock>
+            
+            <svgc:SvgViewbox Source="Images/logo.svg" Height="80"/>
 
-            <Grid Margin="0,20">
-                <Border Margin="0, 20" CornerRadius="12" BorderThickness="2" BorderBrush="{StaticResource LoginWindowBorderBrush}">
-                    <Rectangle Fill="#161b22" Height="320" Width="500" RadiusX="12" RadiusY="12"/>
+            <Grid Margin="0,30" Width="400">
+                
+                <Border>
+                    <Rectangle Fill="{DynamicResource SecondaryBackground}"/>
                 </Border>
 
-                <StackPanel Margin="30">
-                    <TextBlock Margin="0,15,0,0" Foreground="White" FontSize="24" HorizontalAlignment="Left">Login</TextBlock>
-                    <ui:TextBox Margin="0, 12" Foreground="White" FontSize="18" Background="{StaticResource MainBackground}" BorderBrush="{StaticResource LoginWindowBorderBrush}" />
+                <StackPanel Margin="24">
 
-                    <TextBlock Margin="0, 12" Foreground="White" FontSize="24" HorizontalAlignment="Left">Password</TextBlock>
-                    <userControls:ClearablePasswordBox Foreground="White" FontSize="18" Background="{StaticResource MainBackground}" BorderBrush="{StaticResource LoginWindowBorderBrush}"/>
+                    <TextBlock Margin="3,0" FontSize="20" 
+                               Foreground="{DynamicResource MainForeground}" 
+                               Text="Login">
+                    </TextBlock>
 
-                    <ui:Button HorizontalAlignment="Stretch" Background="Green" Appearance="Success" Foreground="White" BorderBrush="{StaticResource LoginWindowBorderBrush}" Margin="0, 35, 0, 0">
+                    <ui:TextBox Margin="0, 10" FontSize="18"
+                                Foreground="{DynamicResource MainForeground}" Background="{DynamicResource MainBackground}" 
+                                BorderBrush="{DynamicResource LoginWindowBorderBrush}">
+                    </ui:TextBox>
+
+                    <TextBlock Margin="3,10" FontSize="20" 
+                               Foreground="{DynamicResource MainForeground}" 
+                               Text="Password">
+                    </TextBlock>
+
+                    <userControls:ClearablePasswordBox FontSize="18" 
+                                Foreground="{DynamicResource MainForeground}" Background="{DynamicResource MainBackground}" 
+                                BorderBrush="{DynamicResource LoginWindowBorderBrush}">
+                    </userControls:ClearablePasswordBox>
+
+                    <ui:Button HorizontalAlignment="Stretch" Appearance="Success" Margin="0, 20, 0, 0"
+                               Background="Green" Foreground="{DynamicResource MainForeground}" 
+                               BorderBrush="{DynamicResource LoginWindowBorderBrush}">
+                        
                         <TextBlock FontSize="20" Text="Sign in"/>
                     </ui:Button>
                 </StackPanel>
             </Grid>
 
-            <!--<Grid>
-                <Border CornerRadius="12" BorderThickness="2" BorderBrush="{StaticResource LoginWindowBorderBrush}">
-                    <Rectangle Fill="Transparent"  Height="120" Width="500" RadiusX="12" RadiusY="12"/>
-                </Border>
+            <Grid Width="400">
                 
-                <StackPanel Margin="12" Orientation="Vertical">
-                    <ui:Button HorizontalAlignment="Center" Appearance="Dark"  Background="Transparent">
-                        <TextBlock FontSize="22" Foreground="#3a93f8" Text="Forgot password?"/>
+                <Border>
+                    <Rectangle Fill="Transparent"/>
+                </Border>
+
+                <StackPanel Margin="16" HorizontalAlignment="Center">
+
+                    <ui:Button Appearance="Dark" Background="Transparent">
+                        <TextBlock FontSize="20" 
+                                   Foreground="{StaticResource HyperlinkForeground}" 
+                                   Text="Forgot password?">
+                        </TextBlock>
                     </ui:Button>
-                    <ui:Button Margin="0,5" HorizontalAlignment="Center" Appearance="Dark"  Background="Transparent">
-                        <TextBlock FontSize="22" Foreground="#3a93f8" Text="Create an account"/>
+                    
+                    <ui:Button Margin="0,6,0,0" Appearance="Dark"  Background="Transparent">
+                        <TextBlock FontSize="20" 
+                                   Foreground="{StaticResource HyperlinkForeground}" 
+                                   Text="Create an account">
+                        </TextBlock>
                     </ui:Button>
+                    
                 </StackPanel>
-            </Grid>-->
+                
+            </Grid>
 
         </StackPanel>
+        
     </Grid>
     
 </Window>
