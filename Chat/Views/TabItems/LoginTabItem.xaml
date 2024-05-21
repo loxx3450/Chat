@@ -1,0 +1,104 @@
+﻿<TabItem x:Class="Chat.Views.TabItems.LoginTabItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chat.Views.TabItems"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             xmlns:userControls="clr-namespace:Chat.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Header="Login">
+    
+    <Grid Background="{StaticResource MainBackground}">
+
+        <Grid.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="12"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource LoginWindowBorderBrush}"/>
+            </Style>
+
+            <Style TargetType="{x:Type Rectangle}">
+                <Setter Property="RadiusX" Value="12"/>
+                <Setter Property="RadiusY" Value="12"/>
+            </Style>
+        </Grid.Resources>
+
+        <StackPanel HorizontalAlignment="Center">
+
+            <TextBlock Margin="20" HorizontalAlignment="Center" FontSize="40" 
+                   Foreground="{DynamicResource MainForeground}" 
+                   Text="Sign in">
+            </TextBlock>
+
+            <svgc:SvgViewbox Source="Images/logo.svg" Height="80"/>
+
+            <Grid Margin="0,30" Width="400">
+
+                <Border>
+                    <Rectangle Fill="{DynamicResource SecondaryBackground}"/>
+                </Border>
+
+                <StackPanel Margin="24">
+
+                    <TextBlock Margin="3,0" FontSize="20" 
+                           Foreground="{DynamicResource MainForeground}" 
+                           Text="Login">
+                    </TextBlock>
+
+                    <ui:TextBox Margin="0, 10" FontSize="18"
+                            Foreground="{DynamicResource MainForeground}" Background="{DynamicResource MainBackground}" 
+                            BorderBrush="{DynamicResource LoginWindowBorderBrush}">
+                    </ui:TextBox>
+
+                    <TextBlock Margin="3,10" FontSize="20" 
+                           Foreground="{DynamicResource MainForeground}" 
+                           Text="Password">
+                    </TextBlock>
+
+                    <userControls:ClearablePasswordBox FontSize="18" 
+                            Foreground="{DynamicResource MainForeground}" Background="{DynamicResource MainBackground}" 
+                            BorderBrush="{DynamicResource LoginWindowBorderBrush}">
+                    </userControls:ClearablePasswordBox>
+
+                    <ui:Button HorizontalAlignment="Stretch" Appearance="Success" Margin="0, 20, 0, 0"
+                           Background="Green" Foreground="{DynamicResource MainForeground}" 
+                           BorderBrush="{DynamicResource LoginWindowBorderBrush}">
+
+                        <TextBlock FontSize="20" Text="Sign in"/>
+                    </ui:Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid Width="400">
+
+                <Border>
+                    <Rectangle Fill="Transparent"/>
+                </Border>
+
+                <StackPanel Margin="16" HorizontalAlignment="Center">
+
+                    <ui:Button Appearance="Dark" Background="Transparent">
+                        <TextBlock FontSize="20" 
+                               Foreground="{StaticResource HyperlinkForeground}" 
+                               Text="Forgot password?">
+                        </TextBlock>
+                    </ui:Button>
+
+                    <ui:Button Margin="0,6,0,0" Appearance="Dark"  Background="Transparent">
+                        <TextBlock FontSize="20" 
+                               Foreground="{StaticResource HyperlinkForeground}" 
+                               Text="Create an account">
+                        </TextBlock>
+                    </ui:Button>
+
+                </StackPanel>
+
+            </Grid>
+
+        </StackPanel>
+
+    </Grid>
+</TabItem>
