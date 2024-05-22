@@ -32,6 +32,7 @@
             </TabControl.Resources>
 
             <tabItems:LoginTabItem Style="{StaticResource HiddenControl}" IsSelected="True"/>
+            <tabItems:RegistrationTabItem Style="{StaticResource HiddenControl}"/>
         </TabControl>
     </Grid>
     
