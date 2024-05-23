@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Chat.Views.TabItems
+namespace Chat.MVVM.Views.TabItems
 {
     /// <summary>
-    /// Логика взаимодействия для LoginTabItem.xaml
+    /// Логика взаимодействия для RegistrationTabItem.xaml
     /// </summary>
-    public partial class LoginTabItem : TabItem
+    public partial class RegistrationTabItem : TabItem
     {
-        public LoginTabItem()
+        public RegistrationTabItem()
         {
             InitializeComponent();
         }

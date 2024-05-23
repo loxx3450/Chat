@@ -1,11 +1,11 @@
-﻿<Window x:Class="Chat.MainWindow"
+﻿<Window x:Class="Chat.MVVM.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Chat"
-        xmlns:tabItems="clr-namespace:Chat.Views.TabItems"
-        xmlns:userControls="clr-namespace:Chat.Views.UserControls"
+        xmlns:local="clr-namespace:Chat.MVVM"
+        xmlns:tabItems="clr-namespace:Chat.MVVM.Views.TabItems"
+        xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls"
         mc:Ignorable="d"
         Height="720" Width="1200"
         MinHeight="540" MinWidth="480"
@@ -22,7 +22,7 @@
                        Background="Transparent" ButtonsForeground="White">
         </userControls:TitleBar>
 
-        <TabControl Grid.Row="1">
+        <TabControl Name="MainTabControl" Grid.Row="1">
             
             <TabControl.Resources>
                 <Style x:Key="HiddenControl" TargetType="{x:Type Control}">
@@ -31,8 +31,8 @@
                 </Style>
             </TabControl.Resources>
 
-            <tabItems:LoginTabItem Style="{StaticResource HiddenControl}" IsSelected="True"/>
-            <tabItems:RegistrationTabItem Style="{StaticResource HiddenControl}"/>
+            <tabItems:LoginTabItem Header="l" Style="{StaticResource HiddenControl}"/>
+            <tabItems:RegistrationTabItem Header="r" Style="{StaticResource HiddenControl}" IsSelected="True"/>
         </TabControl>
     </Grid>
     

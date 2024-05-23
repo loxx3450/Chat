@@ -16,7 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
-namespace Chat.Views.UserControls
+namespace Chat.MVVM.Views.UserControls
 {
     /// <summary>
     /// Логика взаимодействия для TitleBar.xaml

@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Chat
+namespace Chat.MVVM.Views.TabItems
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для LoginTabItem.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginTabItem : TabItem
     {
-        public MainWindow()
+        public LoginTabItem()
         {
             InitializeComponent();
         }
