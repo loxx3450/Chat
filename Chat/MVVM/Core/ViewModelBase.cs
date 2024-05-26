@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.Core
 {
-    public abstract class ViewModelBase
+    public abstract class ViewModelBase : ObservableObject
     {
     }
 }
