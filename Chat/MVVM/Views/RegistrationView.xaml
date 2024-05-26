@@ -10,8 +10,9 @@
              d:DataContext="{d:DesignInstance Type=viewModels:RegistrationViewModel}"
              >
     
-    <Grid>
+    <StackPanel VerticalAlignment="Center">
         <Label Content="registr" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Foreground="White"/>
-        <Button Background="Tomato" Width="300" Height="120"/>
-    </Grid>
+        <Button HorizontalAlignment="Center" Background="Tomato" Width="300" Height="120" Content="Back To Login"
+                Command="{Binding NavigateToLoginCommand}"/>
+    </StackPanel>
 </UserControl>

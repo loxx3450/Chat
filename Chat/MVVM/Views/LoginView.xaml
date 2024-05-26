@@ -89,7 +89,8 @@
                         </TextBlock>
                     </ui:Button>
 
-                    <ui:Button Margin="0,6,0,0" Appearance="Dark"  Background="Transparent">
+                    <ui:Button Margin="0,6,0,0" Appearance="Dark"  Background="Transparent" 
+                               Command="{Binding NavigateToRegistrationCommand}">
                         <TextBlock FontSize="20" 
                            Foreground="{StaticResource HyperlinkForeground}" 
                            Text="Create an account">

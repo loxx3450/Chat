@@ -16,9 +16,13 @@ namespace Chat.MVVM.ViewModels
             set => SetField(ref _navigationService, value);
         }
 
+        public RelayCommand NavigateToRegistrationCommand { get; set; }
+
         public LoginViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
+
+            NavigateToRegistrationCommand = new RelayCommand(o => NavigationService.NavigateTo<RegistrationViewModel>());
         }
     }
 }
