@@ -1,4 +1,5 @@
 ﻿using Chat.MVVM.Core;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,8 +34,7 @@ namespace Chat
 
         public void NavigateTo<TViewModel>() where TViewModel : ViewModelBase
         {
-            ViewModelBase viewModel = (ViewModelBase)_serviceProvider.GetService(typeof(TViewModel));
-            CurrentView = viewModel;
+            CurrentView = _serviceProvider.GetRequiredService<TViewModel>();
         }
     }
 }
