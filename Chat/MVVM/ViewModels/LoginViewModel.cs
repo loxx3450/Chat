@@ -9,6 +9,16 @@ namespace Chat.MVVM.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
+        private INavigationService _navigationService;
+        public INavigationService NavigationService
+        {
+            get => _navigationService;
+            set => SetField(ref _navigationService, value);
+        }
 
+        public LoginViewModel(INavigationService navigationService)
+        {
+            NavigationService = navigationService;
+        }
     }
 }

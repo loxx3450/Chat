@@ -9,5 +9,16 @@ namespace Chat.MVVM.ViewModels
 {
     public class RegistrationViewModel : ViewModelBase
     {
+        private INavigationService _navigationService;
+        public INavigationService NavigationService
+        {
+            get => _navigationService;
+            set => SetField(ref _navigationService, value);
+        }
+
+        public RegistrationViewModel(INavigationService navigationService)
+        {
+            NavigationService = navigationService;
+        }
     }
 }
