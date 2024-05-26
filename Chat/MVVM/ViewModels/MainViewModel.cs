@@ -20,6 +20,7 @@ namespace Chat.MVVM.ViewModels
         {
             NavigationService = navigationService;
 
+            //TODO: should depend on the state of user
             NavigationService.NavigateTo<LoginViewModel>();
         }
     }

@@ -19,15 +19,18 @@ namespace Chat
         {
             IServiceCollection services = new ServiceCollection();
 
+            //Adding MainWindow
             services.AddSingleton<MainWindow>(provider => new MainWindow
             {
                 DataContext = provider.GetRequiredService<MainViewModel>()
             });
 
+            //Adding ViewModels
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<RegistrationViewModel>();
             services.AddSingleton<LoginViewModel>();
 
+            //Adding Services
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<IServiceProvider, ServiceProvider>();
 
@@ -36,7 +39,9 @@ namespace Chat
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            //Setting MainWindow as StartWindow
             _serviceProvider.GetRequiredService<MainWindow>().Show();
+
             base.OnStartup(e);
         }
     }

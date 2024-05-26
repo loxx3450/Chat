@@ -20,7 +20,9 @@
                 <!--from NuGet-->
                 <ui:ControlsDictionary />
 
+                <!--DataTemplates for Views-->
                 <ResourceDictionary>
+                    
                     <DataTemplate DataType="{x:Type TypeName=viewModels:LoginViewModel}">
                         <views:LoginView/>
                     </DataTemplate>
@@ -28,6 +30,7 @@
                     <DataTemplate DataType="{x:Type TypeName=viewModels:RegistrationViewModel}">
                         <views:RegistrationView/>
                     </DataTemplate>
+                    
                 </ResourceDictionary>
                 
             </ResourceDictionary.MergedDictionaries>

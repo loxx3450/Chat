@@ -4,10 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chat.MVVM"
-        xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls"
+        xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
+        xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
         mc:Ignorable="d"
         Height="720" Width="1200"
         MinHeight="540" MinWidth="480"
+        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}"
         Style="{StaticResource WindowWithoutDefaultStyle}">
     
     <Grid Background="{DynamicResource MainBackground}">
@@ -20,10 +22,8 @@
         <userControls:TitleBar Grid.Row="0" 
                        Background="Transparent" ButtonsForeground="White">
         </userControls:TitleBar>
-        
-        <ContentControl Grid.Row="1" Content="{Binding NavigationService.CurrentView}">
 
-        </ContentControl>
+        <ContentControl Grid.Row="1" Content="{Binding NavigationService.CurrentView}"/>
     </Grid>
     
 </Window>
