@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chat.MVVM"
-        xmlns:tabItems="clr-namespace:Chat.MVVM.Views.TabItems"
         xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls"
         mc:Ignorable="d"
         Height="720" Width="1200"
@@ -21,19 +20,6 @@
         <userControls:TitleBar Grid.Row="0" 
                        Background="Transparent" ButtonsForeground="White">
         </userControls:TitleBar>
-
-        <TabControl Name="MainTabControl" Grid.Row="1">
-            
-            <TabControl.Resources>
-                <Style x:Key="HiddenControl" TargetType="{x:Type Control}">
-                    <Setter Property="Visibility" Value="Hidden"/>
-                    <Setter Property="Height" Value="0"/>
-                </Style>
-            </TabControl.Resources>
-
-            <tabItems:LoginTabItem Header="l" Style="{StaticResource HiddenControl}"/>
-            <tabItems:RegistrationTabItem Header="r" Style="{StaticResource HiddenControl}" IsSelected="True"/>
-        </TabControl>
     </Grid>
     
 </Window>
