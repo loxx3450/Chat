@@ -15,19 +15,6 @@
     
     <Grid Background="{StaticResource MainBackground}">
 
-        <Grid.Resources>
-            <Style TargetType="{x:Type Border}">
-                <Setter Property="CornerRadius" Value="12"/>
-                <Setter Property="BorderThickness" Value="2"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource LoginWindowBorderBrush}"/>
-            </Style>
-
-            <Style TargetType="{x:Type Rectangle}">
-                <Setter Property="RadiusX" Value="12"/>
-                <Setter Property="RadiusY" Value="12"/>
-            </Style>
-        </Grid.Resources>
-
         <StackPanel HorizontalAlignment="Center">
 
             <TextBlock Margin="20" HorizontalAlignment="Center" FontSize="40" 
@@ -39,9 +26,9 @@
 
             <Grid Margin="0,30" Width="400">
 
-                <Border>
-                    <Rectangle Fill="{DynamicResource SecondaryBackground}"/>
-                </Border>
+                <userControls:FilledRoundedBorder BorderThickness="2" Roundation="12" 
+                                                  BorderBrush="{StaticResource LoginWindowBorderBrush}"
+                                                  Background="{DynamicResource SecondaryBackground}"/>
 
                 <StackPanel Margin="24">
 
@@ -76,9 +63,9 @@
 
             <Grid Width="400">
 
-                <Border>
-                    <Rectangle Fill="Transparent"/>
-                </Border>
+                <userControls:FilledRoundedBorder BorderThickness="2" Roundation="12" 
+                                  BorderBrush="{StaticResource LoginWindowBorderBrush}"
+                                  Background="Transparent"/>
 
                 <StackPanel Margin="16" HorizontalAlignment="Center">
 

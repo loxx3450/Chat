@@ -39,11 +39,12 @@ namespace Chat.MVVM.Views.UserControls
                 new PropertyMetadata(null, (d, e) =>
                 {
                     TitleBar titleBar = d as TitleBar;
+                    Brush value = (Brush)e.NewValue;
 
-                    titleBar.buttonCloseIcon.Foreground = (Brush)e.NewValue;
-                    titleBar.buttonMazimizeIcon.Foreground = (Brush)e.NewValue;
-                    titleBar.buttonMinimizeIcon.Foreground = (Brush)e.NewValue;
-                    titleBar.buttonRestoreIcon.Foreground = (Brush)e.NewValue;
+                    titleBar.buttonCloseIcon.Foreground = value;
+                    titleBar.buttonMazimizeIcon.Foreground = value;
+                    titleBar.buttonMinimizeIcon.Foreground = value;
+                    titleBar.buttonRestoreIcon.Foreground = value;
                 }));
 
         public Brush ButtonsForeground
