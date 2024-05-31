@@ -49,10 +49,48 @@ namespace Chat.MVVM.Views.UserControls
         }
 
 
+        //BorderThickness
+        public new static DependencyProperty BorderThicknessProperty =
+            DependencyProperty.Register(nameof(BorderThickness), typeof(Thickness), typeof(ClearablePasswordBox),
+                new PropertyMetadata(new Thickness(), (d, e) => (d as ClearablePasswordBox).PassBoxBorder.BorderThickness = (Thickness)e.NewValue));
+
+        public new Thickness BorderThickness
+        {
+            get => (Thickness)GetValue(BorderThicknessProperty);
+            set => SetValue(BorderThicknessProperty, value);
+        }
+
+
+        //PlaceholderText
+        public static DependencyProperty PlaceholderTextProperty =
+            DependencyProperty.Register(nameof(PlaceholderText), typeof(string), typeof(ClearablePasswordBox),
+                new PropertyMetadata(string.Empty, (d, e) => (d as ClearablePasswordBox).Placehold.Text = (string)e.NewValue));
+
+        public string PlaceholderText
+        {
+            get => (string)GetValue(PlaceholderTextProperty);
+            set => SetValue(PlaceholderTextProperty, value);
+        }
+
+
 
         public ClearablePasswordBox()
         {
             InitializeComponent();
+        }
+
+
+        //private Methods
+        private void ActivateButton()
+        {
+            ClearTextBtn.Visibility = Visibility.Visible;
+            ColumnWithButton.Width = new GridLength(36);
+        }
+
+        private void DeactivateButton()
+        {
+            ClearTextBtn.Visibility = Visibility.Collapsed;
+            ColumnWithButton.Width = new GridLength();
         }
 
 
@@ -61,26 +99,32 @@ namespace Chat.MVVM.Views.UserControls
             PassBox.Clear();
             PassBox.Focus();
 
-            ClearTextBtn.Visibility = Visibility.Collapsed;
+            DeactivateButton();
         }
 
         private void PassBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (PassBox.Password.Length > 0)
-                ClearTextBtn.Visibility = Visibility.Visible;
+            {
+                ActivateButton();
+                Placehold.Visibility = Visibility.Collapsed;
+            }
             else
-                ClearTextBtn.Visibility = Visibility.Collapsed;
+            {
+                DeactivateButton();
+                Placehold.Visibility = Visibility.Visible;
+            }
         }
 
         private void PassBoxGrid_GotFocus(object sender, RoutedEventArgs e)
         {
             if (PassBox.Password.Length > 0)
-                ClearTextBtn.Visibility = Visibility.Visible;
+                ActivateButton();
         }
 
         private void PassBoxGrid_LostFocus(object sender, RoutedEventArgs e)
         {
-            ClearTextBtn.Visibility = Visibility.Collapsed;
+            DeactivateButton();
         }
     }
 }
