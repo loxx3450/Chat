@@ -16,16 +16,16 @@ using System.Windows.Shapes;
 namespace Chat.MVVM.Views.UserControls
 {
     /// <summary>
-    /// Логика взаимодействия для ClearableTextBoxWithPlaceholder.xaml
+    /// Логика взаимодействия для ClearableTextBox.xaml
     /// </summary>
-    public partial class ClearableTextBoxWithPlaceholder : UserControl
+    public partial class ClearableTextBox : UserControl
     {
         //Roundation
         public static DependencyProperty RoundationProperty =
-            DependencyProperty.Register(nameof(Roundation), typeof(double), typeof(ClearableTextBoxWithPlaceholder),
+            DependencyProperty.Register(nameof(Roundation), typeof(double), typeof(ClearableTextBox),
                 new PropertyMetadata(0.0, (d, e) =>
                 {
-                    ClearableTextBoxWithPlaceholder obj = d as ClearableTextBoxWithPlaceholder;
+                    ClearableTextBox obj = d as ClearableTextBox;
                     double value = (double)e.NewValue;
 
                     obj.Border.CornerRadius = new CornerRadius(value);
@@ -42,8 +42,8 @@ namespace Chat.MVVM.Views.UserControls
 
         //Background
         public static DependencyProperty BackgroundProperty =
-            DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(ClearableTextBoxWithPlaceholder),
-                new PropertyMetadata(null, (d, e) => (d as ClearableTextBoxWithPlaceholder).Rect.Fill = (Brush)e.NewValue));
+            DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(ClearableTextBox),
+                new PropertyMetadata(null, (d, e) => (d as ClearableTextBox).Rect.Fill = (Brush)e.NewValue));
 
         public new Brush Background
         {
@@ -54,8 +54,8 @@ namespace Chat.MVVM.Views.UserControls
 
         //BorderThickness
         public new static DependencyProperty BorderThicknessProperty =
-            DependencyProperty.Register(nameof(BorderThickness), typeof(Thickness), typeof(ClearableTextBoxWithPlaceholder),
-                new PropertyMetadata(new Thickness(), (d, e) => (d as ClearableTextBoxWithPlaceholder).Border.BorderThickness = (Thickness)e.NewValue));
+            DependencyProperty.Register(nameof(BorderThickness), typeof(Thickness), typeof(ClearableTextBox),
+                new PropertyMetadata(new Thickness(), (d, e) => (d as ClearableTextBox).Border.BorderThickness = (Thickness)e.NewValue));
 
         public new Thickness BorderThickness
         {
@@ -66,8 +66,8 @@ namespace Chat.MVVM.Views.UserControls
 
         //PlaceholderText
         public static DependencyProperty PlaceholderTextProperty =
-            DependencyProperty.Register(nameof(PlaceholderText), typeof(string), typeof(ClearableTextBoxWithPlaceholder),
-                new PropertyMetadata(string.Empty, (d, e) => (d as ClearableTextBoxWithPlaceholder).Placehold.Text = (string)e.NewValue));
+            DependencyProperty.Register(nameof(PlaceholderText), typeof(string), typeof(ClearableTextBox),
+                new PropertyMetadata(string.Empty, (d, e) => (d as ClearableTextBox).Placehold.Text = (string)e.NewValue));
 
         public string PlaceholderText
         {
@@ -75,13 +75,10 @@ namespace Chat.MVVM.Views.UserControls
             set => SetValue(PlaceholderTextProperty, value);
         }
 
-        private string _placeholderText;
 
-        public ClearableTextBoxWithPlaceholder()
+        public ClearableTextBox()
         {
             InitializeComponent();
-
-            _placeholderText = TextBox.Text;
         }
 
 
