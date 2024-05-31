@@ -20,17 +20,6 @@ namespace Chat.MVVM.Views.UserControls
     /// </summary>
     public partial class Logotype : UserControl
     {
-        public new DependencyProperty HeightProperty =
-            DependencyProperty.Register(nameof(Height), typeof(double), typeof(Logotype),
-                new PropertyMetadata(0.0, (d, e) => (d as Logotype).Logo.Height = (double)e.NewValue));
-
-        public new double Height
-        {
-            get => (double)GetValue(HeightProperty);
-            set => SetValue(HeightProperty, value);
-        }
-
-
         public Logotype()
         {
             InitializeComponent();

@@ -23,17 +23,6 @@ namespace Chat.MVVM.Views.UserControls
     /// </summary>
     public partial class TitleBar : UserControl
     {
-        public static new readonly DependencyProperty BackgroundProperty =
-            DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(TitleBar), 
-                new PropertyMetadata(null, (d, e) => (d as TitleBar).TitleBarGrid.Background = (Brush)e.NewValue));
-
-        public new Brush Background
-        {
-            get => (Brush)GetValue(BackgroundProperty);
-            set => SetValue(BackgroundProperty, value);
-        }
-
-
         public static readonly DependencyProperty ButtonsForegroundProperty =
             DependencyProperty.Register(nameof(ButtonsForeground), typeof(Brush), typeof(TitleBar),
                 new PropertyMetadata(null, (d, e) =>

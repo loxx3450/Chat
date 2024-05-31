@@ -6,9 +6,13 @@
              xmlns:local="clr-namespace:Chat.MVVM.Views.UserControls"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="800">
+             d:DesignHeight="30" d:DesignWidth="800"
+             x:Name="root"
+             >
     
-    <Grid x:Name="TitleBarGrid">
+    <Grid x:Name="TitleBarGrid" 
+          Background="{Binding Background, ElementName=root}">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="50"/>

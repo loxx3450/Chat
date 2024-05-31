@@ -20,6 +20,7 @@ namespace Chat.MVVM.Views.UserControls
     /// </summary>
     public partial class FilledRoundedBorder : UserControl
     {
+        //BorderThickness
         public new static readonly DependencyProperty BorderThicknessProperty =
             DependencyProperty.Register(nameof(BorderThickness), typeof(Thickness), typeof(FilledRoundedBorder),
                 new PropertyMetadata(new Thickness(), (d, e) => (d as FilledRoundedBorder).Border.BorderThickness = (Thickness)e.NewValue));
@@ -31,7 +32,7 @@ namespace Chat.MVVM.Views.UserControls
         }
 
 
-
+        //Roundation
         public static readonly DependencyProperty RoundationProperty =
             DependencyProperty.Register(nameof(Roundation), typeof(double), typeof(FilledRoundedBorder),
                 new PropertyMetadata(0.0, (d, e) =>
@@ -51,19 +52,7 @@ namespace Chat.MVVM.Views.UserControls
         }
 
 
-
-        public new static readonly DependencyProperty BorderBrushProperty =
-            DependencyProperty.Register(nameof(BorderBrush), typeof(Brush), typeof(FilledRoundedBorder),
-                new PropertyMetadata(null, (d, e) => (d as FilledRoundedBorder).Border.BorderBrush = (Brush)e.NewValue));
-
-        public new Brush BorderBrush
-        {
-            get => (Brush)GetValue(BorderBrushProperty);
-            set => SetValue(BorderBrushProperty, value);
-        }
-
-
-
+        //Background
         public new static readonly DependencyProperty BackgroundProperty =
             DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(FilledRoundedBorder),
                 new PropertyMetadata(null, (d, e) => (d as FilledRoundedBorder).Rect.Fill = (Brush)e.NewValue));
@@ -73,6 +62,7 @@ namespace Chat.MVVM.Views.UserControls
             get => (Brush)GetValue(BackgroundProperty);
             set => SetValue(BackgroundProperty, value);
         }
+
 
 
         public FilledRoundedBorder()

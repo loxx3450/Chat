@@ -47,7 +47,7 @@
                        Text="Password">
                     </TextBlock>
 
-                    <userControls:ClearablePasswordBox FontSize="18" 
+                    <userControls:ClearablePasswordBox FontSize="18" Roundation="3.6"
                         Foreground="{DynamicResource MainForeground}" Background="{DynamicResource MainBackground}" 
                         BorderBrush="{DynamicResource LoginWindowBorderBrush}">
                     </userControls:ClearablePasswordBox>
