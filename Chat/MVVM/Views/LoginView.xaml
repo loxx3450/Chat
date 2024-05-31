@@ -22,7 +22,7 @@
                Text="Sign in">
             </TextBlock>
 
-            <svgc:SvgViewbox Source="Images/logo.svg" Height="80"/>
+            <userControls:Logotype Height="80"/>
 
             <Grid Margin="0,30" Width="400">
 
