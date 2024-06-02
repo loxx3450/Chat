@@ -31,7 +31,7 @@ namespace Chat.MVVM.Views.UserControls
                     Brush value = (Brush)e.NewValue;
 
                     titleBar.buttonCloseIcon.Foreground = value;
-                    titleBar.buttonMazimizeIcon.Foreground = value;
+                    titleBar.buttonMaximizeIcon.Foreground = value;
                     titleBar.buttonMinimizeIcon.Foreground = value;
                     titleBar.buttonRestoreIcon.Foreground = value;
                 }));

@@ -9,6 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root"
              >
+    
     <Grid GotFocus="Grid_GotFocus"
           LostFocus="Grid_LostFocus">
         
@@ -17,29 +18,41 @@
             <ColumnDefinition x:Name="ColumnWithButton" Width="0"/>
         </Grid.ColumnDefinitions>
 
-        <Border x:Name="Border" Grid.ColumnSpan="2"
+        
+        <Border x:Name="Border" 
+                Grid.ColumnSpan="2"
                 BorderBrush="{Binding BorderBrush, ElementName=root}">
 
             <Rectangle x:Name="Rect"/>
+            
         </Border>
 
-        <TextBox x:Name="TextBox" Panel.ZIndex="1"
+        
+        <TextBox x:Name="TextBox" 
+                 Panel.ZIndex="1"
                  CaretBrush="{Binding Foreground, ElementName=root}" 
                  Foreground="{Binding Foreground, ElementName=root}"
                  FontSize="{Binding FontSize, ElementName=root}"
                  TextChanged="TextBox_TextChanged"/>
 
-        <TextBox x:Name="Placehold" Panel.ZIndex="0" 
+        
+        <TextBox x:Name="Placehold" 
+                 Panel.ZIndex="0" 
                  VerticalAlignment="Center"
                  FontSize="{Binding FontSize, ElementName=root}"
-                 Foreground="{Binding Foreground, ElementName=root}" />
+                 Foreground="{Binding Foreground, ElementName=root}"/>
 
-        <Button x:Name="ClearTextBtn" Grid.Column="1" Visibility="Collapsed"
+        
+        <Button x:Name="ClearTextBtn" 
+                Grid.Column="1" 
+                Visibility="Collapsed"
                 Click="ClearTextBtn_Click">
 
             <ui:SymbolIcon Symbol="Dismiss16" 
-               Foreground="{Binding Foreground, ElementName=root}"/>
+                           Foreground="{Binding Foreground, ElementName=root}"/>
             
         </Button>
+        
     </Grid>
+    
 </UserControl>

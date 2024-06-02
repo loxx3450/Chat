@@ -9,6 +9,8 @@
     
     <Border x:Name="Border" 
             BorderBrush="{Binding BorderBrush, ElementName=root}">
+        
         <Rectangle x:Name="Rect"/>
+        
     </Border>
 </UserControl>

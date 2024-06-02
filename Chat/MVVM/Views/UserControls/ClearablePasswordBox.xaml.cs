@@ -37,7 +37,7 @@ namespace Chat.MVVM.Views.UserControls
                     ClearablePasswordBox filledRoundedBorder = d as ClearablePasswordBox;
                     double value = (double)e.NewValue;
 
-                    filledRoundedBorder.PassBoxBorder.CornerRadius = new CornerRadius(value);
+                    filledRoundedBorder.Border.CornerRadius = new CornerRadius(value);
                     filledRoundedBorder.PassBoxBackground.RadiusX = value;
                     filledRoundedBorder.PassBoxBackground.RadiusY = value;
                 }));
@@ -52,7 +52,7 @@ namespace Chat.MVVM.Views.UserControls
         //BorderThickness
         public new static DependencyProperty BorderThicknessProperty =
             DependencyProperty.Register(nameof(BorderThickness), typeof(Thickness), typeof(ClearablePasswordBox),
-                new PropertyMetadata(new Thickness(), (d, e) => (d as ClearablePasswordBox).PassBoxBorder.BorderThickness = (Thickness)e.NewValue));
+                new PropertyMetadata(new Thickness(), (d, e) => (d as ClearablePasswordBox).Border.BorderThickness = (Thickness)e.NewValue));
 
         public new Thickness BorderThickness
         {

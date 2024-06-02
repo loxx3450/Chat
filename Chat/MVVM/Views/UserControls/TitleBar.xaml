@@ -20,20 +20,48 @@
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="1" Style="{StaticResource TitleBarButtonStyle}" x:Name="buttonMinimize" Click="buttonMinimize_Click">
-            <ui:SymbolIcon x:Name="buttonMinimizeIcon" Symbol="Subtract24"/>
-        </Button>
 
-        <Button Grid.Column="2" Style="{StaticResource TitleBarButtonStyle}" x:Name="buttonMaximize" Click="buttonMaximize_Click">
-            <ui:SymbolIcon x:Name="buttonMazimizeIcon" Symbol="Maximize16"/>
+        <Button x:Name="buttonMinimize" 
+                Grid.Column="1" 
+                Style="{StaticResource TitleBarButtonStyle}" 
+                Click="buttonMinimize_Click">
+            
+            <ui:SymbolIcon x:Name="buttonMinimizeIcon" 
+                           Symbol="Subtract24"/>
+            
         </Button>
+        
 
-        <Button Grid.Column="2" Style="{StaticResource TitleBarButtonStyle}" x:Name="buttonRestore" Click="buttonMaximize_Click">
-            <ui:SymbolIcon x:Name="buttonRestoreIcon" Symbol="SquareMultiple24"/>
+        <Button x:Name="buttonMaximize" 
+                Grid.Column="2" 
+                Style="{StaticResource TitleBarButtonStyle}" 
+                Click="buttonMaximize_Click">
+            
+            <ui:SymbolIcon x:Name="buttonMaximizeIcon" 
+                           Symbol="Maximize16"/>
+            
         </Button>
+        
 
-        <Button Grid.Column="3" Style="{StaticResource TitleBarButtonStyle}" x:Name="buttonClose" Click="buttonClose_Click">
-            <ui:SymbolIcon x:Name="buttonCloseIcon" Symbol="Dismiss16"/>
+        <Button x:Name="buttonRestore" 
+                Grid.Column="2" 
+                Style="{StaticResource TitleBarButtonStyle}" 
+                Click="buttonMaximize_Click">
+            
+            <ui:SymbolIcon x:Name="buttonRestoreIcon" 
+                           Symbol="SquareMultiple24"/>
+            
+        </Button>
+        
+
+        <Button x:Name="buttonClose" 
+                Grid.Column="3" 
+                Style="{StaticResource TitleBarButtonStyle}" 
+                Click="buttonClose_Click">
+            
+            <ui:SymbolIcon x:Name="buttonCloseIcon" 
+                           Symbol="Dismiss16"/>
+            
         </Button>
         
     </Grid>
