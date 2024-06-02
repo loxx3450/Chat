@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" >
+
+    <Style x:Key="EntryWindowsFilledRoundedBorderStyle" TargetType="{x:Type userControls:FilledRoundedBorder}">
+        
+        <Setter Property="Roundation" Value="12"/>
+        
+        <Setter Property="BorderThickness" Value="2"/>
+        
+        <Setter Property="BorderBrush" Value="{DynamicResource MainBorderBrush}"/>
+
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
+
+    </Style>
+    
+</ResourceDictionary>

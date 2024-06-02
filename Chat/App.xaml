@@ -15,6 +15,7 @@
 
                 <!--styles-->
                 <ResourceDictionary Source="Styles/DefaultTextBoxStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindowsFilledRoundedBorderStyle.xaml" />
                 <ResourceDictionary Source="Styles/TitleBarButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/WindowStyle.xaml" />
                 
