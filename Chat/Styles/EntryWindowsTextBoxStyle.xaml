@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls">
 
-    <Style x:Key="defaultTextBoxStyle" TargetType="{x:Type userControls:ClearableTextBox}">
+    <Style x:Key="EntryWindowsTextBoxStyle" TargetType="{x:Type userControls:ClearableTextBox}">
         
         <Setter Property="Background" Value="{DynamicResource MainBackground}"/>
         

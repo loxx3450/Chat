@@ -14,10 +14,10 @@
                 <ResourceDictionary Source="ResourcesDictionaries/Themes/CommonTheme.xaml" />
 
                 <!--styles-->
-                <ResourceDictionary Source="Styles/DefaultTextBoxStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindowsTextBoxStyle.xaml" />
                 <ResourceDictionary Source="Styles/EntryWindowsFilledRoundedBorderStyle.xaml" />
                 <ResourceDictionary Source="Styles/TitleBarButtonStyle.xaml" />
-                <ResourceDictionary Source="Styles/WindowStyle.xaml" />
+                <ResourceDictionary Source="Styles/NonDefaultWindowStyle.xaml" />
                 
                 <!--from NuGet-->
                 <ui:ControlsDictionary />

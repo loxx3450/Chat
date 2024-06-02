@@ -10,7 +10,7 @@
         Height="720" Width="1200"
         MinHeight="540" MinWidth="480"
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}"
-        Style="{StaticResource WindowWithoutDefaultStyle}">
+        Style="{StaticResource NonDefaultWindowStyle}">
     
     <Grid Background="{DynamicResource MainBackground}">
         
