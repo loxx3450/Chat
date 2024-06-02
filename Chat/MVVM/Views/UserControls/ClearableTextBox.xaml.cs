@@ -76,6 +76,30 @@ namespace Chat.MVVM.Views.UserControls
         }
 
 
+        //PlaceholderForeground
+        public static DependencyProperty PlaceholderForegroundProperty =
+            DependencyProperty.Register(nameof(PlaceholderForeground), typeof(Brush), typeof(ClearableTextBox),
+                new PropertyMetadata(null, (d, e) => (d as ClearableTextBox).Placehold.Foreground = (Brush)e.NewValue));
+
+        public Brush PlaceholderForeground
+        {
+            get => (Brush)GetValue(PlaceholderForegroundProperty);
+            set => SetValue(PlaceholderForegroundProperty, value);
+        }
+
+
+        //PlaceholderFontSize
+        public static DependencyProperty PlaceholderFontSizeProperty = 
+            DependencyProperty.Register(nameof(PlaceholderFontSize), typeof(double), typeof(ClearableTextBox),
+                new PropertyMetadata(0.0, (d, e) => (d as ClearableTextBox).Placehold.FontSize = (double)e.NewValue));
+
+        public double PlaceholderFontSize
+        {
+            get => (double)GetValue(PlaceholderFontSizeProperty);
+            set => SetValue(PlaceholderFontSizeProperty, value);
+        }
+
+
         public ClearableTextBox()
         {
             InitializeComponent();

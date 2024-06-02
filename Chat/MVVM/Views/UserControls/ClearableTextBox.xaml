@@ -29,9 +29,10 @@
                  FontSize="{Binding FontSize, ElementName=root}"
                  TextChanged="TextBox_TextChanged"/>
 
-        <TextBox x:Name="Placehold" Panel.ZIndex="0"
-               FontSize="{Binding FontSize, ElementName=root}"
-               Foreground="{Binding Foreground, ElementName=root}" />
+        <TextBox x:Name="Placehold" Panel.ZIndex="0" 
+                 VerticalAlignment="Center"
+                 FontSize="{Binding FontSize, ElementName=root}"
+                 Foreground="{Binding Foreground, ElementName=root}" />
 
         <Button x:Name="ClearTextBtn" Grid.Column="1" Visibility="Collapsed"
                 Click="ClearTextBtn_Click">
