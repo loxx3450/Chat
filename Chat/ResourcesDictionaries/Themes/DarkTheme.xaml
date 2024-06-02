@@ -5,12 +5,10 @@
     <SolidColorBrush x:Key="MainBackground">#0d1117</SolidColorBrush>
     <SolidColorBrush x:Key="SecondaryBackground">#161b22</SolidColorBrush>
     <SolidColorBrush x:Key="MainForeground">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="MainBorderBrush">#30363d</SolidColorBrush>
     
     <!--TitleBar-->
     <SolidColorBrush x:Key="TitleBarBackground">#242f3d</SolidColorBrush>
     <SolidColorBrush x:Key="MouseOverTitleBarButtonColor">#474747</SolidColorBrush>
     <SolidColorBrush x:Key="IsPressedTitleBarButtonColor">#965659</SolidColorBrush>
-    
-    <!--LoginWindow-->
-    <SolidColorBrush x:Key="LoginWindowBorderBrush">#30363d</SolidColorBrush>
 </ResourceDictionary>
