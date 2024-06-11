@@ -41,7 +41,7 @@ namespace Chat.MVVM.Views.UserControls
 
 
         //Background
-        public static DependencyProperty BackgroundProperty =
+        public static new DependencyProperty BackgroundProperty =
             DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(ClearableTextBox),
                 new PropertyMetadata(null, (d, e) => (d as ClearableTextBox).Rect.Fill = (Brush)e.NewValue));
 

@@ -32,14 +32,14 @@
 
             <StackPanel Margin="24">
 
-                <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}" 
                            Margin="3,0" 
-                           Text="Login"/>
-
+                           Text="Email"/>
                 
-                <userControls:ClearableTextBox Margin="0, 10" 
-                                               Style="{StaticResource EntryWindowsTextBoxStyle}"
-                                               PlaceholderText="Enter login..."/>
+
+                <userControls:ClearableTextBox Style="{StaticResource EntryWindowsTextBoxStyle}" 
+                                               Margin="0, 10" 
+                                               PlaceholderText="Enter email..."/>
 
 
                 <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
@@ -51,12 +51,11 @@
                                                    PlaceholderText="Enter password..."/>
 
                 
-                <ui:Button Margin="0, 20, 0, 0" 
+                <ui:Button Margin="0, 25, 0, 0" 
                            HorizontalAlignment="Stretch" 
                            Appearance="Success" 
                            Background="Green" 
-                           Foreground="{DynamicResource MainForeground}" 
-                           BorderBrush="{DynamicResource MainBorderBrush}">
+                           Foreground="{DynamicResource MainForeground}">
 
                     <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
                                Text="Sign in"/>
@@ -69,7 +68,7 @@
 
         <Grid>
 
-            <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"
+            <userControls:FilledRoundedBorder Style="{DynamicResource EntryWindowsFilledRoundedBorderStyle}"
                                               Background="Transparent"/>
 
 
