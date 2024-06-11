@@ -47,15 +47,8 @@
                            Text="Password"/>
 
                 
-                <userControls:ClearablePasswordBox FontSize="18" 
-                                                   Roundation="3.6" 
-                                                   BorderThickness="1" 
-                                                   BorderBrush="{DynamicResource MainBorderBrush}" 
-                                                   Foreground="{DynamicResource MainForeground}" 
-                                                   Background="{DynamicResource MainBackground}" 
-                                                   PlaceholderText="Enter password..." 
-                                                   PlaceholderForeground="#999999"
-                                                   PlaceholderFontSize="16"/>
+                <userControls:ClearablePasswordBox Style="{DynamicResource EntryWindowsPasswordBoxStyle}"
+                                                   PlaceholderText="Enter password..."/>
 
                 
                 <ui:Button Margin="0, 20, 0, 0" 
