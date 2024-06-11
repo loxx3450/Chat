@@ -18,6 +18,8 @@
                 <ResourceDictionary Source="Styles/EntryWindowsFilledRoundedBorderStyle.xaml" />
                 <ResourceDictionary Source="Styles/TitleBarButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/NonDefaultWindowStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindowsTextBlockStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindowsHyperlinkStyle.xaml" />
                 
                 <!--from NuGet-->
                 <ui:ControlsDictionary />

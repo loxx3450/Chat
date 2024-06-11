@@ -29,20 +29,11 @@
 
             <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"/>
 
-            
-            <StackPanel Margin="24">
-                
-                <StackPanel.Resources>
-                    
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="FontSize" Value="20"/>
-                        <Setter Property="Foreground" Value="{DynamicResource MainForeground}"/>
-                    </Style>
-                    
-                </StackPanel.Resources>
 
-                
-                <TextBlock Margin="3,0" 
+            <StackPanel Margin="24">
+
+                <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                           Margin="3,0" 
                            Text="Login"/>
 
                 
@@ -51,7 +42,8 @@
                                                PlaceholderText="Enter login..."/>
 
 
-                <TextBlock Margin="3,10" 
+                <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                           Margin="3,10" 
                            Text="Password"/>
 
                 
@@ -73,7 +65,8 @@
                            Foreground="{DynamicResource MainForeground}" 
                            BorderBrush="{DynamicResource MainBorderBrush}">
 
-                    <TextBlock Text="Sign in"/>
+                    <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                               Text="Sign in"/>
                     
                 </ui:Button>
                 
@@ -86,24 +79,15 @@
             <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"
                                               Background="Transparent"/>
 
-            
+
             <StackPanel Margin="16" 
                         HorizontalAlignment="Center">
-
-                <StackPanel.Resources>
-
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="FontSize" Value="20"/>
-                        <Setter Property="Foreground" Value="{StaticResource HyperlinkForeground}"/>
-                    </Style>
-                    
-                </StackPanel.Resources>
-                
 
                 <ui:Button Appearance="Dark" 
                            Background="Transparent">
                     
-                    <TextBlock Text="Forgot password?"/>
+                    <TextBlock Style="{StaticResource EntryWindowsHyperlinkStyle}"
+                               Text="Forgot password?"/>
                     
                 </ui:Button>
                 
@@ -113,7 +97,8 @@
                            Background="Transparent"
                            Command="{Binding NavigateToRegistrationCommand}">
                     
-                    <TextBlock Text="Create an account"/>
+                    <TextBlock Style="{StaticResource EntryWindowsHyperlinkStyle}" 
+                               Text="Create an account"/>
                     
                 </ui:Button>
 
