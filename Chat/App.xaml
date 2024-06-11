@@ -13,19 +13,25 @@
                 <ResourceDictionary Source="ResourcesDictionaries/Themes/DarkTheme.xaml" />
                 <ResourceDictionary Source="ResourcesDictionaries/Themes/CommonTheme.xaml" />
 
-                <!--styles-->
-                <ResourceDictionary Source="Styles/EntryWindowsTextBoxStyle.xaml" />
-                <ResourceDictionary Source="Styles/EntryWindowsFilledRoundedBorderStyle.xaml" />
+                
+                <!--EntryWindows styles-->
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsTextBoxStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsFilledRoundedBorderStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsTextBlockStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsHyperlinkStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsPasswordBoxStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsCaptionStyle.xaml" />
+
+                
+                <!--MainWindow styles-->
                 <ResourceDictionary Source="Styles/TitleBarButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/NonDefaultWindowStyle.xaml" />
-                <ResourceDictionary Source="Styles/EntryWindowsTextBlockStyle.xaml" />
-                <ResourceDictionary Source="Styles/EntryWindowsHyperlinkStyle.xaml" />
-                <ResourceDictionary Source="Styles/EntryWindowsPasswordBoxStyle.xaml" />
-                <ResourceDictionary Source="Styles/EntryWindowsCaptionStyle.xaml" />
-                
+
+
                 <!--from NuGet-->
                 <ui:ControlsDictionary />
 
+                
                 <!--DataTemplates for Views-->
                 <ResourceDictionary>
                     
