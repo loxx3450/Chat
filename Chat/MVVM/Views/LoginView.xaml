@@ -17,10 +17,7 @@
                 Background="{DynamicResource MainBackground}"
                 Width="400">
 
-        <TextBlock Margin="20" 
-                   FontSize="40" 
-                   HorizontalAlignment="Center" 
-                   Foreground="{DynamicResource MainForeground}" 
+        <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}" 
                    Text="Sign in"/>
 
         <userControls:Logotype Height="80"/>

@@ -21,6 +21,7 @@
                 <ResourceDictionary Source="Styles/EntryWindowsTextBlockStyle.xaml" />
                 <ResourceDictionary Source="Styles/EntryWindowsHyperlinkStyle.xaml" />
                 <ResourceDictionary Source="Styles/EntryWindowsPasswordBoxStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindowsCaptionStyle.xaml" />
                 
                 <!--from NuGet-->
                 <ui:ControlsDictionary />

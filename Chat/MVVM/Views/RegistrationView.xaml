@@ -16,10 +16,8 @@
     <Grid Background="{DynamicResource MainBackground}">
         <StackPanel HorizontalAlignment="Center">
 
-            <TextBlock Margin="20" HorizontalAlignment="Center" FontSize="40"
-                       Foreground="{DynamicResource MainForeground}"
-                       Text="Sign up">
-            </TextBlock>
+            <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}" 
+                       Text="Sign up"/>
 
             <userControls:Logotype Height="80"/>
 
