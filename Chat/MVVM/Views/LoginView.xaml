@@ -73,7 +73,8 @@
                         HorizontalAlignment="Center">
 
                 <ui:Button Appearance="Dark" 
-                           Background="Transparent">
+                           Background="Transparent"
+                           Command="{Binding NavigateToRecoveryCommand}">
                     
                     <TextBlock Style="{StaticResource EntryWindowsHyperlinkStyle}"
                                Text="Forgot password?"/>

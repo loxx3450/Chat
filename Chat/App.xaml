@@ -35,12 +35,16 @@
                 <!--DataTemplates for Views-->
                 <ResourceDictionary>
                     
-                    <DataTemplate DataType="{x:Type TypeName=viewModels:LoginViewModel}">
+                    <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
                         <views:LoginView/>
                     </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type TypeName=viewModels:RegistrationViewModel}">
+                    <DataTemplate DataType="{x:Type viewModels:RegistrationViewModel}">
                         <views:RegistrationView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewModels:RecoveryViewModel}">
+                        <views:RecoveryView/>
                     </DataTemplate>
                     
                 </ResourceDictionary>
