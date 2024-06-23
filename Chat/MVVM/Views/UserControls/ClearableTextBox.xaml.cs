@@ -100,6 +100,30 @@ namespace Chat.MVVM.Views.UserControls
         }
 
 
+        //Text
+        public static DependencyProperty TextProperty = 
+            DependencyProperty.Register(nameof(Text), typeof(string), typeof(ClearableTextBox),
+                new PropertyMetadata(string.Empty));
+
+        public string Text
+        {
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
+        }
+
+
+        //ErrorMessageFontSize
+        public static DependencyProperty ErrorMessageFontSizeProperty =
+            DependencyProperty.Register(nameof(ErrorMessageFontSize), typeof(double), typeof(ClearableTextBox),
+                new PropertyMetadata(0.0, (d, e) => (d as ClearableTextBox).ErrorsItemsControl.FontSize = (double)e.NewValue));
+
+        public double ErrorMessageFontSize
+        {
+            get => (double)GetValue(ErrorMessageFontSizeProperty);
+            set => SetValue(ErrorMessageFontSizeProperty, value);
+        }
+
+
         public ClearableTextBox()
         {
             InitializeComponent();

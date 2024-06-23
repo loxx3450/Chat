@@ -20,6 +20,8 @@
 
         <Setter Property="PlaceholderFontSize" Value="16"/>
 
+        <Setter Property="ErrorMessageFontSize" Value="16"/>
+
     </Style>
     
 </ResourceDictionary>
