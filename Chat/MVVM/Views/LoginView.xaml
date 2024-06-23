@@ -34,7 +34,8 @@
                            Text="Email"/>
                 
 
-                <userControls:ClearableTextBox Style="{StaticResource EntryWindowsTextBoxStyle}" 
+                <userControls:ClearableTextBox Text="{Binding Email, Mode=TwoWay, ValidatesOnExceptions=True}"
+                                               Style="{StaticResource EntryWindowsTextBoxStyle}" 
                                                Margin="0, 10" 
                                                PlaceholderText="Enter email..."/>
 
