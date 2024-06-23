@@ -26,7 +26,10 @@
                 <!--MainWindow styles-->
                 <ResourceDictionary Source="Styles/TitleBarButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/NonDefaultWindowStyle.xaml" />
-
+                
+                
+                <!--ControlTemplates-->
+                <ResourceDictionary Source="Styles/ControlTemplates/ErrorTemplate.xaml"/>
 
                 <!--from NuGet-->
                 <ui:ControlsDictionary />
