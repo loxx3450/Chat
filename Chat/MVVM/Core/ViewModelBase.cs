@@ -8,5 +8,16 @@ namespace Chat.MVVM.Core
 {
     public abstract class ViewModelBase : ObservableObject
     {
+        private INavigationService _navigationService;
+        public INavigationService NavigationService
+        {
+            get => _navigationService;
+            set => SetField(ref _navigationService, value);
+        }
+
+        public ViewModelBase(INavigationService navigationService)
+        {
+            NavigationService = navigationService;
+        }
     }
 }

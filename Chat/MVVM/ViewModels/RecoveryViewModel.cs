@@ -9,6 +9,10 @@ namespace Chat.MVVM.ViewModels
 {
     public class RecoveryViewModel : ViewModelBase
     {
+        public RecoveryViewModel(INavigationService navigationService)
+            : base(navigationService)
+        {
 
+        }
     }
 }

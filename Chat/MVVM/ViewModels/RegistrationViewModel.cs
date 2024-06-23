@@ -9,19 +9,11 @@ namespace Chat.MVVM.ViewModels
 {
     public class RegistrationViewModel : ViewModelBase
     {
-        private INavigationService _navigationService;
-        public INavigationService NavigationService
-        {
-            get => _navigationService;
-            set => SetField(ref _navigationService, value);
-        }
-
         public RelayCommand NavigateToLoginCommand { get; set; }
 
         public RegistrationViewModel(INavigationService navigationService)
+            : base(navigationService)
         {
-            NavigationService = navigationService;
-
             NavigateToLoginCommand = new RelayCommand(o => NavigationService.NavigateTo<LoginViewModel>());
         }
     }
