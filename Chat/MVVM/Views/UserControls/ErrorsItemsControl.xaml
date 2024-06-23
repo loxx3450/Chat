@@ -13,6 +13,7 @@
                 <TextBlock FontSize="{Binding FontSize, ElementName=itemsControl}" 
                            Margin="5,4,0,0" 
                            Foreground="Red" 
+                           TextWrapping="WrapWithOverflow"
                            Text="{Binding ErrorContent}"/>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
