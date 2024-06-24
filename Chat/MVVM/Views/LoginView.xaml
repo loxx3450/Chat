@@ -36,7 +36,7 @@
 
                 <userControls:ClearableTextBox Text="{Binding Email, Mode=TwoWay, ValidatesOnExceptions=True}"
                                                Style="{StaticResource EntryWindowsTextBoxStyle}" 
-                                               Margin="0, 10" 
+                                               Margin="0, 10"
                                                PlaceholderText="Enter email..."/>
 
 
@@ -45,7 +45,8 @@
                            Text="Password"/>
 
                 
-                <userControls:ClearablePasswordBox Style="{DynamicResource EntryWindowsPasswordBoxStyle}"
+                <userControls:ClearablePasswordBox Password="{Binding Password, Mode=TwoWay, ValidatesOnExceptions=True}" 
+                                                   Style="{DynamicResource EntryWindowsPasswordBoxStyle}"
                                                    PlaceholderText="Enter password..."/>
 
                 

@@ -26,11 +26,19 @@ namespace Chat.MVVM.ViewModels
             }
         }
 
-        private string _password; 
+        private string _password;
+
+        [Required(ErrorMessage = "Can not be empty")]
+        [MinLength(8, ErrorMessage = "Password should contain at least 8 symbols")]
+        [RegularExpression(@"^(?=.*\d)(?=.*[a-zA-Z]).*", ErrorMessage = "Password should contain at least one number and one letter")]
         public string Password
         {
             get => _password;
-            set => SetField(ref _password, value);
+            set
+            {
+                ValidateProperty(value, nameof(Password));
+                SetField(ref _password, value);
+            }
         }
 
         public RelayCommand NavigateToRegistrationCommand { get; set; }
