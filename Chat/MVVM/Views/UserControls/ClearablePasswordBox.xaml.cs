@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Chat.MVVM.Views.UserControls.Additional_Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,87 +16,18 @@ using System.Windows.Shapes;
 
 namespace Chat.MVVM.Views.UserControls
 {
-    public partial class ClearablePasswordBox : UserControl
+    public partial class ClearablePasswordBox : InputBox
     {
-        //Background
-        public new static readonly DependencyProperty BackgroundProperty =
-            DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(ClearablePasswordBox), 
-                new PropertyMetadata(null, (d, e) => (d as ClearablePasswordBox).PassBoxBackground.Fill = (Brush)e.NewValue));
+        //Password
+        public static DependencyProperty PasswordProperty =
+            DependencyProperty.Register(nameof(Password), typeof(string), typeof(ClearablePasswordBox),
+                new PropertyMetadata(string.Empty));
 
-        public new Brush Background
+        public string Password
         {
-            get => (Brush)GetValue(BackgroundProperty);
-            set => SetValue(BackgroundProperty, value);
+            get => (string)GetValue(PasswordProperty);
+            set => SetValue(PasswordProperty, value);
         }
-
-
-        //Roundation
-        public static readonly DependencyProperty RoundationProperty =
-            DependencyProperty.Register(nameof(Roundation), typeof(double), typeof(ClearablePasswordBox),
-                new PropertyMetadata(0.0, (d, e) =>
-                {
-                    ClearablePasswordBox filledRoundedBorder = d as ClearablePasswordBox;
-                    double value = (double)e.NewValue;
-
-                    filledRoundedBorder.Border.CornerRadius = new CornerRadius(value);
-                    filledRoundedBorder.PassBoxBackground.RadiusX = value;
-                    filledRoundedBorder.PassBoxBackground.RadiusY = value;
-                }));
-
-        public double Roundation
-        {
-            get => (double)GetValue(RoundationProperty);
-            set => SetValue(RoundationProperty, value);
-        }
-
-
-        //BorderThickness
-        public new static DependencyProperty BorderThicknessProperty =
-            DependencyProperty.Register(nameof(BorderThickness), typeof(Thickness), typeof(ClearablePasswordBox),
-                new PropertyMetadata(new Thickness(), (d, e) => (d as ClearablePasswordBox).Border.BorderThickness = (Thickness)e.NewValue));
-
-        public new Thickness BorderThickness
-        {
-            get => (Thickness)GetValue(BorderThicknessProperty);
-            set => SetValue(BorderThicknessProperty, value);
-        }
-
-
-        //PlaceholderText
-        public static DependencyProperty PlaceholderTextProperty =
-            DependencyProperty.Register(nameof(PlaceholderText), typeof(string), typeof(ClearablePasswordBox),
-                new PropertyMetadata(string.Empty, (d, e) => (d as ClearablePasswordBox).Placehold.Text = (string)e.NewValue));
-
-        public string PlaceholderText
-        {
-            get => (string)GetValue(PlaceholderTextProperty);
-            set => SetValue(PlaceholderTextProperty, value);
-        }
-
-        //PlaceholderForeground
-        public static DependencyProperty PlaceholderForegroundProperty =
-            DependencyProperty.Register(nameof(PlaceholderForeground), typeof(Brush), typeof(ClearablePasswordBox),
-                new PropertyMetadata(null, (d, e) => (d as ClearablePasswordBox).Placehold.Foreground = (Brush)e.NewValue));
-
-        public Brush PlaceholderForeground
-        {
-            get => (Brush)GetValue(PlaceholderForegroundProperty);
-            set => SetValue(PlaceholderForegroundProperty, value);
-        }
-
-
-        //PlaceholderFontSize
-        public static DependencyProperty PlaceholderFontSizeProperty =
-            DependencyProperty.Register(nameof(PlaceholderFontSize), typeof(double), typeof(ClearablePasswordBox),
-                new PropertyMetadata(0.0, (d, e) => (d as ClearablePasswordBox).Placehold.FontSize = (double)e.NewValue));
-
-        public double PlaceholderFontSize
-        {
-            get => (double)GetValue(PlaceholderFontSizeProperty);
-            set => SetValue(PlaceholderFontSizeProperty, value);
-        }
-
-
 
         public ClearablePasswordBox()
         {
