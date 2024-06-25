@@ -20,7 +20,7 @@ namespace Chat.MVVM.Views.UserControls.Additional_Infrastructure
         /// </summary>
         public static readonly DependencyProperty BoundPasswordProperty =
             DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(BoundPasswordBox),
-                new FrameworkPropertyMetadata(string.Empty, OnBoundPasswordChanged));
+                new FrameworkPropertyMetadata(null, OnBoundPasswordChanged));
 
         /// <summary>
         /// Gets the BoundPassword property.
