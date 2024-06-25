@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Http.Headers;
 
 namespace Chat.MVVM.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private string _email;
+        private string _email = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
         [RegularExpression(@"^\w+@[a-zA-Z]+\.[a-zA-Z]+", ErrorMessage = "Email is invalid")]
@@ -22,7 +23,8 @@ namespace Chat.MVVM.ViewModels
             set => SetValidatedField(ref _email, value, nameof(Email));
         }
 
-        private string _password;
+
+        private string _password = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
         [MinLength(8, ErrorMessage = "Password should contain at least 8 symbols")]
@@ -33,6 +35,8 @@ namespace Chat.MVVM.ViewModels
             set => SetValidatedField(ref _password, value, nameof(Password));
         }
 
+
+        public RelayCommand SignInCommand { get; set; }
         public RelayCommand NavigateToRegistrationCommand { get; set; }
         public RelayCommand NavigateToRecoveryCommand { get; set; }
 
@@ -41,6 +45,20 @@ namespace Chat.MVVM.ViewModels
         {
             NavigateToRegistrationCommand = new RelayCommand(o => NavigationService.NavigateTo<RegistrationViewModel>());
             NavigateToRecoveryCommand = new RelayCommand(o => NavigationService.NavigateTo<RecoveryViewModel>());
+
+            SignInCommand = new RelayCommand(SignIn, CanSignIn);
+        }
+
+        private void SignIn(object obj)
+        {
+
+        }
+
+        private bool CanSignIn(object obj)
+        {
+            return !HasErrors
+                && _email != string.Empty
+                && _password != string.Empty;
         }
     }
 }

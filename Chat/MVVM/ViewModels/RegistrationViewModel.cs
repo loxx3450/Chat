@@ -10,7 +10,7 @@ namespace Chat.MVVM.ViewModels
 {
     public class RegistrationViewModel : ViewModelBase
     {
-        private string _username;
+        private string _username = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
         [RegularExpression(@"^[^\s]+", ErrorMessage = "Username can not contain spaces")]
@@ -21,7 +21,7 @@ namespace Chat.MVVM.ViewModels
         }
 
 
-        private string _email;
+        private string _email = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
         [RegularExpression(@"^\w+@[a-zA-Z]+\.[a-zA-Z]+", ErrorMessage = "Email is invalid")]
@@ -32,7 +32,7 @@ namespace Chat.MVVM.ViewModels
         }
 
 
-        private string _password;
+        private string _password = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
         [MinLength(8, ErrorMessage = "Password should contain at least 8 symbols")]
@@ -45,7 +45,7 @@ namespace Chat.MVVM.ViewModels
 
 
         //TODO: do i even need this???
-        private string _confirmationPassword;
+        private string _confirmationPassword = string.Empty;
 
         [Compare(nameof(Password), ErrorMessage = "The password and confirmation password do not match")]
         public string ConfirmationPassword
@@ -54,13 +54,28 @@ namespace Chat.MVVM.ViewModels
             set => SetValidatedField(ref _confirmationPassword, value, nameof(ConfirmationPassword));
         }
 
-
+        public RelayCommand SignUpCommand { get; set; }
         public RelayCommand NavigateToLoginCommand { get; set; }
 
         public RegistrationViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             NavigateToLoginCommand = new RelayCommand(o => NavigationService.NavigateTo<LoginViewModel>());
+            SignUpCommand = new RelayCommand(SignUp, CanSignUp);
+        }
+
+        private void SignUp(object obj)
+        {
+
+        }
+
+        private bool CanSignUp(object obj)
+        {
+            return !HasErrors 
+                && _username != string.Empty 
+                && _email != string.Empty 
+                && _password != string.Empty 
+                && _confirmationPassword != string.Empty;
         }
     }
 }

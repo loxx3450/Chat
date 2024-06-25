@@ -50,7 +50,8 @@
                                                    PlaceholderText="Enter password..."/>
 
                 
-                <ui:Button Margin="0, 25, 0, 0" 
+                <ui:Button Command="{Binding SignInCommand}" 
+                           Margin="0, 25, 0, 0" 
                            HorizontalAlignment="Stretch" 
                            Appearance="Success" 
                            Background="Green" 
