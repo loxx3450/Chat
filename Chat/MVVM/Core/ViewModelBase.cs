@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -16,6 +18,12 @@ namespace Chat.MVVM.Core
             set => SetField(ref _navigationService, value);
         }
 
+
+        protected Dictionary<string, bool> propertyErrors = [];
+
+        public bool HasErrors => propertyErrors.Count > 0;
+
+
         public ViewModelBase(INavigationService navigationService)
         {
             NavigationService = navigationService;
@@ -23,16 +31,27 @@ namespace Chat.MVVM.Core
 
         protected void ValidateProperty<T>(T value, string name)
         {
-            Validator.ValidateProperty(value, new ValidationContext(this, null, null)
+            try
             {
-                MemberName = name
-            });
+                propertyErrors.Remove(name);
+
+                Validator.ValidateProperty(value, new ValidationContext(this, null, null)
+                {
+                    MemberName = name
+                });
+            }
+            catch
+            {
+                propertyErrors.Add(name, true);
+
+                throw;
+            }
         }
 
         protected void SetValidatedField<T>(ref T property, T value, string propertyName)
         {
-            ValidateProperty(value, propertyName);
             SetField(ref property, value, propertyName);
+            ValidateProperty(value, propertyName);
         }
     }
 }
