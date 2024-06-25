@@ -19,11 +19,7 @@ namespace Chat.MVVM.ViewModels
         public string Email
         {
             get => _email;
-            set
-            {
-                ValidateProperty(value, nameof(Email));
-                SetField(ref _email, value);
-            }
+            set => SetValidatedField(ref _email, value, nameof(Email));
         }
 
         private string _password;
@@ -34,11 +30,7 @@ namespace Chat.MVVM.ViewModels
         public string Password
         {
             get => _password;
-            set
-            {
-                ValidateProperty(value, nameof(Password));
-                SetField(ref _password, value);
-            }
+            set => SetValidatedField(ref _password, value, nameof(Password));
         }
 
         public RelayCommand NavigateToRegistrationCommand { get; set; }

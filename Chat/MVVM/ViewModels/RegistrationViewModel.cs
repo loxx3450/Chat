@@ -17,12 +17,7 @@ namespace Chat.MVVM.ViewModels
         public string Username
         {
             get => _username;
-            set
-            {
-                //TODO: SetValidatedProperty
-                ValidateProperty(value, nameof(Username));
-                SetField(ref _username, value);
-            }
+            set => SetValidatedField(ref _username, value, nameof(Username));
         }
 
 
@@ -33,11 +28,7 @@ namespace Chat.MVVM.ViewModels
         public string Email
         {
             get => _email;
-            set
-            {
-                ValidateProperty(value, nameof(Email));
-                SetField(ref _email, value);
-            }
+            set => SetValidatedField(ref _email, value, nameof(Email));
         }
 
 
@@ -49,25 +40,18 @@ namespace Chat.MVVM.ViewModels
         public string Password
         {
             get => _password;
-            set
-            {
-                ValidateProperty(value, nameof(Password));
-                SetField(ref _password, value);
-            }
+            set => SetValidatedField(ref _password, value, nameof(Password));
         }
 
 
+        //TODO: do i even need this???
         private string _confirmationPassword;
 
         [Compare(nameof(Password), ErrorMessage = "The password and confirmation password do not match")]
         public string ConfirmationPassword
         {
             get => _confirmationPassword;
-            set
-            {
-                ValidateProperty(value, nameof(ConfirmationPassword));
-                SetField(ref _confirmationPassword, value);
-            }
+            set => SetValidatedField(ref _confirmationPassword, value, nameof(ConfirmationPassword));
         }
 
 

@@ -21,12 +21,18 @@ namespace Chat.MVVM.Core
             NavigationService = navigationService;
         }
 
-        protected void ValidateProperty(object value, string name)
+        protected void ValidateProperty<T>(T value, string name)
         {
             Validator.ValidateProperty(value, new ValidationContext(this, null, null)
             {
                 MemberName = name
             });
+        }
+
+        protected void SetValidatedField<T>(ref T property, T value, string propertyName)
+        {
+            ValidateProperty(value, propertyName);
+            SetField(ref property, value, propertyName);
         }
     }
 }
