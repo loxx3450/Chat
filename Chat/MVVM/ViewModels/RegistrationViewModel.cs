@@ -72,10 +72,10 @@ namespace Chat.MVVM.ViewModels
         private bool CanSignUp(object obj)
         {
             return !HasErrors 
-                && _username != string.Empty 
-                && _email != string.Empty 
-                && _password != string.Empty 
-                && _confirmationPassword != string.Empty;
+                && !string.IsNullOrEmpty(_username) 
+                && !string.IsNullOrEmpty(_email) 
+                && !string.IsNullOrEmpty(_password) 
+                && !string.IsNullOrEmpty(_confirmationPassword);
         }
     }
 }

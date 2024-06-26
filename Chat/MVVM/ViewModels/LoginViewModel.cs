@@ -57,8 +57,8 @@ namespace Chat.MVVM.ViewModels
         private bool CanSignIn(object obj)
         {
             return !HasErrors
-                && _email != string.Empty
-                && _password != string.Empty;
+                && !string.IsNullOrEmpty(_email)
+                && !string.IsNullOrEmpty(_password);
         }
     }
 }
