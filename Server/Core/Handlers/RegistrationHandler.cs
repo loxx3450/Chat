@@ -71,8 +71,7 @@ namespace ServerSide.Core.Handlers
                         "(" +
                             "SELECT 1 " +
                             "FROM users " +
-                            $"WHERE login = '{user.Login}' " +
-                            $"AND password = '{user.Password}'" +
+                            $"WHERE email = '{user.Email}'" +
                         ") " +
                         "THEN 1 " +
                         "ELSE 0 " +
@@ -90,8 +89,8 @@ namespace ServerSide.Core.Handlers
 
             using NpgsqlCommand cmd = new NpgsqlCommand(
                 "INSERT INTO users " +
-                "(login, password, full_name, birthday, is_male, created_at)" +
-                $"VALUES('{user.Login}', '{user.Password}', '{user.FullName}', '{user.Birthday}', '{user.IsMale}', '{user.CreatedAt}');", 
+                "(username, email, password, full_name, birthday, is_male)" +
+                $"VALUES('{user.Username}', '{user.Email}','{user.Password}', '{user.FullName}', '{user.Birthday}', '{user.IsMale}');", 
                     conn);
 
             try
