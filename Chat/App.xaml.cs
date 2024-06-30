@@ -1,6 +1,8 @@
 ﻿using Chat.MVVM;
+using Chat.MVVM.Models.Services;
 using Chat.MVVM.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using SocketEventLibrary.Sockets;
 using System;
 using System.Configuration;
 using System.Data;
@@ -17,6 +19,8 @@ namespace Chat
 
         public App()
         {
+            SocketEventHandler.ConnectToServer();
+
             IServiceCollection services = new ServiceCollection();
 
             //Adding MainWindow
