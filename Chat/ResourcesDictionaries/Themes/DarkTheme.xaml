@@ -11,4 +11,7 @@
     <SolidColorBrush x:Key="TitleBarBackground">#242f3d</SolidColorBrush>
     <SolidColorBrush x:Key="MouseOverTitleBarButtonColor">#474747</SolidColorBrush>
     <SolidColorBrush x:Key="IsPressedTitleBarButtonColor">#965659</SolidColorBrush>
+    
+    <!--MainWindow-->
+    <SolidColorBrush x:Key="WindowBorderBrush">#000000</SolidColorBrush>
 </ResourceDictionary>
