@@ -1,4 +1,5 @@
 ﻿using CommonLibrary;
+using ProtocolLibrary.Message;
 using SocketEventLibrary.Sockets;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace Chat.MVVM.Models.Services
             //TODO:
             //
             //
+            socket.On(MessageType.RegistrationResponse, 
+                (mes) => RegistrationService.HandleResponse((ProtocolMessage)mes));
 
             //3. Subscribes on service Events
             //TODO:
