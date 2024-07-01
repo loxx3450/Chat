@@ -36,7 +36,7 @@ while (isConnected)
 
         case ConsoleKey.Enter:
             message = new ProtocolMessage();
-            message.SetPayload(new RegistrationRequestPayload(new User("new_user", "new_password", "new_fullName", new DateOnly(2006, 1, 15), true)));
+            message.SetPayload(new RegistrationRequestPayload(new User("new_user", "new_password", "new_fullName")));
 
             socket.Emit(new SocketEventProtocolMessage(MessageType.RegistrationRequest, message));
 
