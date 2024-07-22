@@ -11,7 +11,8 @@
         MinHeight="540" MinWidth="480"
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}"
         Style="{StaticResource NonDefaultWindowStyle}"
-        Icon="../../Images/logo.png">
+        Icon="../../Images/logo.png"
+        BorderBrush="{DynamicResource WindowBorderBrush}" BorderThickness="1">
     
     <Grid Background="{DynamicResource MainBackground}">
         

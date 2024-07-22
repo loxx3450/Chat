@@ -22,7 +22,7 @@ namespace ServerSide.Core.Handlers
             {
                 SigningInRequestPayload payload = PayloadBuilder.GetPayload<SigningInRequestPayload>(message.PayloadStream);
                 
-                if (UserIsFounded(payload.Login, payload.Password)) 
+                if (UserIsFounded(payload.Email, payload.Password)) 
                     responseType = SigningInResponseType.Successed;
                 else 
                     responseType = SigningInResponseType.Failed;
@@ -43,7 +43,7 @@ namespace ServerSide.Core.Handlers
             return new SocketEventProtocolMessage(MessageType.SigningInResponse, response);
         }
 
-        private static bool UserIsFounded(string login, string password)
+        private static bool UserIsFounded(string email, string password)
         {
             using NpgsqlConnection conn = new NpgsqlConnection(ConfigurationManager.AppSettings["connString"]);
 
@@ -56,7 +56,7 @@ namespace ServerSide.Core.Handlers
                         "( " +
                             "SELECT 1 " +
                             "FROM users " +
-                            $"WHERE login = '{login}' " +
+                            $"WHERE email = '{email}' " +
                                 $"AND password = '{password}'" +
                         ") " +
                         "THEN 1 " +

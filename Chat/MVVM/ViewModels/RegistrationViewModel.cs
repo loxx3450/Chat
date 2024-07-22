@@ -1,4 +1,6 @@
 ﻿using Chat.MVVM.Core;
+using Chat.MVVM.Models.Services;
+using CommonLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -66,7 +68,7 @@ namespace Chat.MVVM.ViewModels
 
         private void SignUp(object obj)
         {
-
+            RegistrationService.Register(new User(Username, Email, Password));
         }
 
         private bool CanSignUp(object obj)

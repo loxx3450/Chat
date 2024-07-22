@@ -9,12 +9,12 @@ namespace CommonLibrary.Payloads.SigningIn
 {
     public class SigningInRequestPayload : JSONPayload
     {
-        public string Login { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
 
-        public SigningInRequestPayload(string login, string password) 
+        public SigningInRequestPayload(string email, string password) 
         { 
-            Login = login;
+            Email = email;
             Password = password;
         }
     }

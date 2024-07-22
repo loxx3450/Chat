@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http.Headers;
+using Chat.MVVM.Models.Services;
 
 namespace Chat.MVVM.ViewModels
 {
@@ -51,7 +52,7 @@ namespace Chat.MVVM.ViewModels
 
         private void SignIn(object obj)
         {
-
+            SigningInService.SignIn(Email, Password);
         }
 
         private bool CanSignIn(object obj)
