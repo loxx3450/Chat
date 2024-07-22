@@ -29,7 +29,7 @@ namespace Chat.MVVM.Models.Services
             switch (payload.ResponseType)
             {
                 case SigningInResponseType.Successed:
-                    Notifier.Notify(MessageBoxType.Success, "You are signed in!");
+                    Notifier.Notify(MessageBoxType.Success, "You are signed in!", 1200);
                     break;
 
                 case SigningInResponseType.Failed:

@@ -32,7 +32,7 @@ namespace Chat.MVVM.Models.Services
             switch (responsePayload.ResponseType)
             {
                 case RegistrationResponseType.Successed:
-                    Notifier.Notify(MessageBoxType.Success, "Registration went succesfully!");
+                    Notifier.Notify(MessageBoxType.Success, "Registration went succesfully!", 2000);
                     break;
 
                 case RegistrationResponseType.Failed:
