@@ -18,7 +18,6 @@ namespace Chat.Core
 
     public class NavigationService : ObservableObject, INavigationService
     {
-        private readonly IServiceProvider _serviceProvider;
         private ViewModelBase _currentView;
 
         public ViewModelBase CurrentView
@@ -27,14 +26,9 @@ namespace Chat.Core
             set => SetField<ViewModelBase>(ref _currentView, value);
         }
 
-        public NavigationService(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
-
         public void NavigateTo<TViewModel>() where TViewModel : ViewModelBase
         {
-            CurrentView = _serviceProvider.GetRequiredService<TViewModel>();
+            CurrentView = ServiceProvider.GetRequiredService<TViewModel>();
         }
     }
 }

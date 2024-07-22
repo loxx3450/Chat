@@ -1,4 +1,5 @@
-﻿using CommonLibrary;
+﻿using Chat.Core;
+using CommonLibrary;
 using CommonLibrary.Payloads.SigningIn;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary.Payloads.Registration;
+using Chat.MVVM.ViewModels;
 
 namespace Chat.MVVM.Models.Services
 {
@@ -29,7 +31,8 @@ namespace Chat.MVVM.Models.Services
             switch (payload.ResponseType)
             {
                 case SigningInResponseType.Successed:
-                    Notifier.Notify(MessageBoxType.Success, "You are signed in!", 1200);
+                    INavigationService navService = ServiceProvider.GetRequiredService<INavigationService>();
+                    navService.NavigateTo<ChatViewModel>();
                     break;
 
                 case SigningInResponseType.Failed:
