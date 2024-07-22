@@ -34,6 +34,7 @@ namespace Chat
             services.AddSingleton<RegistrationViewModel>();
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<RecoveryViewModel>();
+            services.AddSingleton<ChatViewModel>();
 
             //Adding Services
             services.AddSingleton<INavigationService, NavigationService>();
