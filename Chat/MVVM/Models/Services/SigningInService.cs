@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
+using CommonLibrary.Payloads.Registration;
 
 namespace Chat.MVVM.Models.Services
 {
@@ -27,6 +28,10 @@ namespace Chat.MVVM.Models.Services
 
             switch (payload.ResponseType)
             {
+                case SigningInResponseType.Successed:
+                    Notifier.Notify(MessageBoxType.Success, "You are signed in!");
+                    break;
+
                 case SigningInResponseType.Failed:
                     Notifier.Notify(MessageBoxType.Error, "Your data is invalid :(");
                     break;
