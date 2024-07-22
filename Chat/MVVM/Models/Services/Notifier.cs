@@ -21,5 +21,16 @@ namespace Chat.MVVM.Models.Services
                 return (bool)messageBox.ShowDialog();
             });
         }
+
+        public static bool Notify(MessageBoxType messageType, string message, int timeout)
+        {
+            return Application.Current.Dispatcher.Invoke(() =>
+            {
+                CustomMessageBox messageBox = new CustomMessageBox(messageType, message, timeout);
+                messageBox.Owner = Application.Current.MainWindow;
+
+                return (bool)messageBox.ShowDialog();
+            });
+        }
     }
 }

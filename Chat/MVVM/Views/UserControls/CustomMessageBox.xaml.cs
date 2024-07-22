@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Chat.MVVM.Views.UserControls
 {
@@ -21,12 +22,14 @@ namespace Chat.MVVM.Views.UserControls
     /// </summary>
     public partial class CustomMessageBox : Window
     {
+        private Timer _timeoutTimer;
+
         public string Caption { get; set; }
         public SolidColorBrush CaptionBrush { get; set; }
 
         public string Message { get; set; }
 
-        public CustomMessageBox(MessageBoxType messageType, string message)
+        public CustomMessageBox(MessageBoxType messageType, string message, int timeout = -1)
         {
             InitializeComponent();
 
@@ -62,6 +65,18 @@ namespace Chat.MVVM.Views.UserControls
                     CaptionBrush = new SolidColorBrush(Colors.Blue);
                     break;
             }
+
+            if (timeout >= 0)
+                _timeoutTimer = new Timer(OnTimerElapsed, null, timeout, Timeout.Infinite);
+        }
+
+        private void OnTimerElapsed(object state)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                DialogResult = false;
+                Close();
+            });
         }
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
