@@ -1,4 +1,4 @@
-﻿using Chat.MVVM.Core;
+using Chat.MVVM.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Wpf.Ui;
 
-namespace Chat
+namespace Chat.Core
 {
     public interface INavigationService
     {

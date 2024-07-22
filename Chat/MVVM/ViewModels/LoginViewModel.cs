@@ -1,4 +1,5 @@
-﻿using Chat.MVVM.Core;
+﻿using Chat.Core;
+using Chat.MVVM.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
