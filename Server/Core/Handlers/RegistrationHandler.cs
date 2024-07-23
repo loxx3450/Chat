@@ -89,8 +89,8 @@ namespace ServerSide.Core.Handlers
 
             using NpgsqlCommand cmd = new NpgsqlCommand(
                 "INSERT INTO users " +
-                "(username, email, password)" +
-                $"VALUES('{user.Username}', '{user.Email}','{user.Password}');", 
+                "(username, email, password, created_at, updated_at)" +
+                $"VALUES('{user.Username}', '{user.Email}', '{user.Password}', '{DateTime.Today}', '{DateTime.Today}');", 
                     conn);
 
             try
