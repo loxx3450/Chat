@@ -74,7 +74,6 @@ namespace Chat.MVVM.Views.UserControls
         {
             Dispatcher.Invoke(() =>
             {
-                DialogResult = false;
                 Close();
             });
         }
