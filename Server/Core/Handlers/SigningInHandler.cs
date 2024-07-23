@@ -3,10 +3,12 @@ using CommonLibrary.Payloads.SigningIn;
 using Npgsql;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
+using ServerSide.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,22 +51,21 @@ namespace ServerSide.Core.Handlers
 
             conn.Open();
 
+            //Checks if user with such email even exists
             using NpgsqlCommand cmd = new NpgsqlCommand(
-                "SELECT " +
-                    "CASE " +
-                        "WHEN EXISTS " +
-                        "( " +
-                            "SELECT 1 " +
-                            "FROM users " +
-                            $"WHERE email = '{email}' " +
-                                $"AND password = '{password}'" +
-                        ") " +
-                        "THEN 1 " +
-                        "ELSE 0 " +
-                    "END;", 
+                "SELECT password " +
+                "FROM users " +
+                $"WHERE email = '{email}';",
                 conn);
 
-            return Convert.ToBoolean(cmd.ExecuteScalar());
+            string? hashedPassword = Convert.ToString(cmd.ExecuteScalar());
+
+            //Means that user with such email does not exist
+            if (hashedPassword is null)
+                return false;
+
+            //Hasher compares given password with the hash from DB
+            return PasswordHasher.Verify(password, hashedPassword);
         }
     }
 }

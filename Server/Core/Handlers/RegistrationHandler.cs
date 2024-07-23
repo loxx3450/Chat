@@ -11,6 +11,8 @@ using Npgsql;
 using System.Configuration;
 using CommonLibrary;
 using CommonLibrary.Payloads.Registration;
+using System.Security.Cryptography;
+using ServerSide.Core.Services;
 
 namespace ServerSide.Core.Handlers
 {
@@ -87,10 +89,13 @@ namespace ServerSide.Core.Handlers
 
             conn.Open();
 
+            //Generates hashed password
+            string password = PasswordHasher.Hash(user.Password);
+
             using NpgsqlCommand cmd = new NpgsqlCommand(
                 "INSERT INTO users " +
                 "(username, email, password, created_at, updated_at)" +
-                $"VALUES('{user.Username}', '{user.Email}', '{user.Password}', '{DateTime.Today}', '{DateTime.Today}');", 
+                $"VALUES('{user.Username}', '{user.Email}', '{password}', '{DateTime.Today}', '{DateTime.Today}');", 
                     conn);
 
             try
