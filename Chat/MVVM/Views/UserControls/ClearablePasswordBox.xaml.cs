@@ -29,6 +29,17 @@ namespace Chat.MVVM.Views.UserControls
             set => SetValue(PasswordProperty, value);
         }
 
+        //RelatedPasswordBox
+        public static DependencyProperty RelatedPasswordBoxProperty =
+            DependencyProperty.Register(nameof(RelatedPasswordBox), typeof(ClearablePasswordBox), typeof(ClearablePasswordBox),
+                new PropertyMetadata(null));
+
+        public ClearablePasswordBox RelatedPasswordBox
+        {
+            get => (ClearablePasswordBox)GetValue(RelatedPasswordBoxProperty);
+            set => SetValue(RelatedPasswordBoxProperty, value);
+        }
+
         public ClearablePasswordBox()
         {
             InitializeComponent();
@@ -68,6 +79,12 @@ namespace Chat.MVVM.Views.UserControls
             {
                 DeactivateButton();
                 Placehold.Visibility = Visibility.Visible;
+            }
+
+            if (RelatedPasswordBox is not null)
+            {
+                BoundPasswordBox.PasswordChanged(PassBox, new RoutedEventArgs());
+                BoundPasswordBox.PasswordChanged(RelatedPasswordBox.PassBox, new RoutedEventArgs());
             }
         }
 

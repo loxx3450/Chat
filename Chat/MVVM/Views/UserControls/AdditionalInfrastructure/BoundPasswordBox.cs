@@ -70,7 +70,7 @@ namespace Chat.MVVM.Views.UserControls.Additional_Infrastructure
         /// <summary>
         /// Handles the password change event.
         /// </summary>
-        static void PasswordChanged(object sender, RoutedEventArgs e)
+        public static void PasswordChanged(object sender, RoutedEventArgs e)
         {
             PasswordBox password = sender as PasswordBox;
             _updating = true;
