@@ -59,48 +59,35 @@ namespace ServerSide.Core.Handlers
         }
 
 
-
         private static bool DoesAlreadyExist(User user)
         {
-            using NpgsqlConnection conn = new NpgsqlConnection(ConfigurationManager.AppSettings["connString"]);
+            string commandText = "SELECT " +
+                                 "CASE " +
+                                     "WHEN EXISTS " +
+                                     "(" +
+                                         "SELECT 1 " +
+                                         "FROM users " +
+                                         $"WHERE email = '{user.Email}'" +
+                                     ") " +
+                                     "THEN 1 " +
+                                     "ELSE 0 " +
+                                 "END;";
 
-            conn.Open();
-
-            using NpgsqlCommand cmd = new NpgsqlCommand(
-                "SELECT " +
-                    "CASE " +
-                        "WHEN EXISTS " +
-                        "(" +
-                            "SELECT 1 " +
-                            "FROM users " +
-                            $"WHERE email = '{user.Email}'" +
-                        ") " +
-                        "THEN 1 " +
-                        "ELSE 0 " +
-                    "END;", 
-                conn);
-
-            return Convert.ToBoolean(cmd.ExecuteScalar() ?? throw new Exception());
+            return Convert.ToBoolean(CommandExecutor.ExecuteScalar(commandText));
         }
 
         private static bool CreateUser(User user) 
         {
-            using NpgsqlConnection conn = new NpgsqlConnection(ConfigurationManager.AppSettings["connString"]);
-
-            conn.Open();
-
             //Generates hashed password
             string password = PasswordHasher.Hash(user.Password);
 
-            using NpgsqlCommand cmd = new NpgsqlCommand(
-                "INSERT INTO users " +
-                "(username, email, password, created_at, updated_at)" +
-                $"VALUES('{user.Username}', '{user.Email}', '{password}', '{DateTime.Today}', '{DateTime.Today}');", 
-                    conn);
+            string commandText = "INSERT INTO users " +
+                                 "(username, email, password, created_at, updated_at)" +
+                                 $"VALUES('{user.Username}', '{user.Email}', '{password}', '{DateTime.UtcNow}', '{DateTime.UtcNow}');";
 
             try
             {
-                cmd.ExecuteNonQuery();
+                CommandExecutor.ExecuteNonQuery(commandText);
 
                 return true;
             }
