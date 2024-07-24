@@ -1,5 +1,6 @@
 ﻿using Chat.Core;
 using Chat.MVVM.Core;
+using Chat.MVVM.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,7 @@ namespace Chat.MVVM.ViewModels
         {
             NavigationService = navigationService;
 
-            //TODO: should depend on the state of user
-            NavigationService.NavigateTo<LoginViewModel>();
+            SessionStateChecker.CheckState();
         }
     }
 }

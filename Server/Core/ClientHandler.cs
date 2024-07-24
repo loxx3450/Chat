@@ -36,6 +36,12 @@ namespace ServerSide.Core
                 socket.Emit(SigningInHandler.GetResponse());
             });
 
+            socket.On(MessageType.SessionStateCheckRequest, (message) =>
+            {
+                SessionStateChecker.Check((ProtocolMessage)message);
+                socket.Emit(SessionStateChecker.GetResponse());
+            });
+
             //3. Subscribes on service Events
             socket.OnDisconnecting += () => DisconnectionHandler.Disconnect(client);
             socket.OnOtherSideIsDisconnected += () => BreakUpHandler.HandleBreakUp(client);

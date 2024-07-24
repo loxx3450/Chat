@@ -26,6 +26,9 @@ namespace Chat.MVVM.Models.Services
             socket.On(MessageType.SigningInResponse,
                 (mes) => SigningInService.HandleResponse((ProtocolMessage)mes));
 
+            socket.On(MessageType.SessionStateCheckResponse,
+                (mes) => SessionStateChecker.HandleResponse((ProtocolMessage)mes));
+
             //3. Subscribes on service Events
             //TODO:
             //

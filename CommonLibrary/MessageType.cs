@@ -6,5 +6,7 @@
         RegistrationResponse,
         SigningInRequest,
         SigningInResponse,
+        SessionStateCheckRequest,
+        SessionStateCheckResponse
     }
 }
