@@ -10,8 +10,6 @@ namespace Chat.MVVM.ViewModels
 {
     public class ChatViewModel : ViewModelBase
     {
-        public ChatViewModel(INavigationService navigationService) 
-            : base(navigationService)
-        { }
+
     }
 }

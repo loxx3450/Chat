@@ -10,9 +10,12 @@ namespace Chat.MVVM.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        public INavigationService NavigationService { get; set; }
+
         public MainViewModel(INavigationService navigationService)
-            : base(navigationService)
         {
+            NavigationService = navigationService;
+
             //TODO: should depend on the state of user
             NavigationService.NavigateTo<LoginViewModel>();
         }

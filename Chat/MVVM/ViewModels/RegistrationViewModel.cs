@@ -60,10 +60,9 @@ namespace Chat.MVVM.ViewModels
         public RelayCommand SignUpCommand { get; set; }
         public RelayCommand NavigateToLoginCommand { get; set; }
 
-        public RegistrationViewModel(INavigationService navigationService)
-            : base(navigationService)
+        public RegistrationViewModel()
         {
-            NavigateToLoginCommand = new RelayCommand(o => NavigationService.NavigateTo<LoginViewModel>());
+            NavigateToLoginCommand = new RelayCommand(o => Navigator.NavigateTo<LoginViewModel>());
             SignUpCommand = new RelayCommand(SignUp, CanSignUp);
         }
 

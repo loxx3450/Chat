@@ -12,23 +12,9 @@ namespace Chat.MVVM.Core
 {
     public abstract class ViewModelBase : ObservableObject
     {
-        private INavigationService _navigationService;
-        public INavigationService NavigationService
-        {
-            get => _navigationService;
-            set => SetField(ref _navigationService, value);
-        }
-
-
         protected Dictionary<string, bool> propertyErrors = [];
 
         public bool HasErrors => propertyErrors.Count > 0;
-
-
-        public ViewModelBase(INavigationService navigationService)
-        {
-            NavigationService = navigationService;
-        }
 
         protected void ValidateProperty<T>(T value, string name)
         {
