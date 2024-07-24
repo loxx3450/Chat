@@ -37,7 +37,6 @@ namespace ServerSide.Core
             });
 
             //3. Subscribes on service Events
-            socket.OnThrowedException += ExceptionHandler.HandleException;
             socket.OnDisconnecting += () => DisconnectionHandler.Disconnect(client);
             socket.OnOtherSideIsDisconnected += () => BreakUpHandler.HandleBreakUp(client);
         }

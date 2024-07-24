@@ -33,11 +33,9 @@ namespace ServerSide.Core.Handlers
                 else 
                     responseType = SigningInResponseType.Failed;
             }
-            catch (Exception ex)
+            catch
             {
                 responseType = SigningInResponseType.SmthWentWrong;
-
-                ExceptionHandler.HandleException(ex);
             }
         }
 
