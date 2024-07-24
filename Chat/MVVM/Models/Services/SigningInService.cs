@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary.Payloads.Registration;
 using Chat.MVVM.ViewModels;
+using System.Net;
 
 namespace Chat.MVVM.Models.Services
 {
@@ -19,7 +20,7 @@ namespace Chat.MVVM.Models.Services
         public static void SignIn(string email, string password)
         {
             ProtocolMessage message = new ProtocolMessage();
-            message.SetPayload(new SigningInRequestPayload(email, password));
+            message.SetPayload(new SigningInRequestPayload(email, password, IPAddressFetcher.GetIPAddress().ToString()));
 
             SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.SigningInRequest, message));
         }
@@ -31,8 +32,7 @@ namespace Chat.MVVM.Models.Services
             switch (payload.ResponseType)
             {
                 case SigningInResponseType.Successed:
-                    INavigationService navService = ServiceProvider.GetRequiredService<INavigationService>();
-                    navService.NavigateTo<ChatViewModel>();
+                    Navigator.NavigateTo<ChatViewModel>();
                     break;
 
                 case SigningInResponseType.Failed:
