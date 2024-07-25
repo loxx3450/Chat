@@ -43,6 +43,7 @@
 
         <TextBox x:Name="TextBox" 
                 Panel.ZIndex="1"
+                 TabIndex="0"
                 Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 CaretBrush="{Binding Foreground}" 
                 Foreground="{Binding Foreground}"
