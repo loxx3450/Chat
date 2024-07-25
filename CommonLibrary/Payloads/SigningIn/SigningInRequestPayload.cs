@@ -12,12 +12,14 @@ namespace CommonLibrary.Payloads.SigningIn
     {
         public string Email { get; set; }
         public string Password { get; set; }
+        public bool RememberUser { get; set; }
         public string IP {  get; set; } 
 
-        public SigningInRequestPayload(string email, string password, string ip) 
+        public SigningInRequestPayload(string email, string password, bool rememberUser, string ip) 
         { 
             Email = email;
             Password = password;
+            RememberUser = rememberUser;
             IP = ip;
         }
     }

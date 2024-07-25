@@ -15,6 +15,9 @@ namespace Chat.MVVM.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
+        public bool RememberUser { get; set; }
+
+
         private string _email = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
@@ -52,7 +55,7 @@ namespace Chat.MVVM.ViewModels
 
         private void SignIn(object obj)
         {
-            SigningInService.SignIn(Email, Password);
+            SigningInService.SignIn(Email, Password, RememberUser);
         }
 
         private bool CanSignIn(object obj)

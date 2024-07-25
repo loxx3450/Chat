@@ -17,10 +17,10 @@ namespace Chat.MVVM.Models.Services
 {
     public class SigningInService
     {
-        public static void SignIn(string email, string password)
+        public static void SignIn(string email, string password, bool rememberUser)
         {
             ProtocolMessage message = new ProtocolMessage();
-            message.SetPayload(new SigningInRequestPayload(email, password, IPAddressFetcher.GetIPAddress().ToString()));
+            message.SetPayload(new SigningInRequestPayload(email, password, rememberUser, IPAddressFetcher.GetIPAddress().ToString()));
 
             SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.SigningInRequest, message));
         }

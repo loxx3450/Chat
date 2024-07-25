@@ -27,7 +27,9 @@ namespace ServerSide.Core.Handlers
                 
                 if (UserIsFounded(payload.Email, payload.Password))
                 {
-                    SaveSessionState(payload.Email, payload.IP);
+                    if (payload.RememberUser)
+                        SaveSessionState(payload.Email, payload.IP);
+
                     responseType = SigningInResponseType.Successed;
                 }
                 else 

@@ -49,9 +49,20 @@
                                                    Style="{DynamicResource EntryWindowsPasswordBoxStyle}"
                                                    PlaceholderText="Enter password..."/>
 
+                <CheckBox Margin="3,5,0,8" 
+                          BorderBrush="{DynamicResource MainBorderBrush}" 
+                          Background="{DynamicResource MainBackground}" 
+                          Foreground="{DynamicResource MainForeground}"
+                          IsChecked="{Binding RememberUser}">
+                    
+                    <TextBlock Text="Remember me" 
+                               FontSize="18"/>
+                    
+                </CheckBox>
+
                 
                 <ui:Button Command="{Binding SignInCommand}" 
-                           Margin="0, 25, 0, 0" 
+                           Margin="0, 15, 0, 0" 
                            HorizontalAlignment="Stretch" 
                            Appearance="Success" 
                            Background="Green" 
