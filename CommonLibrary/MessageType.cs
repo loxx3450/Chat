@@ -8,6 +8,7 @@
         SigningInResponse,
         SessionStateCheckRequest,
         SessionStateCheckResponse,
-        ResetPasswordRequest
+        ResetPasswordRequest,
+        ResetPasswordResponse
     }
 }

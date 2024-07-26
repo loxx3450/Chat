@@ -42,6 +42,12 @@ namespace ServerSide.Core
                 socket.Emit(SessionStateChecker.GetResponse());
             });
 
+            socket.On(MessageType.ResetPasswordRequest, (message) =>
+            {
+                PasswordResetter.TryToSendEmail((ProtocolMessage)message);
+                socket.Emit(PasswordResetter.GetResponse());
+            });
+
             //3. Subscribes on service Events
             socket.OnDisconnecting += () => DisconnectionHandler.Disconnect(client);
             socket.OnOtherSideIsDisconnected += () => BreakUpHandler.HandleBreakUp(client);
