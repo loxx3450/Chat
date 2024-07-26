@@ -104,7 +104,8 @@
                 <StackPanel Margin="16"
                             HorizontalAlignment="Center">
 
-                    <ui:Button Appearance="Dark"
+                    <ui:Button HorizontalAlignment="Center" 
+                               Appearance="Dark"
                                Background="Transparent"
                                Command="{Binding NavigateToLoginCommand}">
 

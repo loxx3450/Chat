@@ -90,7 +90,8 @@
             <StackPanel Margin="16" 
                         HorizontalAlignment="Center">
 
-                <ui:Button Appearance="Dark" 
+                <ui:Button HorizontalAlignment="Center" 
+                           Appearance="Dark" 
                            Background="Transparent"
                            Command="{Binding NavigateToRecoveryCommand}">
                     
@@ -98,9 +99,10 @@
                                Text="Forgot password?"/>
                     
                 </ui:Button>
-                
 
-                <ui:Button Margin="0,6,0,0" 
+
+                <ui:Button HorizontalAlignment="Center" 
+                           Margin="0,6,0,0" 
                            Appearance="Dark"
                            Background="Transparent"
                            Command="{Binding NavigateToRegistrationCommand}">
