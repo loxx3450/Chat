@@ -39,7 +39,7 @@ namespace Chat.MVVM.ViewModels
 
         private void ResetPassword(object obj)
         {
-
+            PasswordResetter.ResetPassword(Email);
         }
 
         private bool CanResetPassword(object obj) 
