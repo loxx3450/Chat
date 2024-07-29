@@ -14,7 +14,8 @@ namespace ServerSide.Core.Handlers
     public class PasswordResetter : IResponsibleHandler
     {
         private static ResetPasswordResponseType responseType;
-        private static string StoragePath = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.Parent.ToString() + "\\Storage";
+        private static string storagePath = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.Parent.ToString() + "\\Storage";
+        private const int CODE_LENGTH = 6;
 
         public static void TryToSendEmail(ProtocolMessage message)
         {
@@ -53,38 +54,54 @@ namespace ServerSide.Core.Handlers
             return Convert.ToBoolean(CommandExecutor.ExecuteScalar(commandText));
         }
 
-        private static void SendEmail(string email)
+        private static int GetUserId(string email)
         {
-            string subject = "Password reset";
+            string commandText = "SELECT id " +
+                                 "FROM users " +
+                                 $"WHERE email = '{email}'";
 
-            MimeEntity body = GetMessageBody();
-
-            EmailSender.SendEmail(email, subject, body);
+            return Convert.ToInt32(CommandExecutor.ExecuteScalar(commandText));
         }
 
-        private static MimeEntity GetMessageBody()
+        private static void SendEmail(string email)
+        {
+            string recoveryCode = GetUniqueKey(CODE_LENGTH);
+
+            string subject = "Password reset";
+
+            MimeEntity body = GetMessageBody(recoveryCode);
+
+            EmailSender.SendEmail(email, subject, body);
+
+            //saving recovery code in db
+            string commandText = "INSERT INTO recovery_codes(user_id, code, created_at)" +
+                                 $"VALUES({GetUserId(email)}, '{recoveryCode}', '{DateTime.UtcNow}');";
+
+            CommandExecutor.ExecuteNonQuery(commandText);
+        }
+
+        private static MimeEntity GetMessageBody(string code)
         {
             BodyBuilder bodyBuilder = new BodyBuilder();
-            string htmlBody = File.ReadAllText(StoragePath + @"\Html\test.html");
+            string htmlBody = File.ReadAllText(storagePath + @"\Html\test.html");
 
             //Adding image to body
-            string imagePath = StoragePath + @"\Images\logo.png";
+            string imagePath = storagePath + @"\Images\logo.png";
 
             MimeEntity image = bodyBuilder.LinkedResources.Add(imagePath);
             image.ContentId = "EmbeddedImage";
 
             //Adding recovery code to email's body
-            htmlBody = AddRecoveryCode(htmlBody);
+            htmlBody = AddRecoveryCode(htmlBody, code);
 
             bodyBuilder.HtmlBody = htmlBody;
 
             return bodyBuilder.ToMessageBody();
         }
 
-        private static string AddRecoveryCode(string htmlBody)
+        private static string AddRecoveryCode(string htmlBody, string code)
         {
-            //TODO: save in db
-            return htmlBody.Replace("&CODE", GetUniqueKey(6));
+            return htmlBody.Replace("&CODE", code);
         }
 
         private static string GetUniqueKey(int length)
