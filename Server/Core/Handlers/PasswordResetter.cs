@@ -13,7 +13,10 @@ namespace ServerSide.Core.Handlers
     /// </summary>
     public class PasswordResetter : IResponsibleHandler
     {
+        //Response
         private static ResetPasswordResponseType responseType;
+
+        //Additional variables
         private static string storagePath = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.Parent.ToString() + "\\Storage";
         private const int CODE_LENGTH = 6;
 
@@ -35,6 +38,14 @@ namespace ServerSide.Core.Handlers
             {
                 responseType = ResetPasswordResponseType.SmthWentWrong;
             }
+        }
+
+        public static SocketEventProtocolMessage GetResponse()
+        {
+            ProtocolMessage message = new ProtocolMessage();
+            message.SetPayload(new ResetPasswordResponsePayload(responseType));
+
+            return new SocketEventProtocolMessage(MessageType.ResetPasswordResponse, message);
         }
 
         private static bool UserIsFounded(string email)
@@ -65,7 +76,7 @@ namespace ServerSide.Core.Handlers
 
         private static void SendEmail(string email)
         {
-            string recoveryCode = GetUniqueKey(CODE_LENGTH);
+            recoveryCode = GetUniqueKey(CODE_LENGTH);
 
             string subject = "Password reset";
 
@@ -107,14 +118,6 @@ namespace ServerSide.Core.Handlers
         private static string GetUniqueKey(int length)
         {
             return RandomNumberGenerator.GetString("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", length);
-        }
-
-        public static SocketEventProtocolMessage GetResponse()
-        {
-            ProtocolMessage message = new ProtocolMessage();
-            message.SetPayload(new ResetPasswordResponsePayload(responseType));
-
-            return new SocketEventProtocolMessage(MessageType.ResetPasswordResponse, message);
         }
     }
 }
