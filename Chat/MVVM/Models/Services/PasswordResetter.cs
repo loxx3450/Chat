@@ -15,6 +15,7 @@ namespace Chat.MVVM.Models.Services
 {
     public static class PasswordResetter
     {
+        //Reset Password
         public static void ResetPassword(string email)
         {
             ProtocolMessage message = new ProtocolMessage();
@@ -41,6 +42,16 @@ namespace Chat.MVVM.Models.Services
                     Notifier.Notify(MessageBoxType.Error, "Something went wrong. Try again later...");
                     break;
             }
+        }
+
+
+        //Verify Recovery code
+        public static void VerifyCode(string code)
+        {
+            ProtocolMessage message = new ProtocolMessage();
+            message.SetPayload(new VerifyCodeRequestPayload(code));
+
+            SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.VerifyCodeRequest, message));
         }
     }
 }
