@@ -1,14 +1,10 @@
 ﻿using CommonLibrary;
-using CommonLibrary.Models;
 using CommonLibrary.Payloads.ResetingPassword;
+using MimeKit;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using ServerSide.Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace ServerSide.Core.Handlers
 {
@@ -18,6 +14,7 @@ namespace ServerSide.Core.Handlers
     public class PasswordResetter : IResponsibleHandler
     {
         private static ResetPasswordResponseType responseType;
+        private static string StoragePath = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.Parent.ToString() + "\\Storage";
 
         public static void TryToSendEmail(ProtocolMessage message)
         {
@@ -58,7 +55,41 @@ namespace ServerSide.Core.Handlers
 
         private static void SendEmail(string email)
         {
-            //Logic of sending email
+            string subject = "Password reset";
+
+            MimeEntity body = GetMessageBody();
+
+            EmailSender.SendEmail(email, subject, body);
+        }
+
+        private static MimeEntity GetMessageBody()
+        {
+            BodyBuilder bodyBuilder = new BodyBuilder();
+            string htmlBody = File.ReadAllText(StoragePath + @"\Html\test.html");
+
+            //Adding image to body
+            string imagePath = StoragePath + @"\Images\logo.png";
+
+            MimeEntity image = bodyBuilder.LinkedResources.Add(imagePath);
+            image.ContentId = "EmbeddedImage";
+
+            //Adding recovery code to email's body
+            htmlBody = AddRecoveryCode(htmlBody);
+
+            bodyBuilder.HtmlBody = htmlBody;
+
+            return bodyBuilder.ToMessageBody();
+        }
+
+        private static string AddRecoveryCode(string htmlBody)
+        {
+            //TODO: save in db
+            return htmlBody.Replace("&CODE", GetUniqueKey(6));
+        }
+
+        private static string GetUniqueKey(int length)
+        {
+            return RandomNumberGenerator.GetString("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", length);
         }
 
         public static SocketEventProtocolMessage GetResponse()
