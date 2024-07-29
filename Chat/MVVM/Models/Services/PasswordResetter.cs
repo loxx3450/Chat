@@ -1,5 +1,9 @@
-﻿using CommonLibrary;
+﻿using Chat.MVVM.ViewModels;
+using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
+using CommonLibrary;
+using CommonLibrary.Payloads.Registration;
 using CommonLibrary.Payloads.ResetingPassword;
+using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using System;
 using System.Collections.Generic;
@@ -17,6 +21,26 @@ namespace Chat.MVVM.Models.Services
             message.SetPayload(new ResetPasswordRequestPayload(email));
 
             SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.ResetPasswordRequest, message));
+        }
+
+        public static void HandleResponse(ProtocolMessage message)
+        {
+            var payload = PayloadBuilder.GetPayload<ResetPasswordResponsePayload>(message.PayloadStream);
+
+            switch (payload.ResponseType)
+            {
+                case ResetPasswordResponseType.Success:
+                    Navigator.NavigateTo<CodeConfirmationViewModel>();
+                    break;
+
+                case ResetPasswordResponseType.Failed:
+                    Notifier.Notify(MessageBoxType.Error, "User with such email does not exist. Try to create a new account.");
+                    break;
+
+                case ResetPasswordResponseType.SmthWentWrong:
+                    Notifier.Notify(MessageBoxType.Error, "Something went wrong. Try again later...");
+                    break;
+            }
         }
     }
 }

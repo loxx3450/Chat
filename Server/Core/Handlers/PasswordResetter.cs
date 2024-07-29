@@ -76,7 +76,7 @@ namespace ServerSide.Core.Handlers
 
         private static void SendEmail(string email)
         {
-            recoveryCode = GetUniqueKey(CODE_LENGTH);
+            string recoveryCode = GetUniqueKey(CODE_LENGTH);
 
             string subject = "Password reset";
 
