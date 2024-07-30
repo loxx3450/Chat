@@ -58,6 +58,10 @@
                         <views:CodeConfirmationView/>
                     </DataTemplate>
 
+                    <DataTemplate DataType="{x:Type viewModels:ChangePasswordViewModel}">
+                        <views:ChangePasswordView/>
+                    </DataTemplate>
+
                 </ResourceDictionary>
                 
             </ResourceDictionary.MergedDictionaries>
