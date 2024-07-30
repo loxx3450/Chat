@@ -14,7 +14,7 @@ namespace Chat.MVVM.ViewModels
         private string _code = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
-        [RegularExpression(@"^[A-Z0-9]+$", ErrorMessage = "Code is invalid")]
+        [RegularExpression(@"^[A-Z0-9]{6}$", ErrorMessage = "Code is invalid")]
         public string Code
         {
             get => _code;
