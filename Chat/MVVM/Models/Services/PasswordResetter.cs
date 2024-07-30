@@ -15,6 +15,8 @@ namespace Chat.MVVM.Models.Services
 {
     public static class PasswordResetter
     {
+        private static int associatedUserId;
+
         //Reset Password
         public static void ResetPassword(string email)
         {
@@ -31,6 +33,7 @@ namespace Chat.MVVM.Models.Services
             switch (payload.ResponseType)
             {
                 case ResetPasswordResponseType.Success:
+                    associatedUserId = payload.AssociatedUserId;
                     Navigator.NavigateTo<CodeConfirmationViewModel>();
                     break;
 

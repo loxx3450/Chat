@@ -17,10 +17,12 @@ namespace CommonLibrary.Payloads.ResetingPassword
     public class ResetPasswordResponsePayload : JSONPayload
     {
         public ResetPasswordResponseType ResponseType { get; set; }
+        public int AssociatedUserId { get; set; }
 
-        public ResetPasswordResponsePayload(ResetPasswordResponseType responseType)
+        public ResetPasswordResponsePayload(ResetPasswordResponseType responseType, int associatedUserId)
         {
             ResponseType = responseType;
+            AssociatedUserId = associatedUserId;
         }
     }
 }

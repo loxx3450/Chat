@@ -15,6 +15,7 @@ namespace ServerSide.Core.Handlers
     {
         //Response
         private static ResetPasswordResponseType responseType;
+        private static int associatedUserId;
 
         //Additional variables
         private static string storagePath = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.Parent.ToString() + "\\Storage";
@@ -29,6 +30,9 @@ namespace ServerSide.Core.Handlers
                 if (UserIsFounded(payload.Email))
                 {
                     SendEmail(payload.Email);
+
+                    //data for response
+                    associatedUserId = GetUserId(payload.Email);
                     responseType = ResetPasswordResponseType.Success;
                 }
                 else 
@@ -43,7 +47,7 @@ namespace ServerSide.Core.Handlers
         public static SocketEventProtocolMessage GetResponse()
         {
             ProtocolMessage message = new ProtocolMessage();
-            message.SetPayload(new ResetPasswordResponsePayload(responseType));
+            message.SetPayload(new ResetPasswordResponsePayload(responseType, associatedUserId));
 
             return new SocketEventProtocolMessage(MessageType.ResetPasswordResponse, message);
         }
