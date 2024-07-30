@@ -32,6 +32,9 @@ namespace Chat.MVVM.Models.Services
             socket.On(MessageType.ResetPasswordResponse,
                 (mes) => PasswordResetter.HandleResponse((ProtocolMessage)mes));
 
+            socket.On(MessageType.VerifyCodeResponse,
+                (mes) => CodeVerifier.HandleResponse((ProtocolMessage)mes));
+
             //3. Subscribes on service Events
             //TODO:
             //

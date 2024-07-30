@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Chat.MVVM.Models.Instances;
+using ProtocolLibrary.Core;
+using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
+using Chat.MVVM.ViewModels;
 
 namespace Chat.MVVM.Models.Services
 {
@@ -19,6 +22,22 @@ namespace Chat.MVVM.Models.Services
             message.SetPayload(new VerifyCodeRequestPayload(code, Client.AssociatedUserId));
 
             SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.VerifyCodeRequest, message));
+        }
+
+        public static void HandleResponse(ProtocolMessage message)
+        {
+            VerifyCodeResponsePayload payload = PayloadBuilder.GetPayload<VerifyCodeResponsePayload>(message.PayloadStream);
+
+            switch (payload.ResponseType)
+            {
+                case VerifyCodeResponseType.Success:
+                    Navigator.NavigateTo<ChangePasswordViewModel>();
+                    break;
+
+                case VerifyCodeResponseType.Failed:
+                    Notifier.Notify(MessageBoxType.Error, "The code is either wrong, or expired. Try again.");
+                    break;
+            }
         }
     }
 }
