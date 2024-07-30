@@ -1,4 +1,5 @@
-﻿using Chat.MVVM.ViewModels;
+﻿using Chat.MVVM.Models.Instances;
+using Chat.MVVM.ViewModels;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary;
 using CommonLibrary.Payloads.Registration;
@@ -15,9 +16,6 @@ namespace Chat.MVVM.Models.Services
 {
     public static class PasswordResetter
     {
-        private static int associatedUserId;
-
-        //Reset Password
         public static void ResetPassword(string email)
         {
             ProtocolMessage message = new ProtocolMessage();
@@ -33,7 +31,7 @@ namespace Chat.MVVM.Models.Services
             switch (payload.ResponseType)
             {
                 case ResetPasswordResponseType.Success:
-                    associatedUserId = payload.AssociatedUserId;
+                    Client.AssociatedUserId = payload.AssociatedUserId;
                     Navigator.NavigateTo<CodeConfirmationViewModel>();
                     break;
 
@@ -45,16 +43,6 @@ namespace Chat.MVVM.Models.Services
                     Notifier.Notify(MessageBoxType.Error, "Something went wrong. Try again later...");
                     break;
             }
-        }
-
-
-        //Verify Recovery code
-        public static void VerifyCode(string code)
-        {
-            ProtocolMessage message = new ProtocolMessage();
-            message.SetPayload(new VerifyCodeRequestPayload(code, associatedUserId));
-
-            SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.VerifyCodeRequest, message));
         }
     }
 }
