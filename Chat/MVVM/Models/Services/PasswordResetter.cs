@@ -52,7 +52,7 @@ namespace Chat.MVVM.Models.Services
         public static void VerifyCode(string code)
         {
             ProtocolMessage message = new ProtocolMessage();
-            message.SetPayload(new VerifyCodeRequestPayload(code));
+            message.SetPayload(new VerifyCodeRequestPayload(code, associatedUserId));
 
             SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.VerifyCodeRequest, message));
         }

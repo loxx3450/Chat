@@ -10,10 +10,12 @@ namespace CommonLibrary.Payloads.ResetingPassword
     public class VerifyCodeRequestPayload : JSONPayload
     {
         public string Code { get; set; }
+        public int AssociatedUserId { get; set; }
 
-        public VerifyCodeRequestPayload(string code) 
+        public VerifyCodeRequestPayload(string code, int associatedUserId) 
         {
             Code = code;
+            AssociatedUserId = associatedUserId;
         }
     }
 }
