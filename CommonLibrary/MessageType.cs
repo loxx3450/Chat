@@ -10,6 +10,7 @@
         SessionStateCheckResponse,
         ResetPasswordRequest,
         ResetPasswordResponse,
-        VerifyCodeRequest
+        VerifyCodeRequest,
+        VerifyCodeResponse,
     }
 }

@@ -48,6 +48,12 @@ namespace ServerSide.Core
                 socket.Emit(PasswordResetter.GetResponse());
             });
 
+            socket.On(MessageType.VerifyCodeRequest, (message) =>
+            {
+                CodeVerifier.VerifyCode((ProtocolMessage)message);
+                socket.Emit(CodeVerifier.GetResponse());
+            });
+
             //3. Subscribes on service Events
             socket.OnDisconnecting += () => DisconnectionHandler.Disconnect(client);
             socket.OnOtherSideIsDisconnected += () => BreakUpHandler.HandleBreakUp(client);
