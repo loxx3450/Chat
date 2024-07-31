@@ -1,6 +1,7 @@
 ﻿using CommonLibrary;
 using CommonLibrary.Models;
 using CommonLibrary.Payloads.ResetingPassword;
+using Npgsql;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using ServerSide.Core.Services;
@@ -40,32 +41,43 @@ namespace ServerSide.Core.Handlers
 
         private static bool IsCodeValid(string code, int userId)
         {
-            string commandText = "SELECT " +
-                                 "CASE " +
-                                     "WHEN EXISTS " +
-                                     "(" +
-                                         "SELECT 1 " +
-                                         "FROM recovery_codes " +
-                                         $"WHERE user_id = {userId} " +
-                                            $"AND code = '{code}' " +
-                                            $"AND used = false " +
-                                            $"AND EXTRACT(epoch FROM age('{DateTime.UtcNow}', created_at)) / 60 <= 15" +        //if code is not expired
-                                     ") " +
-                                     "THEN 1 " +
-                                     "ELSE 0 " +
-                                 "END;";
+            NpgsqlCommand cmd = new NpgsqlCommand();
 
-            return Convert.ToBoolean(CommandExecutor.ExecuteScalar(commandText));
+            cmd.CommandText = "SELECT " +
+                              "CASE " +
+                                  "WHEN EXISTS " +
+                                  "(" +
+                                      "SELECT 1 " +
+                                      "FROM recovery_codes " +
+                                      $"WHERE user_id = @id " +
+                                          $"AND code = @code " +
+                                          $"AND used = false " +
+                                          $"AND EXTRACT(epoch FROM age(@now, created_at)) / 60 <= 15" +        //if code is not expired
+                                  ") " +
+                                  "THEN 1 " +
+                                  "ELSE 0 " +
+                              "END;";
+
+            cmd.Parameters.AddWithValue("@id", userId);
+            cmd.Parameters.AddWithValue("@code", code);
+            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
+
+            return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
         }
 
-        private static void ChangeCodeState(string code, int userId) 
+        private static void ChangeCodeState(string code, int userId)
         {
-            string commandText = "UPDATE recovery_codes " +
-                                 "SET used = true " +
-                                 $"WHERE user_id = {userId} " +
-                                    $"AND code = '{code}'";
+            NpgsqlCommand cmd = new NpgsqlCommand();
 
-            CommandExecutor.ExecuteNonQuery(commandText);
+            cmd.CommandText = "UPDATE recovery_codes " +
+                              "SET used = true " +
+                              $"WHERE user_id = @id " +
+                                  $"AND code = @code";
+
+            cmd.Parameters.AddWithValue("@id", userId);
+            cmd.Parameters.AddWithValue("@code", code);
+
+            DbHelper.ExecuteNonQuery(cmd);
         }
     }
 }

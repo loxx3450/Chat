@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServerSide.Core.Services;
 using SocketEventLibrary;
 using SocketEventLibrary.Sockets;
 
@@ -16,6 +17,8 @@ namespace ServerSide.Core
         public Server(string hostname = "127.0.0.1", int port = 80)
         {
             serverSocket = new ServerSocketEvent(hostname, port);
+
+            DbHelper.OpenConnection();
         }
 
         public void Start()
@@ -39,5 +42,10 @@ namespace ServerSide.Core
 
         public void StopAcceptingClients()
             => serverSocket.StopAcceptingClients();
+
+        ~Server()
+        {
+            DbHelper.CloseConnection();
+        }
     }
 }

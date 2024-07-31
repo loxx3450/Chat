@@ -2,6 +2,7 @@
 using CommonLibrary.Models;
 using CommonLibrary.Payloads.Registration;
 using CommonLibrary.Payloads.SessionStateCheck;
+using Npgsql;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using ServerSide.Core.Services;
@@ -29,30 +30,35 @@ namespace ServerSide.Core.Handlers
                 responseType = SessionStateCheckResponseType.UserIsLoggedOut;
         }
 
-        private static bool IsLoggedIn(string ip)
-        {
-            string commandText = "SELECT " +
-                                 "CASE " +
-                                     "WHEN EXISTS " +
-                                     "(" +
-                                         "SELECT 1 " +
-                                         "FROM sessions " +
-                                         $"WHERE ip = '{ip}' " +
-                                             $"AND EXTRACT(day FROM age(TIMESTAMP '{DateTime.UtcNow}', updated_at)) <= 3" +
-                                     ") " +
-                                     "THEN 1 " +
-                                     "ELSE 0 " +
-                                 "END;";
-
-            return Convert.ToBoolean(CommandExecutor.ExecuteScalar(commandText));
-        }
-
         public static SocketEventProtocolMessage GetResponse()
         {
             ProtocolMessage response = new ProtocolMessage();
             response.SetPayload(new SessionStateCheckResponsePayload(responseType));
 
             return new SocketEventProtocolMessage(MessageType.SessionStateCheckResponse, response);
+        }
+
+        private static bool IsLoggedIn(string ip)
+        {
+            NpgsqlCommand cmd = new NpgsqlCommand();
+
+            cmd.CommandText = "SELECT " +
+                              "CASE " +
+                                  "WHEN EXISTS " +
+                                  "(" +
+                                      "SELECT 1 " +
+                                      "FROM sessions " +
+                                      $"WHERE ip = @ip " +
+                                          $"AND EXTRACT(day FROM age(@now, updated_at)) <= 3" +
+                                  ") " +
+                                  "THEN 1 " +
+                                  "ELSE 0 " +
+                              "END;";
+
+            cmd.Parameters.AddWithValue("@ip", ip);
+            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
+
+            return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
         }
     }
 }

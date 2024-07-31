@@ -30,7 +30,7 @@ namespace ServerSide.Core.Handlers
             {
                 RegistrationRequestPayload payload = PayloadBuilder.GetPayload<RegistrationRequestPayload>(protocolMessage.PayloadStream);
 
-                if (DoesAlreadyExist(payload.User))
+                if (UserDbHelper.UserExists(payload.User.Email))
                 {
                     responseType = RegistrationResponseType.UserAlreadyExists;
                 }
@@ -56,40 +56,30 @@ namespace ServerSide.Core.Handlers
             return new SocketEventProtocolMessage(MessageType.RegistrationResponse, response);
         }
 
-
-        private static bool DoesAlreadyExist(User user)
-        {
-            string commandText = "SELECT " +
-                                 "CASE " +
-                                     "WHEN EXISTS " +
-                                     "(" +
-                                         "SELECT 1 " +
-                                         "FROM users " +
-                                         $"WHERE email = '{user.Email}'" +
-                                     ") " +
-                                     "THEN 1 " +
-                                     "ELSE 0 " +
-                                 "END;";
-
-            return Convert.ToBoolean(CommandExecutor.ExecuteScalar(commandText));
-        }
-
         private static bool CreateUser(User user) 
         {
             //Generates hashed password
             string password = PasswordHasher.Hash(user.Password);
 
-            string commandText = "INSERT INTO users " +
-                                 "(username, email, password, created_at, updated_at)" +
-                                 $"VALUES('{user.Username}', '{user.Email}', '{password}', '{DateTime.UtcNow}', '{DateTime.UtcNow}');";
+            NpgsqlCommand cmd = new NpgsqlCommand();
+
+            cmd.CommandText = "INSERT INTO users " +
+                              "(username, email, password, created_at, updated_at)" +
+                              $"VALUES(@username, @email, @password, @now, @now);";
+
+            cmd.Parameters.AddWithValue("@username", user.Username);
+            cmd.Parameters.AddWithValue("@email", user.Email);
+            cmd.Parameters.AddWithValue("@password", password);
+            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
+
 
             try
             {
-                CommandExecutor.ExecuteNonQuery(commandText);
+                DbHelper.ExecuteNonQuery(cmd);
 
                 return true;
             }
-            catch (Exception ex) 
+            catch
             {
                 return false;
             }

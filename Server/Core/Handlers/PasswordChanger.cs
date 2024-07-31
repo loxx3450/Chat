@@ -1,5 +1,6 @@
 ﻿using CommonLibrary;
 using CommonLibrary.Payloads.ResetingPassword;
+using Npgsql;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using ServerSide.Core.Services;
@@ -41,12 +42,18 @@ namespace ServerSide.Core.Handlers
 
         private static void UpdatePassword(int userId, string newPassword)
         {
-            string commandText = "UPDATE users " +
-                                 $"SET password = '{PasswordHasher.Hash(newPassword)}', " +
-                                    $"updated_at = '{DateTime.UtcNow}' " +
-                                 $"WHERE id = {userId};";
+            NpgsqlCommand cmd = new NpgsqlCommand();
 
-            CommandExecutor.ExecuteNonQuery(commandText);
+            cmd.CommandText = "UPDATE users " +
+                              $"SET password = @password, " +
+                                  $"updated_at = @now " +
+                              $"WHERE id = @id;";
+
+            cmd.Parameters.AddWithValue("@id", userId);
+            cmd.Parameters.AddWithValue("@password", PasswordHasher.Hash(newPassword));
+            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
+
+            DbHelper.ExecuteNonQuery(cmd);
         }
     }
 }

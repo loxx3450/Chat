@@ -43,12 +43,16 @@ namespace ServerSide.Core.Handlers
 
         private static bool UserIsFounded(string email, string password)
         {
-            string commandText = "SELECT password " +
-                                 "FROM users " +
-                                 $"WHERE email = '{email}';";
+            NpgsqlCommand cmd = new NpgsqlCommand();
+
+            cmd.CommandText = "SELECT password " +
+                              "FROM users " +
+                              $"WHERE email = @email;";
+
+            cmd.Parameters.AddWithValue("@email", email);
 
             //Gets hash from DB
-            string? hashedPassword = Convert.ToString(CommandExecutor.ExecuteScalar(commandText));
+            string? hashedPassword = Convert.ToString(DbHelper.ExecuteScalar(cmd));
 
             //Means that user with such email does not exist
             if (string.IsNullOrEmpty(hashedPassword))
@@ -76,55 +80,60 @@ namespace ServerSide.Core.Handlers
         private static void SaveSessionState(string email, string ip)
         {
             //user_id
-            int user_id = GetUserId(email);
+            int user_id = UserDbHelper.GetUserId(email);
 
-            string commandText;
+            NpgsqlCommand cmd = new NpgsqlCommand();
 
             //Checks if combination of such user and device already exists
             if (SessionExists(user_id, ip))
             {
                 //Updates existed session
-                commandText = "UPDATE sessions " +
-                              $"SET updated_at = '{DateTime.UtcNow}' " +
-                              $"WHERE user_id = {user_id} " +
-                                  $"AND ip = '{ip}'";
+                cmd.CommandText = "UPDATE sessions " +
+                                  $"SET updated_at = @now " +
+                                  $"WHERE user_id = @id " +
+                                      $"AND ip = @ip;";
+
+                cmd.Parameters.AddWithValue("@id", user_id);
+                cmd.Parameters.AddWithValue("@ip", ip);
+                cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
             }
             else
             {
                 //Creates new session
-                commandText = "INSERT INTO sessions " +
-                              "(user_id, ip, status_id, updated_at) " +
-                              $"VALUES({user_id}, '{ip}', {LOGGED_IN}, '{DateTime.UtcNow}')";
+                cmd.CommandText = "INSERT INTO sessions " +
+                                  "(user_id, ip, status_id, updated_at) " +
+                                  $"VALUES(@id, @ip, @loggedIn, @now);";
+
+                cmd.Parameters.AddWithValue("@id", user_id);
+                cmd.Parameters.AddWithValue("@ip", ip);
+                cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
+                cmd.Parameters.AddWithValue("@loggedIn", LOGGED_IN);
             }
 
-            CommandExecutor.ExecuteNonQuery(commandText);
+            DbHelper.ExecuteNonQuery(cmd);
         }
 
         private static bool SessionExists(int user_id, string ip)
         {
-            string commandText = "SELECT " +
-                                 "CASE " +
-                                     "WHEN EXISTS " +
-                                     "(" +
-                                         "SELECT 1 " +
-                                         "FROM sessions " +
-                                         $"WHERE user_id = {user_id} " +
-                                             $"AND ip = '{ip}'" +
-                                     ") " +
-                                     "THEN 1 " +
-                                     "ELSE 0 " +
-                                 "END;";
+            NpgsqlCommand cmd = new NpgsqlCommand();
 
-            return Convert.ToBoolean(CommandExecutor.ExecuteScalar(commandText));
-        }
+            cmd.CommandText = "SELECT " +
+                              "CASE " +
+                                  "WHEN EXISTS " +
+                                  "(" +
+                                      "SELECT 1 " +
+                                      "FROM sessions " +
+                                      $"WHERE user_id = @id " +
+                                          $"AND ip = @ip" +
+                                  ") " +
+                                  "THEN 1 " +
+                                  "ELSE 0 " +
+                              "END;";
 
-        private static int GetUserId(string email)
-        {
-            string commandText = "SELECT id " +
-                                 "FROM users " +
-                                 $"WHERE email = '{email}'";
+            cmd.Parameters.AddWithValue("@id", user_id);
+            cmd.Parameters.AddWithValue("@ip", ip);
 
-            return Convert.ToInt32(CommandExecutor.ExecuteScalar(commandText));
+            return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
         }
     }
 }
