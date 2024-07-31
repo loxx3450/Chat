@@ -12,7 +12,6 @@
     <ui:Button DataContext="{Binding ElementName=root}"
                Command="{Binding Command}"
                TabIndex="{Binding TabIndex}"
-               Margin="{Binding Margin}"
                HorizontalAlignment="{Binding HorizontalAlignment}"
                Appearance="{Binding Appearance}"
                Background="{Binding Background}">
