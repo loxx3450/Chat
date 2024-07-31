@@ -51,7 +51,7 @@ namespace ServerSide.Core.Handlers
             string? hashedPassword = Convert.ToString(CommandExecutor.ExecuteScalar(commandText));
 
             //Means that user with such email does not exist
-            if (hashedPassword is null)
+            if (string.IsNullOrEmpty(hashedPassword))
                 return false;
 
             //Hasher compares given password with the hash from DB
