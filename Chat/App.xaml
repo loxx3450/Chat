@@ -53,7 +53,15 @@
                     <DataTemplate DataType="{x:Type viewModels:RecoveryViewModel}">
                         <views:RecoveryView/>
                     </DataTemplate>
-                    
+
+                    <DataTemplate DataType="{x:Type viewModels:CodeConfirmationViewModel}">
+                        <views:CodeConfirmationView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewModels:ChangePasswordViewModel}">
+                        <views:ChangePasswordView/>
+                    </DataTemplate>
+
                 </ResourceDictionary>
                 
             </ResourceDictionary.MergedDictionaries>

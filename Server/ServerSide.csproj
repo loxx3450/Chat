@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.7.1.1" />
     <PackageReference Include="Npgsql" Version="8.0.3" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
   </ItemGroup>
@@ -23,6 +24,10 @@
     <Reference Include="SocketEventLibrary">
       <HintPath>..\..\EventSocket\EventSocket\bin\Debug\net8.0\SocketEventLibrary.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Storage\Html\" />
   </ItemGroup>
 
 </Project>

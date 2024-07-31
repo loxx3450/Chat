@@ -7,6 +7,12 @@
         SigningInRequest,
         SigningInResponse,
         SessionStateCheckRequest,
-        SessionStateCheckResponse
+        SessionStateCheckResponse,
+        ResetPasswordRequest,
+        ResetPasswordResponse,
+        VerifyCodeRequest,
+        VerifyCodeResponse,
+        ChangePasswordRequest,
+        ChangePasswordResponse,
     }
 }
