@@ -45,7 +45,7 @@ namespace Chat.MVVM.ViewModels
 
         private void Submit(object obj)
         {
-
+            PasswordChanger.ChangePassword(Password);
         }
 
         private bool CanSubmit(object obj) 

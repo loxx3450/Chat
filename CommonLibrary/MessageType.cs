@@ -12,5 +12,6 @@
         ResetPasswordResponse,
         VerifyCodeRequest,
         VerifyCodeResponse,
+        ChangePasswordRequest,
     }
 }
