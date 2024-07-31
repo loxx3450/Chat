@@ -54,6 +54,12 @@ namespace ServerSide.Core
                 socket.Emit(CodeVerifier.GetResponse());
             });
 
+            socket.On(MessageType.ChangePasswordRequest, (message) =>
+            {
+                PasswordChanger.ChangePassword((ProtocolMessage)message);
+                socket.Emit(PasswordChanger.GetResponse());
+            });
+
             //3. Subscribes on service Events
             socket.OnDisconnecting += () => DisconnectionHandler.Disconnect(client);
             socket.OnOtherSideIsDisconnected += () => BreakUpHandler.HandleBreakUp(client);

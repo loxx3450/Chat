@@ -13,5 +13,6 @@
         VerifyCodeRequest,
         VerifyCodeResponse,
         ChangePasswordRequest,
+        ChangePasswordResponse,
     }
 }
