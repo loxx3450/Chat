@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Chat.MVVM.Views.UserControls" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:local="clr-namespace:Chat.MVVM.Views.UserControls" 
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
              mc:Ignorable="d" 
              WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
              Style="{StaticResource NonDefaultWindowStyle}"
@@ -16,7 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
         <Grid Background="{DynamicResource MainBackground}">
@@ -57,50 +59,36 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <ui:Button x:Name="btnOk"
-                       Grid.Column="0" 
-                       Margin="10, 7" 
-                       Width="50"
-                       Background="AliceBlue" 
-                       Appearance="Light" 
-                       Visibility="Collapsed"
-                       Click="clickPositive" 
-                       Content="Ok" />
+            <userControls:Button x:Name="btnOk"
+                                 Style="{StaticResource CustomMessageBoxButtonStyle}"
+                                 Grid.Column="0" 
+                                 Appearance="Light" 
+                                 Text="Ok"
+                                 Command="{Binding ClickPositiveCommand}"/>
 
-            <ui:Button x:Name="btnCancel" 
-                       Grid.Column="1" 
-                       Margin="10, 7" 
-                       Width="50"
-                       Background="AliceBlue" 
-                       Appearance="Danger" 
-                       Visibility="Collapsed"
-                       Click="clickNegative" 
-                       Content="Cancel" />
+            <userControls:Button x:Name="btnCancel"
+                                 Style="{StaticResource CustomMessageBoxButtonStyle}"
+                                 Grid.Column="1" 
+                                 Appearance="Danger" 
+                                 Text="Cancel"
+                                 Command="{Binding ClickNegativeCommand}"/>
 
-            <ui:Button x:Name="btnYes" 
-                       Grid.Column="0" 
-                       Margin="10, 7" 
-                       Width="50"
-                       Background="AliceBlue" 
-                       Appearance="Success" 
-                       Visibility="Collapsed"
-                       Click="clickPositive" 
-                       Content="Yes" />
+            <userControls:Button x:Name="btnYes"
+                                 Style="{StaticResource CustomMessageBoxButtonStyle}"
+                                 Grid.Column="0" 
+                                 Appearance="Success" 
+                                 Text="Yes"
+                                 Command="{Binding ClickPositiveCommand}"/>
 
-            <ui:Button x:Name="btnNo" 
-                       Grid.Column="1" 
-                       Margin="10, 7" 
-                       Width="50"
-                       Background="AliceBlue" 
-                       Appearance="Danger" 
-                       Visibility="Collapsed"
-                       Click="clickNegative" 
-                       Content="No" />
+            <userControls:Button x:Name="btnNo"
+                                 Style="{StaticResource CustomMessageBoxButtonStyle}"
+                                 Grid.Column="1" 
+                                 Appearance="Danger" 
+                                 Text="No"
+                                 Command="{Binding ClickNegativeCommand}"/>
 
         </Grid>
 

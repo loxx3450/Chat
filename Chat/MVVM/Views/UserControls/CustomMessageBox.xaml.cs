@@ -1,4 +1,5 @@
-﻿using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
+﻿using Chat.MVVM.Core;
+using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,20 +23,46 @@ namespace Chat.MVVM.Views.UserControls
     /// </summary>
     public partial class CustomMessageBox : Window
     {
+        //Timer
         private Timer _timeoutTimer;
 
+
+        //Caption
         public string Caption { get; set; }
         public SolidColorBrush CaptionBrush { get; set; }
 
+
+        //Message
         public string Message { get; set; }
+
+
+        //Commands
+        public RelayCommand ClickPositiveCommand { get; set; }
+        public RelayCommand ClickNegativeCommand { get; set; }
+        
 
         public CustomMessageBox(MessageBoxType messageType, string message, int timeout = -1)
         {
             InitializeComponent();
 
+            //Setting main properties of MessageBox
             Message = message;
             Caption = messageType.ToString();
 
+            //Initializing Commands
+            ClickPositiveCommand = new RelayCommand((o) =>
+            {
+                DialogResult = true;
+                Close();
+            });
+
+            ClickNegativeCommand = new RelayCommand((o) =>
+            {
+                DialogResult = false;
+                Close();
+            });
+
+            //Showing buttons depending on MessageBox's type
             switch (messageType) 
             {
                 case MessageBoxType.Info:
@@ -66,6 +93,7 @@ namespace Chat.MVVM.Views.UserControls
                     break;
             }
 
+            //Setting timer (opt.)
             if (timeout >= 0)
                 _timeoutTimer = new Timer(OnTimerElapsed, null, timeout, Timeout.Infinite);
         }
@@ -80,18 +108,6 @@ namespace Chat.MVVM.Views.UserControls
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
-            Close();
-        }
-
-        private void clickPositive(object sender, RoutedEventArgs e) 
-        {
-            DialogResult = true;
-            Close();
-        }
-
-        private void clickNegative(object sender, RoutedEventArgs e) 
-        { 
             DialogResult = false;
             Close();
         }

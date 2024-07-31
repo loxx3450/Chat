@@ -27,6 +27,7 @@
                 
                 <!--MainWindow styles-->
                 <ResourceDictionary Source="Styles/TitleBarButtonStyle.xaml" />
+                <ResourceDictionary Source="Styles/CustomMessageBoxButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/NonDefaultWindowStyle.xaml" />
                 
                 
