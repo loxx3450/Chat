@@ -37,19 +37,12 @@
                                                Style="{StaticResource EntryWindowsTextBoxStyle}"
                                                Margin="0, 10"
                                                PlaceholderText="Enter email..."/>
-                
 
-                <ui:Button Command="{Binding ResetPasswordCommand}" 
-                           Margin="0, 15, 0, 0" 
-                           HorizontalAlignment="Stretch" 
-                           Appearance="Success" 
-                           Background="Green" 
-                           Foreground="{DynamicResource MainForeground}">
 
-                    <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
-                               Text="Reset password"/>
-
-                </ui:Button>
+                <userControls:Button Command="{Binding ResetPasswordCommand}"
+                                     Style="{StaticResource EntryWindowsActionCommandStyle}"
+                                     Margin="0, 15, 0, 0" 
+                                     Text="Reset password"/>
 
             </StackPanel>
 
@@ -63,27 +56,13 @@
             <StackPanel Margin="16" 
                         HorizontalAlignment="Center">
 
-                <ui:Button Command="{Binding NavigateToLoginCommand}" 
-                           HorizontalAlignment="Center" 
-                           Appearance="Dark" 
-                           Background="Transparent">
+                <userControls:Button Command="{Binding NavigateToLoginCommand}"
+                                     Style="{StaticResource EntryWindowsNavigationCommandStyle}"
+                                     Text="Back to 'Sign in'"/>
 
-                    <TextBlock Style="{StaticResource EntryWindowsHyperlinkStyle}"
-                               Text="Back to 'Sign in'"/>
-
-                </ui:Button>
-
-
-                <ui:Button Command="{Binding NavigateToRegistrationCommand}" 
-                           HorizontalAlignment="Center" 
-                           Margin="0,6,0,0" 
-                           Appearance="Dark" 
-                           Background="Transparent">
-
-                    <TextBlock Style="{StaticResource EntryWindowsHyperlinkStyle}"
-                               Text="Create an account"/>
-
-                </ui:Button>
+                <userControls:Button Command="{Binding NavigateToRegistrationCommand}"
+                                     Style="{StaticResource EntryWindowsNavigationCommandStyle}"
+                                     Text="Create an account"/>
 
             </StackPanel>
 

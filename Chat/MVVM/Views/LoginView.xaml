@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Chat.MVVM.Views"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
              xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
              mc:Ignorable="d" 
@@ -57,26 +56,18 @@
                           Background="{DynamicResource MainBackground}" 
                           Foreground="{DynamicResource MainForeground}"
                           IsChecked="{Binding RememberUser}">
-                    
+
                     <TextBlock Text="Remember me" 
                                FontSize="18"/>
-                    
+
                 </CheckBox>
 
-                
-                <ui:Button Command="{Binding SignInCommand}" 
-                           TabIndex="3"
-                           Margin="0, 15, 0, 0" 
-                           HorizontalAlignment="Stretch" 
-                           Appearance="Success" 
-                           Background="Green" 
-                           Foreground="{DynamicResource MainForeground}">
+                <userControls:Button Style="{StaticResource EntryWindowsActionCommandStyle}"
+                                     Command="{Binding SignInCommand}"
+                                     TabIndex="3"
+                                     Margin="0, 15, 0, 0" 
+                                     Text="Sign in"/>
 
-                    <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
-                               Text="Sign in"/>
-                    
-                </ui:Button>
-                
             </StackPanel>
             
         </Grid>
@@ -90,27 +81,14 @@
             <StackPanel Margin="16" 
                         HorizontalAlignment="Center">
 
-                <ui:Button HorizontalAlignment="Center" 
-                           Appearance="Dark" 
-                           Background="Transparent"
-                           Command="{Binding NavigateToRecoveryCommand}">
-                    
-                    <TextBlock Style="{StaticResource EntryWindowsHyperlinkStyle}"
-                               Text="Forgot password?"/>
-                    
-                </ui:Button>
+                <userControls:Button Style="{StaticResource EntryWindowsNavigationCommandStyle}"
+                                     Command="{Binding NavigateToRecoveryCommand}"
+                                     Text="Forgot password?"/>
 
-
-                <ui:Button HorizontalAlignment="Center" 
-                           Margin="0,6,0,0" 
-                           Appearance="Dark"
-                           Background="Transparent"
-                           Command="{Binding NavigateToRegistrationCommand}">
-                    
-                    <TextBlock Style="{StaticResource EntryWindowsHyperlinkStyle}" 
-                               Text="Create an account"/>
-                    
-                </ui:Button>
+                <userControls:Button Style="{StaticResource EntryWindowsNavigationCommandStyle}"
+                                     Command="{Binding NavigateToRegistrationCommand}"
+                                     Margin="0,6,0,0" 
+                                     Text="Create an account"/>
 
             </StackPanel>
 

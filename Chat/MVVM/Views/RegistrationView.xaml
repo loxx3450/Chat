@@ -77,19 +77,12 @@
                                                        Margin="0, 10, 0, 20"
                                                        PlaceholderText="Enter password again..."/>
 
-
-                    <ui:Button Command="{Binding SignUpCommand}" 
-                               TabIndex="4"
-                               Margin="0, 5, 0, 0"
-                               HorizontalAlignment="Stretch"
-                               Appearance="Success"
-                               Background="Green"
-                               Foreground="{DynamicResource MainForeground}">
-
-                        <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
-                                   Text="Sign up"/>
-
-                    </ui:Button>
+                    
+                    <userControls:Button Command="{Binding SignUpCommand}"
+                                         Style="{StaticResource EntryWindowsActionCommandStyle}"
+                                         TabIndex="4"
+                                         Margin="0, 5, 0, 0" 
+                                         Text="Sign up"/>
 
                 </StackPanel>
 
@@ -104,16 +97,10 @@
                 <StackPanel Margin="16"
                             HorizontalAlignment="Center">
 
-                    <ui:Button HorizontalAlignment="Center" 
-                               Appearance="Dark"
-                               Background="Transparent"
-                               Command="{Binding NavigateToLoginCommand}">
+                    <userControls:Button Command="{Binding NavigateToLoginCommand}"
+                                         Style="{StaticResource EntryWindowsNavigationCommandStyle}"
+                                         Text="Back to 'Sign in'"/>
 
-                        <TextBlock Style="{StaticResource EntryWindowsHyperlinkStyle}"
-                                   Text="Back to 'Sign in'"/>
-
-                    </ui:Button>
-                    
                 </StackPanel>
 
             </Grid>

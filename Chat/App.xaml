@@ -21,6 +21,8 @@
                 <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsHyperlinkStyle.xaml" />
                 <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsPasswordBoxStyle.xaml" />
                 <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsCaptionStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsActionCommandStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsNavigationCommandStyle.xaml" />
 
                 
                 <!--MainWindow styles-->
