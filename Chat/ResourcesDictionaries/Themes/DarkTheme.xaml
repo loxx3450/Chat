@@ -6,6 +6,7 @@
     <SolidColorBrush x:Key="SecondaryBackground">#161b22</SolidColorBrush>
     <SolidColorBrush x:Key="MainForeground">#FFFFFF</SolidColorBrush>
     <SolidColorBrush x:Key="MainBorderBrush">#30363d</SolidColorBrush>
+    <SolidColorBrush x:Key="MainButtonBackground">#f0f8ff</SolidColorBrush>
     
     <!--TitleBar-->
     <SolidColorBrush x:Key="TitleBarBackground">#242f3d</SolidColorBrush>
@@ -14,4 +15,5 @@
     
     <!--MainWindow-->
     <SolidColorBrush x:Key="WindowBorderBrush">#000000</SolidColorBrush>
+
 </ResourceDictionary>
