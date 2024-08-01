@@ -10,8 +10,9 @@ using Chat.MVVM.Models.Instances;
 using ProtocolLibrary.Core;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using Chat.MVVM.ViewModels;
+using Chat.MVVM.Models.Services;
 
-namespace Chat.MVVM.Models.Services
+namespace Chat.MVVM.Models.Handlers
 {
     internal class CodeVerifier
     {

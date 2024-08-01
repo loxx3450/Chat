@@ -1,4 +1,5 @@
 ﻿using Chat.MVVM.Models.Instances;
+using Chat.MVVM.Models.Services;
 using Chat.MVVM.ViewModels;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary;
@@ -12,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chat.MVVM.Models.Services
+namespace Chat.MVVM.Models.Handlers
 {
     public static class PasswordResetter
     {

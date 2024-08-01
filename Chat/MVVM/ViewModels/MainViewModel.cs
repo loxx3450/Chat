@@ -1,6 +1,6 @@
 ﻿using Chat.Core;
 using Chat.MVVM.Core;
-using Chat.MVVM.Models.Services;
+using Chat.MVVM.Models.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

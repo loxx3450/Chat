@@ -1,4 +1,5 @@
-﻿using Chat.MVVM.Views.UserControls;
+﻿using Chat.MVVM.Models.Services;
+using Chat.MVVM.Views.UserControls;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary;
 using CommonLibrary.Models;
@@ -13,11 +14,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Chat.MVVM.Models.Services
+namespace Chat.MVVM.Models.Handlers
 {
     public class RegistrationService
     {
-        public static void Register(User user) 
+        public static void Register(User user)
         {
             ProtocolMessage message = new ProtocolMessage();
             message.SetPayload(new RegistrationRequestPayload(user));

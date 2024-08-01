@@ -12,8 +12,9 @@ using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary.Payloads.Registration;
 using Chat.MVVM.ViewModels;
 using System.Net;
+using Chat.MVVM.Models.Services;
 
-namespace Chat.MVVM.Models.Services
+namespace Chat.MVVM.Models.Handlers
 {
     public class SigningInService
     {
@@ -25,7 +26,7 @@ namespace Chat.MVVM.Models.Services
             SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.SigningInRequest, message));
         }
 
-        public static void HandleResponse(ProtocolMessage message) 
+        public static void HandleResponse(ProtocolMessage message)
         {
             SigningInResponsePayload payload = PayloadBuilder.GetPayload<SigningInResponsePayload>(message.PayloadStream);
 

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http.Headers;
 using Chat.MVVM.Models.Services;
+using Chat.MVVM.Models.Handlers;
 
 namespace Chat.MVVM.ViewModels
 {

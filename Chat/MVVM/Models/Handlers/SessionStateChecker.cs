@@ -1,4 +1,5 @@
-﻿using Chat.MVVM.ViewModels;
+﻿using Chat.MVVM.Models.Services;
+using Chat.MVVM.ViewModels;
 using CommonLibrary;
 using CommonLibrary.Payloads.SessionStateCheck;
 using ProtocolLibrary.Core;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chat.MVVM.Models.Services
+namespace Chat.MVVM.Models.Handlers
 {
     public static class SessionStateChecker
     {
