@@ -42,18 +42,12 @@ namespace ServerSide.Core.Handlers
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
 
-            cmd.CommandText = "SELECT " +
-                              "CASE " +
-                                  "WHEN EXISTS " +
-                                  "(" +
-                                      "SELECT 1 " +
-                                      "FROM sessions " +
-                                      $"WHERE ip = @ip " +
-                                          $"AND EXTRACT(day FROM age(@now, updated_at)) <= 3" +
-                                  ") " +
-                                  "THEN 1 " +
-                                  "ELSE 0 " +
-                              "END;";
+            string cmdText = "SELECT 1 " +
+                             "FROM sessions " +
+                             $"WHERE ip = @ip " +
+                                 $"AND EXTRACT(day FROM age(@now, updated_at)) <= 3";
+
+            cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
 
             cmd.Parameters.AddWithValue("@ip", ip);
             cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);

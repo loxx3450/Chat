@@ -14,17 +14,11 @@ namespace ServerSide.Core.Services
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
 
-            cmd.CommandText = "SELECT " +
-                              "CASE " +
-                                  "WHEN EXISTS " +
-                                  "(" +
-                                      "SELECT 1 " +
-                                      "FROM users " +
-                                      $"WHERE email = @email" +
-                                  ") " +
-                                  "THEN 1 " +
-                                  "ELSE 0 " +
-                              "END;";
+            string cmdText = "SELECT 1 " +
+                             "FROM users " +
+                             $"WHERE email = @email";
+
+            cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
 
             cmd.Parameters.AddWithValue("@email", email);
             

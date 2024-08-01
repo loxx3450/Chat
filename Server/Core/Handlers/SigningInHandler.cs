@@ -117,18 +117,12 @@ namespace ServerSide.Core.Handlers
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
 
-            cmd.CommandText = "SELECT " +
-                              "CASE " +
-                                  "WHEN EXISTS " +
-                                  "(" +
-                                      "SELECT 1 " +
-                                      "FROM sessions " +
-                                      $"WHERE user_id = @id " +
-                                          $"AND ip = @ip" +
-                                  ") " +
-                                  "THEN 1 " +
-                                  "ELSE 0 " +
-                              "END;";
+            string cmdText = "SELECT 1 " +
+                             "FROM sessions " +
+                             $"WHERE user_id = @id " +
+                                 $"AND ip = @ip";
+
+            cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
 
             cmd.Parameters.AddWithValue("@id", user_id);
             cmd.Parameters.AddWithValue("@ip", ip);

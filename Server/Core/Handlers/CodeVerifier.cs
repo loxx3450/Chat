@@ -43,20 +43,14 @@ namespace ServerSide.Core.Handlers
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
 
-            cmd.CommandText = "SELECT " +
-                              "CASE " +
-                                  "WHEN EXISTS " +
-                                  "(" +
-                                      "SELECT 1 " +
-                                      "FROM recovery_codes " +
-                                      $"WHERE user_id = @id " +
-                                          $"AND code = @code " +
-                                          $"AND used = false " +
-                                          $"AND EXTRACT(epoch FROM age(@now, created_at)) / 60 <= 15" +        //if code is not expired
-                                  ") " +
-                                  "THEN 1 " +
-                                  "ELSE 0 " +
-                              "END;";
+            string cmdText = "SELECT 1 " +
+                             "FROM recovery_codes " +
+                             $"WHERE user_id = @id " +
+                                 $"AND code = @code " +
+                                 $"AND used = false " +
+                                 $"AND EXTRACT(epoch FROM age(@now, created_at)) / 60 <= 15";           //if code is not expired
+
+            cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
 
             cmd.Parameters.AddWithValue("@id", userId);
             cmd.Parameters.AddWithValue("@code", code);

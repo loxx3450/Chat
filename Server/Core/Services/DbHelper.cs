@@ -45,5 +45,18 @@ namespace ServerSide.Core.Services
 
             return cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
         }
+
+        public static string FormulateBooleanRequest(string commandText)
+        {
+            return "SELECT " +
+                   "CASE " +
+                       "WHEN EXISTS " +
+                       "(" +
+                           $"{commandText}" +
+                       ") " +
+                       "THEN 1 " +
+                       "ELSE 0 " +
+                   "END;";
+        }
     }
 }
