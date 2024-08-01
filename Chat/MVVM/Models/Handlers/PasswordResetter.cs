@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.Models.Handlers
 {
-    public static class PasswordResetter
+    public class PasswordResetter : IHandler
     {
         public static void ResetPassword(string email)
         {

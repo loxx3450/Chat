@@ -16,7 +16,7 @@ using Chat.MVVM.Models.Services;
 
 namespace Chat.MVVM.Models.Handlers
 {
-    public class SigningInService
+    public class SigningInService : IHandler
     {
         public static void SignIn(string email, string password, bool rememberUser)
         {

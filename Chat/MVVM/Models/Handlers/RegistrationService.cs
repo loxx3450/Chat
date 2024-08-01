@@ -16,7 +16,7 @@ using System.Windows;
 
 namespace Chat.MVVM.Models.Handlers
 {
-    public class RegistrationService
+    public class RegistrationService : IHandler
     {
         public static void Register(User user)
         {

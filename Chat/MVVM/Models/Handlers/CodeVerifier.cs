@@ -14,7 +14,7 @@ using Chat.MVVM.Models.Services;
 
 namespace Chat.MVVM.Models.Handlers
 {
-    internal class CodeVerifier
+    internal class CodeVerifier : IHandler
     {
         //Verify Recovery code
         public static void VerifyCode(string code)

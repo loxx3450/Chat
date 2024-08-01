@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.Models.Handlers
 {
-    public static class SessionStateChecker
+    public class SessionStateChecker : IHandler
     {
         public static void CheckState()
         {

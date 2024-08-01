@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.Models.Handlers
 {
-    internal class PasswordChanger
+    internal class PasswordChanger : IHandler
     {
         public static void ChangePassword(string newPassword)
         {
