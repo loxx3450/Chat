@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Chat.MVVM.Views.UserControls"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
-             xmlns:infrastucture="clr-namespace:Chat.MVVM.Views.UserControls.Additional_Infrastructure"
+             xmlns:infrastucture="clr-namespace:Chat.MVVM.Views.UserControls.AdditionalInfrastructure"
              mc:Ignorable="d" 
              x:Name="root"
              Validation.ErrorTemplate="{StaticResource errorTemplate}"

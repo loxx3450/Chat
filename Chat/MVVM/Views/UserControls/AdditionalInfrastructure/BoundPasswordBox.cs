@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Chat.MVVM.Views.UserControls.Additional_Infrastructure
+namespace Chat.MVVM.Views.UserControls.AdditionalInfrastructure
 {
     /// <summary>
     /// This class adds binding capabilities to the standard WPF PasswordBox.

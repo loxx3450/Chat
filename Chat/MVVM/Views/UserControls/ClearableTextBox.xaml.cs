@@ -1,4 +1,4 @@
-﻿using Chat.MVVM.Views.UserControls.Additional_Infrastructure;
+﻿using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Chat.MVVM.Views.UserControls.Additional_Infrastructure
+namespace Chat.MVVM.Views.UserControls.AdditionalInfrastructure
 {
     public class InputBox : UserControl
     {
