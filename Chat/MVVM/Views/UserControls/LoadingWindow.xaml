@@ -1,0 +1,31 @@
+﻿<Window x:Class="Chat.MVVM.Views.UserControls.LoadingWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chat.MVVM.Views.UserControls"
+             mc:Ignorable="d" 
+             WindowStartupLocation="CenterOwner" 
+             ResizeMode="NoResize"
+             WindowStyle="None"
+             ShowInTaskbar="False"
+             Height="180" Width="360">
+
+    <Grid Background="{DynamicResource SecondaryBackground}">
+
+        <Border BorderBrush="{DynamicResource MainBorderBrush}"
+                BorderThickness="2"/>
+
+        <StackPanel Margin="20" HorizontalAlignment="Center">
+
+            <TextBlock Foreground="{DynamicResource MainForeground}"
+                           FontSize="28"
+                           Text="Loading..."/>
+
+            <local:LoadingSpinner Margin="0, 20" Diameter="75" StrokeThickness="3"/>
+
+        </StackPanel>
+
+    </Grid>
+
+</Window>
