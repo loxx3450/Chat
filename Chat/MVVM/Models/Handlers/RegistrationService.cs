@@ -23,11 +23,13 @@ namespace Chat.MVVM.Models.Handlers
             ProtocolMessage message = new ProtocolMessage();
             message.SetPayload(new RegistrationRequestPayload(user));
 
-            SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.RegistrationRequest, message));
+            SocketEventHandler.EmitAndWait(new SocketEventProtocolMessage(MessageType.RegistrationRequest, message));
         }
 
         public static void HandleResponse(ProtocolMessage message)
         {
+            TransitionManager.RemoveWaiting();
+
             RegistrationResponsePayload responsePayload = PayloadBuilder.GetPayload<RegistrationResponsePayload>(message.PayloadStream);
 
             switch (responsePayload.ResponseType)

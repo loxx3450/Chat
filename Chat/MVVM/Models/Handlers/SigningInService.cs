@@ -23,11 +23,13 @@ namespace Chat.MVVM.Models.Handlers
             ProtocolMessage message = new ProtocolMessage();
             message.SetPayload(new SigningInRequestPayload(email, password, rememberUser, IPAddressFetcher.GetIPAddress().ToString()));
 
-            SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.SigningInRequest, message));
+            SocketEventHandler.EmitAndWait(new SocketEventProtocolMessage(MessageType.SigningInRequest, message));
         }
 
         public static void HandleResponse(ProtocolMessage message)
         {
+            TransitionManager.RemoveWaiting();
+
             SigningInResponsePayload payload = PayloadBuilder.GetPayload<SigningInResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)

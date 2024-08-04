@@ -21,11 +21,13 @@ namespace Chat.MVVM.Models.Handlers
             ProtocolMessage message = new ProtocolMessage();
             message.SetPayload(new ChangePasswordRequestPayload(newPassword, Client.AssociatedUserId));
 
-            SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.ChangePasswordRequest, message));
+            SocketEventHandler.EmitAndWait(new SocketEventProtocolMessage(MessageType.ChangePasswordRequest, message));
         }
 
         public static void HandleResponse(ProtocolMessage message)
         {
+            TransitionManager.RemoveWaiting();
+
             ChangePasswordResponsePayload payload = PayloadBuilder.GetPayload<ChangePasswordResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)

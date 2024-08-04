@@ -19,11 +19,13 @@ namespace Chat.MVVM.Models.Handlers
             ProtocolMessage message = new ProtocolMessage();
             message.SetPayload(new SessionStateCheckRequestPayload(IPAddressFetcher.GetIPAddress().ToString()));
 
-            SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.SessionStateCheckRequest, message));
+            SocketEventHandler.EmitAndWait(new SocketEventProtocolMessage(MessageType.SessionStateCheckRequest, message));
         }
 
         public static void HandleResponse(ProtocolMessage message)
         {
+            TransitionManager.RemoveWaiting();
+
             SessionStateCheckResponsePayload payload = PayloadBuilder.GetPayload<SessionStateCheckResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)

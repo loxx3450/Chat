@@ -22,11 +22,13 @@ namespace Chat.MVVM.Models.Handlers
             ProtocolMessage message = new ProtocolMessage();
             message.SetPayload(new VerifyCodeRequestPayload(code, Client.AssociatedUserId));
 
-            SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.VerifyCodeRequest, message));
+            SocketEventHandler.EmitAndWait(new SocketEventProtocolMessage(MessageType.VerifyCodeRequest, message));
         }
 
         public static void HandleResponse(ProtocolMessage message)
         {
+            TransitionManager.RemoveWaiting();
+
             VerifyCodeResponsePayload payload = PayloadBuilder.GetPayload<VerifyCodeResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)

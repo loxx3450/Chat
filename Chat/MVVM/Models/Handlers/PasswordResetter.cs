@@ -22,11 +22,13 @@ namespace Chat.MVVM.Models.Handlers
             ProtocolMessage message = new ProtocolMessage();
             message.SetPayload(new ResetPasswordRequestPayload(email));
 
-            SocketEventHandler.Emit(new SocketEventProtocolMessage(MessageType.ResetPasswordRequest, message));
+            SocketEventHandler.EmitAndWait(new SocketEventProtocolMessage(MessageType.ResetPasswordRequest, message));
         }
 
         public static void HandleResponse(ProtocolMessage message)
         {
+            TransitionManager.RemoveWaiting();
+
             var payload = PayloadBuilder.GetPayload<ResetPasswordResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)
