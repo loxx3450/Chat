@@ -65,6 +65,10 @@
                         <views:ChangePasswordView/>
                     </DataTemplate>
 
+                    <DataTemplate DataType="{x:Type viewModels:EmailVerificationViewModel}">
+                        <views:EmailVerificationView/>
+                    </DataTemplate>
+
                 </ResourceDictionary>
                 
             </ResourceDictionary.MergedDictionaries>
