@@ -18,10 +18,12 @@ namespace CommonLibrary.Payloads.Registration
     public class RegistrationResponsePayload : JSONPayload
     {
         public RegistrationResponseType ResponseType { get; set; }
+        public int AssociatedUserId { get; set; }
 
-        public RegistrationResponsePayload(RegistrationResponseType responseType)
+        public RegistrationResponsePayload(RegistrationResponseType responseType, int associatedUserId)
         {
             ResponseType = responseType;
+            AssociatedUserId = associatedUserId;
         }
     }
 }

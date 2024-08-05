@@ -20,8 +20,9 @@ namespace ServerSide.Core.Handlers
 
     internal class RegistrationHandler : IResponsibleHandler
     {
-        //Will be used as a part of response
+        //Response
         private static RegistrationResponseType responseType;
+        private static int associatedUserId;
 
         public static void TryToCreateUser(ProtocolMessage protocolMessage)
         {
@@ -40,6 +41,8 @@ namespace ServerSide.Core.Handlers
                     {
                         SendEmail(payload.User.Email);
 
+                        //data for response
+                        associatedUserId = UserDbHelper.GetUserId(payload.User.Email);
                         responseType = RegistrationResponseType.Successed;
                     }
                     else
@@ -55,7 +58,7 @@ namespace ServerSide.Core.Handlers
         public static SocketEventProtocolMessage GetResponse()
         {
             ProtocolMessage response = new ProtocolMessage();
-            response.SetPayload(new RegistrationResponsePayload(responseType));
+            response.SetPayload(new RegistrationResponsePayload(responseType, associatedUserId));
 
             return new SocketEventProtocolMessage(MessageType.RegistrationResponse, response);
         }
