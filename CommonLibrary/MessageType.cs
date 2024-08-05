@@ -14,6 +14,7 @@
         VerifyCodeForResetPasswordResponse,
         ChangePasswordRequest,
         ChangePasswordResponse,
-        EmailVerificationRequest
+        EmailVerificationRequest,
+        EmailVerificationResponse,
     }
 }

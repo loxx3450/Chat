@@ -87,5 +87,19 @@ namespace ServerSide.Core.Services
 
             DbHelper.ExecuteNonQuery(cmd);
         }
+
+        public static void MarkUserAsVerified(int userId)
+        {
+            NpgsqlCommand cmd = new NpgsqlCommand();
+
+            cmd.CommandText = "UPDATE users " +
+                              "SET verified_email = @verified_email " +
+                              $"WHERE id = @id";
+
+            cmd.Parameters.AddWithValue("@id", userId);
+            cmd.Parameters.AddWithValue("@verified_email", true);
+
+            DbHelper.ExecuteNonQuery(cmd);
+        }
     }
 }

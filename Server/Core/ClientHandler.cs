@@ -30,6 +30,12 @@ namespace ServerSide.Core
                 socket.Emit(RegistrationHandler.GetResponse());
             });
 
+            socket.On(MessageType.EmailVerificationRequest, (message) =>
+            {
+                EmailVerifier.Verify((ProtocolMessage)message);
+                socket.Emit(EmailVerifier.GetResponse());
+            });
+
             socket.On(MessageType.SigningInRequest, (message) =>
             {
                 SigningInHandler.TryToSignIn((ProtocolMessage)message);
