@@ -24,7 +24,7 @@ namespace ServerSide.Core.Handlers
         {
             SessionStateCheckRequestPayload payload = PayloadBuilder.GetPayload<SessionStateCheckRequestPayload>(protocolMessage.PayloadStream);
 
-            if (IsLoggedIn(payload.IP))
+            if (SessionDbHelper.IsActualSessionFounded(payload.IP))
                 responseType = SessionStateCheckResponseType.UserIsLoggedIn;
             else
                 responseType = SessionStateCheckResponseType.UserIsLoggedOut;
@@ -36,23 +36,6 @@ namespace ServerSide.Core.Handlers
             response.SetPayload(new SessionStateCheckResponsePayload(responseType));
 
             return new SocketEventProtocolMessage(MessageType.SessionStateCheckResponse, response);
-        }
-
-        private static bool IsLoggedIn(string ip)
-        {
-            NpgsqlCommand cmd = new NpgsqlCommand();
-
-            string cmdText = "SELECT 1 " +
-                             "FROM sessions " +
-                             $"WHERE ip = @ip " +
-                                 $"AND EXTRACT(day FROM age(@now, updated_at)) <= 3";
-
-            cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
-
-            cmd.Parameters.AddWithValue("@ip", ip);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
         }
     }
 }

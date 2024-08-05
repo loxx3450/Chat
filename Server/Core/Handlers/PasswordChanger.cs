@@ -22,7 +22,7 @@ namespace ServerSide.Core.Handlers
 
             try
             {
-                UpdatePassword(payload.AssociatedUserId, payload.NewPassword);
+                UserDbHelper.UpdatePassword(payload.AssociatedUserId, payload.NewPassword);
 
                 responseType = ChangePasswordResponseType.Success;
             }
@@ -38,22 +38,6 @@ namespace ServerSide.Core.Handlers
             response.SetPayload(new ChangePasswordResponsePayload(responseType));
 
             return new SocketEventProtocolMessage(MessageType.ChangePasswordResponse, response);
-        }
-
-        private static void UpdatePassword(int userId, string newPassword)
-        {
-            NpgsqlCommand cmd = new NpgsqlCommand();
-
-            cmd.CommandText = "UPDATE users " +
-                              $"SET password = @password, " +
-                                  $"updated_at = @now " +
-                              $"WHERE id = @id;";
-
-            cmd.Parameters.AddWithValue("@id", userId);
-            cmd.Parameters.AddWithValue("@password", PasswordHasher.Hash(newPassword));
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            DbHelper.ExecuteNonQuery(cmd);
         }
     }
 }
