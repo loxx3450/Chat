@@ -13,15 +13,16 @@ using CommonLibrary;
 using CommonLibrary.Payloads.Registration;
 using System.Security.Cryptography;
 using ServerSide.Core.Services;
+using MimeKit;
 
 namespace ServerSide.Core.Handlers
 {
 
     internal class RegistrationHandler : IResponsibleHandler
     {
-        //Will be used as a part of response
+        //Response
         private static RegistrationResponseType responseType;
-
+        private static int associatedUserId;
 
         public static void TryToCreateUser(ProtocolMessage protocolMessage)
         {
@@ -37,9 +38,15 @@ namespace ServerSide.Core.Handlers
                 else
                 {
                     if (CreateUser(payload.User))
+                    {
+                        SendEmail(payload.User.Email);
+
+                        //data for response
+                        associatedUserId = UserDbHelper.GetUserId(payload.User.Email);
                         responseType = RegistrationResponseType.Successed;
+                    }
                     else
-                        responseType = RegistrationResponseType.Failed;                         //TODO?: get errorMessage
+                        responseType = RegistrationResponseType.Failed;
                 }
             }
             catch
@@ -51,31 +58,27 @@ namespace ServerSide.Core.Handlers
         public static SocketEventProtocolMessage GetResponse()
         {
             ProtocolMessage response = new ProtocolMessage();
-            response.SetPayload(new RegistrationResponsePayload(responseType));
+            response.SetPayload(new RegistrationResponsePayload(responseType, associatedUserId));
 
             return new SocketEventProtocolMessage(MessageType.RegistrationResponse, response);
         }
 
-        private static bool CreateUser(User user) 
+        private static bool CreateUser(User user)
         {
             //Generates hashed password
             string password = PasswordHasher.Hash(user.Password);
 
-            NpgsqlCommand cmd = new NpgsqlCommand();
-
-            cmd.CommandText = "INSERT INTO users " +
-                              "(username, email, password, created_at, updated_at)" +
-                              $"VALUES(@username, @email, @password, @now, @now);";
-
-            cmd.Parameters.AddWithValue("@username", user.Username);
-            cmd.Parameters.AddWithValue("@email", user.Email);
-            cmd.Parameters.AddWithValue("@password", password);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-
             try
             {
-                DbHelper.ExecuteNonQuery(cmd);
+                //If there is an user with this email, but nou verified
+                if (UserDbHelper.EmailExists(user.Email))
+                {
+                    UserDbHelper.CreateNewUserOnUnverifiedEmail(user.Email, user.Username, password);
+                }
+                else
+                {
+                    UserDbHelper.CreateNewUser(user.Email, user.Username, password);
+                }
 
                 return true;
             }
@@ -83,6 +86,28 @@ namespace ServerSide.Core.Handlers
             {
                 return false;
             }
+        }
+
+        private static void SendEmail(string email)
+        {
+            string verificationCode = VerificationCodeGenerator.GetCode();
+
+            string subject = "Email verification";
+
+            MimeEntity body = ConfigureMessageBody(verificationCode);
+
+            EmailSender.SendEmail(email, subject, body);
+
+            VerificationCodeDbHelper.SaveVerificationCode(email, verificationCode);
+        }
+
+        private static MimeEntity ConfigureMessageBody(string code)
+        {
+            EmailBodyConfigurator.AddHtmlBody(@"\Html\verify_email.html");
+            EmailBodyConfigurator.AddImage(@"\Images\logo.png", "EmbeddedImage");
+            EmailBodyConfigurator.AddSmthToHtml("&CODE", code);
+
+            return EmailBodyConfigurator.GetMessageBody();
         }
     }
 }

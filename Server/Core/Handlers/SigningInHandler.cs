@@ -47,9 +47,11 @@ namespace ServerSide.Core.Handlers
 
             cmd.CommandText = "SELECT password " +
                               "FROM users " +
-                              $"WHERE email = @email;";
+                              $"WHERE email = @email " +
+                                  $"AND verified_email = @verified_email";
 
             cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@verified_email", true);
 
             //Gets hash from DB
             string? hashedPassword = Convert.ToString(DbHelper.ExecuteScalar(cmd));

@@ -24,6 +24,9 @@ namespace Chat.MVVM.Models.Services
             socket.On(MessageType.RegistrationResponse, 
                 (mes) => RegistrationService.HandleResponse((ProtocolMessage)mes));
 
+            socket.On(MessageType.EmailVerificationResponse,
+                (mes) => EmailVerifier.HandleResponse((ProtocolMessage)mes));
+
             socket.On(MessageType.SigningInResponse,
                 (mes) => SigningInService.HandleResponse((ProtocolMessage)mes));
 
@@ -33,8 +36,8 @@ namespace Chat.MVVM.Models.Services
             socket.On(MessageType.ResetPasswordResponse,
                 (mes) => PasswordResetter.HandleResponse((ProtocolMessage)mes));
 
-            socket.On(MessageType.VerifyCodeResponse,
-                (mes) => CodeVerifier.HandleResponse((ProtocolMessage)mes));
+            socket.On(MessageType.VerifyCodeForResetPasswordResponse,
+                (mes) => CodeVerifierForResetPassword.HandleResponse((ProtocolMessage)mes));
 
             socket.On(MessageType.ChangePasswordResponse, 
                 (mes) => PasswordChanger.HandleResponse((ProtocolMessage)mes));

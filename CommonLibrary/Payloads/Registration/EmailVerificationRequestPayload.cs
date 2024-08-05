@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonLibrary.Payloads.ResetingPassword
+namespace CommonLibrary.Payloads.Registration
 {
-    public class VerifyCodeRequestPayload : JSONPayload
+    public class EmailVerificationRequestPayload : JSONPayload
     {
         public string Code { get; set; }
         public int AssociatedUserId { get; set; }
 
-        public VerifyCodeRequestPayload(string code, int associatedUserId) 
+        public EmailVerificationRequestPayload(string code, int associatedUserId)
         {
             Code = code;
             AssociatedUserId = associatedUserId;

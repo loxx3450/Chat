@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.ViewModels
 {
-    internal class CodeConfirmationViewModel : ViewModelBase
+    internal class EmailVerificationViewModel : ViewModelBase
     {
         private string _code = string.Empty;
 
@@ -23,25 +23,23 @@ namespace Chat.MVVM.ViewModels
         }
 
 
-        public RelayCommand ConfirmCommand { get; set; }
-        public RelayCommand NavigateToLoginCommand { get; set; }
+        public RelayCommand VerifyCommand { get; set; }
         public RelayCommand NavigateToRegistrationCommand { get; set; }
 
 
-        public CodeConfirmationViewModel()
+        public EmailVerificationViewModel()
         {
-            NavigateToLoginCommand = new RelayCommand((o) => Navigator.NavigateTo<LoginViewModel>());
             NavigateToRegistrationCommand = new RelayCommand((o) => Navigator.NavigateTo<RegistrationViewModel>());
 
-            ConfirmCommand = new RelayCommand(Confirm, CanConfirm);
+            VerifyCommand = new RelayCommand(Verify, CanVerify);
         }
 
-        private void Confirm(object obj)
+        private void Verify(object obj)
         {
-            CodeVerifier.VerifyCode(Code);
+            EmailVerifier.Verify(Code);
         }
 
-        private bool CanConfirm(object obj) 
+        private bool CanVerify(object obj)
         {
             return !HasErrors
                 && !string.IsNullOrEmpty(_code);

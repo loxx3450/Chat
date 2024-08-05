@@ -30,6 +30,12 @@ namespace ServerSide.Core
                 socket.Emit(RegistrationHandler.GetResponse());
             });
 
+            socket.On(MessageType.EmailVerificationRequest, (message) =>
+            {
+                EmailVerifier.Verify((ProtocolMessage)message);
+                socket.Emit(EmailVerifier.GetResponse());
+            });
+
             socket.On(MessageType.SigningInRequest, (message) =>
             {
                 SigningInHandler.TryToSignIn((ProtocolMessage)message);
@@ -48,10 +54,10 @@ namespace ServerSide.Core
                 socket.Emit(PasswordResetter.GetResponse());
             });
 
-            socket.On(MessageType.VerifyCodeRequest, (message) =>
+            socket.On(MessageType.VerifyCodeForResetPasswordRequest, (message) =>
             {
-                CodeVerifier.VerifyCode((ProtocolMessage)message);
-                socket.Emit(CodeVerifier.GetResponse());
+                CodeVerifierForResetPassword.VerifyCode((ProtocolMessage)message);
+                socket.Emit(CodeVerifierForResetPassword.GetResponse());
             });
 
             socket.On(MessageType.ChangePasswordRequest, (message) =>

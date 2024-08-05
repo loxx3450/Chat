@@ -51,8 +51,9 @@ namespace Chat.Core
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<RecoveryViewModel>();
             services.AddSingleton<ChatViewModel>();
-            services.AddSingleton<CodeConfirmationViewModel>();
+            services.AddSingleton<RecoveryCodeConfirmationViewModel>();
             services.AddSingleton<ChangePasswordViewModel>();
+            services.AddSingleton<EmailVerificationViewModel>();
 
             //Adding Services
             services.AddSingleton<INavigationService, NavigationService>();

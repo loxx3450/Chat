@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerSide.Core.Handlers
+namespace ServerSide.Core.Services
 {
     internal static class EmailSender
     {
@@ -17,7 +17,6 @@ namespace ServerSide.Core.Handlers
 
         public static void SendEmail(string receiverEmail, string subject, MimeEntity body, string receiverName = "")
         {
-            
             //Setting email data
             MimeMessage message = new MimeMessage();
             message.From.Add(new MailboxAddress(SenderName, SenderEmail));

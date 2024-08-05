@@ -57,12 +57,16 @@
                         <views:RecoveryView/>
                     </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type viewModels:CodeConfirmationViewModel}">
-                        <views:CodeConfirmationView/>
+                    <DataTemplate DataType="{x:Type viewModels:RecoveryCodeConfirmationViewModel}">
+                        <views:RecoveryCodeConfirmationView/>
                     </DataTemplate>
 
                     <DataTemplate DataType="{x:Type viewModels:ChangePasswordViewModel}">
                         <views:ChangePasswordView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewModels:EmailVerificationViewModel}">
+                        <views:EmailVerificationView/>
                     </DataTemplate>
 
                 </ResourceDictionary>

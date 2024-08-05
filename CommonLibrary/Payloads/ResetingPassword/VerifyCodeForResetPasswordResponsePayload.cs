@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace CommonLibrary.Payloads.ResetingPassword
 {
-    public enum VerifyCodeResponseType
+    public enum VerifyCodeForResetPasswordResponseType
     {
         Success,
         Failed
     }
 
-    public class VerifyCodeResponsePayload : JSONPayload
+    public class VerifyCodeForResetPasswordResponsePayload : JSONPayload
     {
-        public VerifyCodeResponseType ResponseType { get; set; }
+        public VerifyCodeForResetPasswordResponseType ResponseType { get; set; }
 
-        public VerifyCodeResponsePayload(VerifyCodeResponseType responseType)
+        public VerifyCodeForResetPasswordResponsePayload(VerifyCodeForResetPasswordResponseType responseType)
         {
             ResponseType = responseType;
         }
