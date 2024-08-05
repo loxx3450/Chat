@@ -60,8 +60,8 @@ namespace ServerSide.Core.Services
             NpgsqlCommand cmd = new NpgsqlCommand();
 
             cmd.CommandText = "INSERT INTO users " +
-                                  "(username, email, password, verified_email, created_at, updated_at)" +
-                                  $"VALUES(@username, @email, @password, @verified_email, @now, @now);";
+                              "(username, email, password, verified_email, created_at, updated_at)" +
+                              $"VALUES(@username, @email, @password, @verified_email, @now, @now);";
 
             cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@email", email);
@@ -77,8 +77,8 @@ namespace ServerSide.Core.Services
             NpgsqlCommand cmd = new NpgsqlCommand();
 
             cmd.CommandText = "UPDATE users " +
-                                  "SET username = @username, password = @password, created_at = @now, updated_at = @now " +
-                                  $"WHERE email = @email";
+                              "SET username = @username, password = @password, created_at = @now, updated_at = @now " +
+                              $"WHERE email = @email";
 
             cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@username", username);
@@ -100,6 +100,35 @@ namespace ServerSide.Core.Services
             cmd.Parameters.AddWithValue("@verified_email", true);
 
             DbHelper.ExecuteNonQuery(cmd);
+        }
+
+        public static void UpdatePassword(int userId, string newPassword)
+        {
+            NpgsqlCommand cmd = new NpgsqlCommand();
+
+            cmd.CommandText = "UPDATE users " +
+                              $"SET password = @password, " +
+                                  $"updated_at = @now " +
+                              $"WHERE id = @id;";
+
+            cmd.Parameters.AddWithValue("@id", userId);
+            cmd.Parameters.AddWithValue("@password", PasswordHasher.Hash(newPassword));
+            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
+
+            DbHelper.ExecuteNonQuery(cmd);
+        }
+
+        public static string? GetPassword(string email)
+        {
+            NpgsqlCommand cmd = new NpgsqlCommand();
+
+            cmd.CommandText = "SELECT password " +
+                              "FROM users " +
+                              $"WHERE email = @email";
+
+            cmd.Parameters.AddWithValue("@email", email);
+
+            return Convert.ToString(DbHelper.ExecuteScalar(cmd));
         }
     }
 }
