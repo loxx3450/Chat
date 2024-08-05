@@ -1,4 +1,5 @@
 ﻿using Chat.MVVM.Core;
+using Chat.MVVM.Models.Handlers;
 using Chat.MVVM.Models.Services;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace Chat.MVVM.ViewModels
 
         private void Verify(object obj)
         {
-
+            EmailVerifier.Verify(Code);
         }
 
         private bool CanVerify(object obj)
