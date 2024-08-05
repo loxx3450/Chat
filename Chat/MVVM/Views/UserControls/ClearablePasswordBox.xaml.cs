@@ -81,7 +81,7 @@ namespace Chat.MVVM.Views.UserControls
                 Placehold.Visibility = Visibility.Visible;
             }
 
-            if (RelatedPasswordBox is not null)
+            if (RelatedPasswordBox is not null && PassBox.Password != string.Empty)
             {
                 BoundPasswordBox.PasswordChanged(PassBox, new RoutedEventArgs());
                 BoundPasswordBox.PasswordChanged(RelatedPasswordBox.PassBox, new RoutedEventArgs());
