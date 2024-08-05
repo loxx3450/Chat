@@ -1,4 +1,6 @@
-﻿using Chat.MVVM.Models.Services;
+﻿using Chat.MVVM.Models.Instances;
+using Chat.MVVM.Models.Services;
+using Chat.MVVM.ViewModels;
 using Chat.MVVM.Views.UserControls;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary;
@@ -6,6 +8,7 @@ using CommonLibrary.Models;
 using CommonLibrary.Payloads.Registration;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
+using ProtocolLibrary.Payload;
 using SocketEventLibrary.SocketEventMessageCore;
 using System;
 using System.Collections.Generic;
@@ -35,7 +38,8 @@ namespace Chat.MVVM.Models.Handlers
             switch (responsePayload.ResponseType)
             {
                 case RegistrationResponseType.Successed:
-                    Notifier.Notify(MessageBoxType.Success, "Registration went succesfully!", 2000);
+                    Client.AssociatedUserId = responsePayload.AssociatedUserId;
+                    Navigator.NavigateTo<EmailVerificationViewModel>();
                     break;
 
                 case RegistrationResponseType.Failed:
