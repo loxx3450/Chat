@@ -22,7 +22,7 @@ namespace Chat.MVVM.Models.Handlers
             ProtocolMessage message = new ProtocolMessage();
             message.SetPayload(new VerifyCodeForResetPasswordRequestPayload(code, Client.AssociatedUserId));
 
-            SocketEventHandler.EmitAndWait(new SocketEventProtocolMessage(MessageType.VerifyCodeRequest, message));
+            SocketEventHandler.EmitAndWait(new SocketEventProtocolMessage(MessageType.VerifyCodeForResetPasswordRequest, message));
         }
 
         public static void HandleResponse(ProtocolMessage message)

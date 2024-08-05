@@ -36,7 +36,7 @@ namespace ServerSide.Core.Handlers
             ProtocolMessage response = new ProtocolMessage();
             response.SetPayload(new VerifyCodeForResetPasswordResponsePayload(responseType));
 
-            return new SocketEventProtocolMessage(MessageType.VerifyCodeResponse, response);
+            return new SocketEventProtocolMessage(MessageType.VerifyCodeForResetPasswordResponse, response);
         }
     }
 }

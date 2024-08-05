@@ -48,7 +48,7 @@ namespace ServerSide.Core
                 socket.Emit(PasswordResetter.GetResponse());
             });
 
-            socket.On(MessageType.VerifyCodeRequest, (message) =>
+            socket.On(MessageType.VerifyCodeForResetPasswordRequest, (message) =>
             {
                 CodeVerifierForResetPassword.VerifyCode((ProtocolMessage)message);
                 socket.Emit(CodeVerifierForResetPassword.GetResponse());
