@@ -35,7 +35,7 @@ namespace Chat.MVVM.Models.Handlers
             {
                 case ResetPasswordResponseType.Success:
                     Client.AssociatedUserId = payload.AssociatedUserId;
-                    Navigator.NavigateTo<CodeConfirmationViewModel>();
+                    Navigator.NavigateTo<RecoveryCodeConfirmationViewModel>();
                     break;
 
                 case ResetPasswordResponseType.Failed:

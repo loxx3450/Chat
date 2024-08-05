@@ -18,9 +18,9 @@ namespace Chat.MVVM.Views
     /// <summary>
     /// Логика взаимодействия для CodeConfirmationView.xaml
     /// </summary>
-    public partial class CodeConfirmationView : UserControl
+    public partial class RecoveryCodeConfirmationView : UserControl
     {
-        public CodeConfirmationView()
+        public RecoveryCodeConfirmationView()
         {
             InitializeComponent();
         }

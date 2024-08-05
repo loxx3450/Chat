@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.ViewModels
 {
-    internal class CodeConfirmationViewModel : ViewModelBase
+    internal class RecoveryCodeConfirmationViewModel : ViewModelBase
     {
         private string _code = string.Empty;
 
@@ -28,7 +28,7 @@ namespace Chat.MVVM.ViewModels
         public RelayCommand NavigateToRegistrationCommand { get; set; }
 
 
-        public CodeConfirmationViewModel()
+        public RecoveryCodeConfirmationViewModel()
         {
             NavigateToLoginCommand = new RelayCommand((o) => Navigator.NavigateTo<LoginViewModel>());
             NavigateToRegistrationCommand = new RelayCommand((o) => Navigator.NavigateTo<RegistrationViewModel>());
