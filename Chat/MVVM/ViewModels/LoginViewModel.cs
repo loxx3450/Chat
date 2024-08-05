@@ -65,5 +65,11 @@ namespace Chat.MVVM.ViewModels
                 && !string.IsNullOrEmpty(_email)
                 && !string.IsNullOrEmpty(_password);
         }
+
+        public override void ResetData()
+        {
+            _email = string.Empty;
+            _password = string.Empty;
+        }
     }
 }

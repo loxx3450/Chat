@@ -40,5 +40,7 @@ namespace Chat.MVVM.Core
             SetField(ref property, value, propertyName);
             ValidateProperty(value, propertyName);
         }
+
+        public abstract void ResetData();
     }
 }

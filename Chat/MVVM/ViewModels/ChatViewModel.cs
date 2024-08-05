@@ -10,6 +10,9 @@ namespace Chat.MVVM.ViewModels
 {
     public class ChatViewModel : ViewModelBase
     {
-
+        public override void ResetData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

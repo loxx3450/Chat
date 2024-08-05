@@ -13,6 +13,10 @@ namespace Chat.MVVM.Models.Services
         public static void NavigateTo<TViewModel>() where TViewModel : ViewModelBase
         {
             INavigationService navService = ServiceProvider.GetRequiredService<INavigationService>();
+
+            if (navService.CurrentView is not null)
+                navService.CurrentView.ResetData();
+            
             navService.NavigateTo<TViewModel>();
         }
     }

@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -79,6 +81,14 @@ namespace Chat.MVVM.ViewModels
                 && !string.IsNullOrEmpty(_email) 
                 && !string.IsNullOrEmpty(_password) 
                 && !string.IsNullOrEmpty(_confirmationPassword);
+        }
+
+        public override void ResetData()
+        {
+            _username = string.Empty;
+            _email = string.Empty;
+            _password = string.Empty;
+            _confirmationPassword = string.Empty;
         }
     }
 }

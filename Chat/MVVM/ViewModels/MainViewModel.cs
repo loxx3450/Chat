@@ -19,5 +19,8 @@ namespace Chat.MVVM.ViewModels
 
             SessionStateChecker.CheckState();
         }
+
+        public override void ResetData()
+        { }
     }
 }
