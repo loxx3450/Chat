@@ -21,9 +21,9 @@ namespace ServerSide.Core.Handlers
         {
             VerifyCodeRequestPayload payload = PayloadBuilder.GetPayload<VerifyCodeRequestPayload>(message.PayloadStream);
 
-            if (IsCodeValid(payload.Code, payload.AssociatedUserId))
+            if (VerificationCodeDbHelper.IsCodeValid(payload.AssociatedUserId, payload.Code))
             {
-                ChangeCodeState(payload.Code, payload.AssociatedUserId);
+                VerificationCodeDbHelper.ChangeCodeStateToUsed(payload.AssociatedUserId, payload.Code);
 
                 responseType = VerifyCodeResponseType.Success;
             }
@@ -37,41 +37,6 @@ namespace ServerSide.Core.Handlers
             response.SetPayload(new VerifyCodeResponsePayload(responseType));
 
             return new SocketEventProtocolMessage(MessageType.VerifyCodeResponse, response);
-        }
-
-        private static bool IsCodeValid(string code, int userId)
-        {
-            NpgsqlCommand cmd = new NpgsqlCommand();
-
-            string cmdText = "SELECT 1 " +
-                             "FROM recovery_codes " +
-                             $"WHERE user_id = @id " +
-                                 $"AND code = @code " +
-                                 $"AND used = false " +
-                                 $"AND EXTRACT(epoch FROM age(@now, created_at)) / 60 <= 15";           //if code is not expired
-
-            cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
-
-            cmd.Parameters.AddWithValue("@id", userId);
-            cmd.Parameters.AddWithValue("@code", code);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
-        }
-
-        private static void ChangeCodeState(string code, int userId)
-        {
-            NpgsqlCommand cmd = new NpgsqlCommand();
-
-            cmd.CommandText = "UPDATE recovery_codes " +
-                              "SET used = true " +
-                              $"WHERE user_id = @id " +
-                                  $"AND code = @code";
-
-            cmd.Parameters.AddWithValue("@id", userId);
-            cmd.Parameters.AddWithValue("@code", code);
-
-            DbHelper.ExecuteNonQuery(cmd);
         }
     }
 }

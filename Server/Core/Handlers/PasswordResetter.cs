@@ -18,10 +18,6 @@ namespace ServerSide.Core.Handlers
         private static ResetPasswordResponseType responseType;
         private static int associatedUserId;
 
-        //Additional variables
-        private static string storagePath = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.Parent.ToString() + "\\Storage";
-        private const int CODE_LENGTH = 6;
-
         public static void TryToSendEmail(ProtocolMessage message)
         {
             try
@@ -55,58 +51,24 @@ namespace ServerSide.Core.Handlers
 
         private static void SendEmail(string email)
         {
-            string recoveryCode = GetUniqueKey(CODE_LENGTH);
+            string verificationCode = VerificationCodeGenerator.GetCode();
 
             string subject = "Password reset";
 
-            MimeEntity body = GetMessageBody(recoveryCode);
+            MimeEntity body = ConfigureMessageBody(verificationCode);
 
             EmailSender.SendEmail(email, subject, body);
 
-            SaveRecoveryCode(email, recoveryCode);
+            VerificationCodeDbHelper.SaveVerificationCode(email, verificationCode);
         }
 
-        private static MimeEntity GetMessageBody(string code)
+        private static MimeEntity ConfigureMessageBody(string code)
         {
-            BodyBuilder bodyBuilder = new BodyBuilder();
-            string htmlBody = File.ReadAllText(storagePath + @"\Html\test.html");
+            EmailBodyConfigurator.AddHtmlBody(@"\Html\reset_password.html");
+            EmailBodyConfigurator.AddImage(@"\Images\logo.png", "EmbeddedImage");
+            EmailBodyConfigurator.AddSmthToHtml("&CODE", code);
 
-            //Adding image to body
-            string imagePath = storagePath + @"\Images\logo.png";
-
-            MimeEntity image = bodyBuilder.LinkedResources.Add(imagePath);
-            image.ContentId = "EmbeddedImage";
-
-            //Adding recovery code to email's body
-            htmlBody = AddRecoveryCode(htmlBody, code);
-
-            bodyBuilder.HtmlBody = htmlBody;
-
-            return bodyBuilder.ToMessageBody();
-        }
-
-        private static string AddRecoveryCode(string htmlBody, string code)
-        {
-            return htmlBody.Replace("&CODE", code);
-        }
-
-        private static string GetUniqueKey(int length)
-        {
-            return RandomNumberGenerator.GetString("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", length);
-        }
-
-        private static void SaveRecoveryCode(string email, string recoveryCode)
-        {
-            NpgsqlCommand cmd = new NpgsqlCommand();
-
-            cmd.CommandText = "INSERT INTO recovery_codes(user_id, code, created_at)" +
-                              $"VALUES(@id, @code, @now);";
-
-            cmd.Parameters.AddWithValue("@id", UserDbHelper.GetUserId(email));
-            cmd.Parameters.AddWithValue("@code", recoveryCode);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            DbHelper.ExecuteNonQuery(cmd);
+            return EmailBodyConfigurator.GetMessageBody();
         }
     }
 }
