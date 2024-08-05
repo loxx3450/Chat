@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerSide.Core.Services
+namespace ServerSide.Core.Services.DbHelpers
 {
     internal static class VerificationCodeDbHelper
     {
@@ -43,7 +43,7 @@ namespace ServerSide.Core.Services
             return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
         }
 
-        public static void ChangeCodeStateToUsed(int userId, string code) 
+        public static void ChangeCodeStateToUsed(int userId, string code)
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
 

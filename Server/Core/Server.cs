@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ServerSide.Core.Services;
+using ServerSide.Core.Services.DbHelpers;
 using SocketEventLibrary;
 using SocketEventLibrary.Sockets;
 

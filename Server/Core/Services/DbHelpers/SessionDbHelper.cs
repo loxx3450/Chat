@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerSide.Core.Services
+namespace ServerSide.Core.Services.DbHelpers
 {
     internal static class SessionDbHelper
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerSide.Core.Services
+namespace ServerSide.Core.Services.DbHelpers
 {
     public static class DbHelper
     {
@@ -20,8 +20,8 @@ namespace ServerSide.Core.Services
             conn.Open();
         }
 
-        public static void CloseConnection() 
-        { 
+        public static void CloseConnection()
+        {
             conn.Close();
         }
 
