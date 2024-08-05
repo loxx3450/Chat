@@ -14,13 +14,13 @@ using Chat.MVVM.Models.Services;
 
 namespace Chat.MVVM.Models.Handlers
 {
-    internal class CodeVerifier : IHandler
+    internal class CodeVerifierForResetPassword : IHandler
     {
         //Verify Recovery code
         public static void VerifyCode(string code)
         {
             ProtocolMessage message = new ProtocolMessage();
-            message.SetPayload(new VerifyCodeRequestPayload(code, Client.AssociatedUserId));
+            message.SetPayload(new VerifyCodeForResetPasswordRequestPayload(code, Client.AssociatedUserId));
 
             SocketEventHandler.EmitAndWait(new SocketEventProtocolMessage(MessageType.VerifyCodeRequest, message));
         }
@@ -29,15 +29,15 @@ namespace Chat.MVVM.Models.Handlers
         {
             TransitionManager.RemoveWaiting();
 
-            VerifyCodeResponsePayload payload = PayloadBuilder.GetPayload<VerifyCodeResponsePayload>(message.PayloadStream);
+            VerifyCodeForResetPasswordResponsePayload payload = PayloadBuilder.GetPayload<VerifyCodeForResetPasswordResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)
             {
-                case VerifyCodeResponseType.Success:
+                case VerifyCodeForResetPasswordResponseType.Success:
                     Navigator.NavigateTo<ChangePasswordViewModel>();
                     break;
 
-                case VerifyCodeResponseType.Failed:
+                case VerifyCodeForResetPasswordResponseType.Failed:
                     Notifier.Notify(MessageBoxType.Error, "The code is either wrong, or expired. Try again.");
                     break;
             }

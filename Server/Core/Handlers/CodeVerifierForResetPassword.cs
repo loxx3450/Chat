@@ -13,28 +13,28 @@ using System.Threading.Tasks;
 
 namespace ServerSide.Core.Handlers
 {
-    internal class CodeVerifier : IResponsibleHandler
+    internal class CodeVerifierForResetPassword : IResponsibleHandler
     {
-        private static VerifyCodeResponseType responseType;
+        private static VerifyCodeForResetPasswordResponseType responseType;
 
         public static void VerifyCode(ProtocolMessage message)
         {
-            VerifyCodeRequestPayload payload = PayloadBuilder.GetPayload<VerifyCodeRequestPayload>(message.PayloadStream);
+            VerifyCodeForResetPasswordRequestPayload payload = PayloadBuilder.GetPayload<VerifyCodeForResetPasswordRequestPayload>(message.PayloadStream);
 
             if (VerificationCodeDbHelper.IsCodeValid(payload.AssociatedUserId, payload.Code))
             {
                 VerificationCodeDbHelper.ChangeCodeStateToUsed(payload.AssociatedUserId, payload.Code);
 
-                responseType = VerifyCodeResponseType.Success;
+                responseType = VerifyCodeForResetPasswordResponseType.Success;
             }
             else
-                responseType = VerifyCodeResponseType.Failed;
+                responseType = VerifyCodeForResetPasswordResponseType.Failed;
         }
 
         public static SocketEventProtocolMessage GetResponse()
         {
             ProtocolMessage response = new ProtocolMessage();
-            response.SetPayload(new VerifyCodeResponsePayload(responseType));
+            response.SetPayload(new VerifyCodeForResetPasswordResponsePayload(responseType));
 
             return new SocketEventProtocolMessage(MessageType.VerifyCodeResponse, response);
         }

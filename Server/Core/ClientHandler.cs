@@ -50,8 +50,8 @@ namespace ServerSide.Core
 
             socket.On(MessageType.VerifyCodeRequest, (message) =>
             {
-                CodeVerifier.VerifyCode((ProtocolMessage)message);
-                socket.Emit(CodeVerifier.GetResponse());
+                CodeVerifierForResetPassword.VerifyCode((ProtocolMessage)message);
+                socket.Emit(CodeVerifierForResetPassword.GetResponse());
             });
 
             socket.On(MessageType.ChangePasswordRequest, (message) =>

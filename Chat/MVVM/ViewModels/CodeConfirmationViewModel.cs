@@ -38,7 +38,7 @@ namespace Chat.MVVM.ViewModels
 
         private void Confirm(object obj)
         {
-            CodeVerifier.VerifyCode(Code);
+            CodeVerifierForResetPassword.VerifyCode(Code);
         }
 
         private bool CanConfirm(object obj) 

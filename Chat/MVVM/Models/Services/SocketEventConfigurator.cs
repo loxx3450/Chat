@@ -34,7 +34,7 @@ namespace Chat.MVVM.Models.Services
                 (mes) => PasswordResetter.HandleResponse((ProtocolMessage)mes));
 
             socket.On(MessageType.VerifyCodeResponse,
-                (mes) => CodeVerifier.HandleResponse((ProtocolMessage)mes));
+                (mes) => CodeVerifierForResetPassword.HandleResponse((ProtocolMessage)mes));
 
             socket.On(MessageType.ChangePasswordResponse, 
                 (mes) => PasswordChanger.HandleResponse((ProtocolMessage)mes));
