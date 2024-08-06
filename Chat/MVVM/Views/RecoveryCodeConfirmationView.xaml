@@ -8,12 +8,10 @@
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
              xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=viewModels:RecoveryCodeConfirmationViewModel}">
 
     <StackPanel HorizontalAlignment="Center"
-                Background="{DynamicResource MainBackground}"
-                Width="600">
+                Background="{DynamicResource MainBackground}">
 
         <TextBlock Style="{StaticResource EntryWindowsCaptionStyle}"
                    Text="Confirmation of Recovery Code"/>

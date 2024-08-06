@@ -8,19 +8,17 @@
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
              xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=viewModels:RecoveryViewModel}"
              >
 
     <StackPanel HorizontalAlignment="Center"
-                Background="{DynamicResource MainBackground}"
-                Width="500">
+                Background="{DynamicResource MainBackground}">
 
         <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}"
                    Text="Recovery of Password"/>
 
         <userControls:Logotype Height="80"/>
-        
+
 
         <Grid Margin="0, 30">
 

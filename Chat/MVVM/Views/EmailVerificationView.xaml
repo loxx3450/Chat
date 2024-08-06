@@ -11,8 +11,7 @@
              d:DataContext="{d:DesignInstance Type=viewModels:EmailVerificationViewModel}">
 
     <StackPanel HorizontalAlignment="Center"
-                Background="{DynamicResource MainBackground}"
-                Width="600">
+                Background="{DynamicResource MainBackground}">
 
         <TextBlock Style="{StaticResource EntryWindowsCaptionStyle}"
                    Text="Email Verification"/>

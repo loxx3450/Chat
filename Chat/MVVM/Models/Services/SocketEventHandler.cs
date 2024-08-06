@@ -37,9 +37,9 @@ namespace Chat.MVVM.Models.Services
 
         public static void EmitAndWait(SocketEventMessage message)
         {
-            socketEvent?.Emit(message);
-
             TransitionManager.PutWaitingIn(LOADING_DELAY);
+
+            socketEvent?.Emit(message);
         }
     }
 }
