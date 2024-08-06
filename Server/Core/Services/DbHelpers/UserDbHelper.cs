@@ -10,6 +10,7 @@ namespace ServerSide.Core.Services.DbHelpers
 {
     internal class UserDbHelper
     {
+        // =============== BooleanRequests ===============
         public static bool UserExists(string email)
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
@@ -42,6 +43,8 @@ namespace ServerSide.Core.Services.DbHelpers
             return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
         }
 
+
+        // =============== SELECT Requests ===============
         public static int GetUserId(string email)
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
@@ -55,6 +58,21 @@ namespace ServerSide.Core.Services.DbHelpers
             return Convert.ToInt32(DbHelper.ExecuteScalar(cmd));
         }
 
+        public static string? GetPassword(string email)
+        {
+            NpgsqlCommand cmd = new NpgsqlCommand();
+
+            cmd.CommandText = "SELECT password " +
+                              "FROM users " +
+                              $"WHERE email = @email";
+
+            cmd.Parameters.AddWithValue("@email", email);
+
+            return Convert.ToString(DbHelper.ExecuteScalar(cmd));
+        }
+
+
+        // =============== INSERT Requests ===============
         public static void CreateNewUser(string email, string username, string password)
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
@@ -72,6 +90,8 @@ namespace ServerSide.Core.Services.DbHelpers
             DbHelper.ExecuteNonQuery(cmd);
         }
 
+
+        // =============== UPDATE Requests
         public static void CreateNewUserOnUnverifiedEmail(string email, string username, string password)
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
@@ -116,19 +136,6 @@ namespace ServerSide.Core.Services.DbHelpers
             cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
 
             DbHelper.ExecuteNonQuery(cmd);
-        }
-
-        public static string? GetPassword(string email)
-        {
-            NpgsqlCommand cmd = new NpgsqlCommand();
-
-            cmd.CommandText = "SELECT password " +
-                              "FROM users " +
-                              $"WHERE email = @email";
-
-            cmd.Parameters.AddWithValue("@email", email);
-
-            return Convert.ToString(DbHelper.ExecuteScalar(cmd));
         }
     }
 }

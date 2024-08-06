@@ -9,8 +9,12 @@ namespace ServerSide.Core.Services.DbHelpers
 {
     internal static class SessionDbHelper
     {
+        //Status_id's
         private const int LOGGED_IN = 1;
+        private const int LOGGED_OUT = 2;
 
+
+        // =============== BooleanRequests ===============
         public static bool IsActualSessionFounded(string ip)
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
@@ -47,6 +51,8 @@ namespace ServerSide.Core.Services.DbHelpers
             return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
         }
 
+
+        // =============== INSERT Requests ===============
         public static void CreateNewSession(int user_id, string ip)
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
@@ -63,6 +69,8 @@ namespace ServerSide.Core.Services.DbHelpers
             DbHelper.ExecuteNonQuery(cmd);
         }
 
+
+        // =============== UPDATE Requests ===============
         public static void UpdateExistedSession(int user_id, string ip)
         {
             NpgsqlCommand cmd = new NpgsqlCommand();

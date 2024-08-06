@@ -9,20 +9,7 @@ namespace ServerSide.Core.Services.DbHelpers
 {
     internal static class VerificationCodeDbHelper
     {
-        public static void SaveVerificationCode(string email, string code)
-        {
-            NpgsqlCommand cmd = new NpgsqlCommand();
-
-            cmd.CommandText = "INSERT INTO verification_codes(user_id, code, created_at)" +
-                              $"VALUES(@id, @code, @now);";
-
-            cmd.Parameters.AddWithValue("@id", UserDbHelper.GetUserId(email));
-            cmd.Parameters.AddWithValue("@code", code);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            DbHelper.ExecuteNonQuery(cmd);
-        }
-
+        // =============== BooleanRequests ===============
         public static bool IsCodeValid(int userId, string code)
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
@@ -43,6 +30,24 @@ namespace ServerSide.Core.Services.DbHelpers
             return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
         }
 
+
+        // =============== INSERT Requests ===============
+        public static void SaveVerificationCode(string email, string code)
+        {
+            NpgsqlCommand cmd = new NpgsqlCommand();
+
+            cmd.CommandText = "INSERT INTO verification_codes(user_id, code, created_at)" +
+                              $"VALUES(@id, @code, @now);";
+
+            cmd.Parameters.AddWithValue("@id", UserDbHelper.GetUserId(email));
+            cmd.Parameters.AddWithValue("@code", code);
+            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
+
+            DbHelper.ExecuteNonQuery(cmd);
+        }
+
+
+        // =============== UPDATE Requests ===============
         public static void ChangeCodeStateToUsed(int userId, string code)
         {
             NpgsqlCommand cmd = new NpgsqlCommand();
