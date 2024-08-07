@@ -25,14 +25,10 @@
 
             <StackPanel Width="400">
 
-                <StackPanel>
+                <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}" 
+                           Text="Sign In"/>
 
-                    <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}" 
-                               Text="Sign In"/>
-
-                    <userControls:Logotype Height="100"/>
-
-                </StackPanel>
+                <userControls:Logotype Height="100"/>
 
                 <Grid Margin="0,30">
 
