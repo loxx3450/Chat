@@ -92,8 +92,8 @@ namespace Chat.MVVM.Models.Services
                 WindowStyle = WindowStyle.None,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
                 Owner = currentWindow,
-                Width = currentWindow.Width,
-                Height = currentWindow.Height,
+                Width = currentWindow.ActualWidth,
+                Height = currentWindow.ActualHeight,
                 ShowInTaskbar = false
             };
 
