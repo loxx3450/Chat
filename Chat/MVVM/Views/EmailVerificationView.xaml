@@ -8,58 +8,74 @@
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
              xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
              mc:Ignorable="d" 
+             d:Width="1920" d:Height="1080"
              d:DataContext="{d:DesignInstance Type=viewModels:EmailVerificationViewModel}">
 
-    <StackPanel HorizontalAlignment="Center"
-                Background="{DynamicResource MainBackground}">
+    <Grid Background="{DynamicResource MainBackground}">
 
-        <TextBlock Style="{StaticResource EntryWindowsCaptionStyle}"
-                   Text="Email Verification"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Style="{StaticResource EntryWindowsSideColumnStyle}"/>
+            <ColumnDefinition Style="{StaticResource EntryWindowsMainColumnStyle}"/>
+            <ColumnDefinition Style="{StaticResource EntryWindowsSideColumnStyle}"/>
+        </Grid.ColumnDefinitions>
 
-        <userControls:Logotype Height="80"/>
+        <Viewbox Grid.Column="1"
+                 VerticalAlignment="Top"
+                 Stretch="Uniform">
 
-        <Grid Margin="0,30">
+            <StackPanel Width="500">
 
-            <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"/>
+                <TextBlock Style="{StaticResource EntryWindowsCaptionStyle}"
+                           Text="Email Verification"/>
 
-            <StackPanel Margin="24">
+                <userControls:Logotype Height="100"/>
 
-                <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}"
-                           Margin="6,0"
-                           Text="Last step! Enter code from the email that we sent you recently to verify your email address!"
-                           TextWrapping="WrapWithOverflow"/>
+                <Grid Margin="0,30">
+
+                    <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"/>
+
+                    <StackPanel Margin="24">
+
+                        <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}"
+                                   Margin="6,0"
+                                   Text="Last step! Enter code from the email that we sent you recently to verify your email address!"
+                                   TextWrapping="WrapWithOverflow"/>
 
 
-                <userControls:ClearableTextBox Text="{Binding Code, Mode=TwoWay, ValidatesOnExceptions=True}" 
-                                               Style="{StaticResource EntryWindowsTextBoxStyle}"
-                                               Margin="0, 15"
-                                               PlaceholderText="Enter code..."/>
+                        <userControls:ClearableTextBox Text="{Binding Code, Mode=TwoWay, ValidatesOnExceptions=True}" 
+                                                       Style="{StaticResource EntryWindowsTextBoxStyle}"
+                                                       Margin="0, 15"
+                                                       PlaceholderText="Enter code..."/>
 
-                <userControls:Button Command="{Binding VerifyCommand}"
-                                     Style="{StaticResource EntryWindowsActionCommandStyle}"
-                                     Margin="0, 10, 0, 0" 
-                                     Text="Verify"/>
+                        <userControls:Button Command="{Binding VerifyCommand}"
+                                             Style="{StaticResource EntryWindowsActionCommandStyle}"
+                                             Margin="0, 10, 0, 0" 
+                                             Text="Verify"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid>
+
+                    <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"
+                                                      Background="Transparent"/>
+
+                    <StackPanel Margin="16" 
+                                HorizontalAlignment="Center">
+
+                        <userControls:Button Command="{Binding NavigateToRegistrationCommand}"
+                                             Style="{StaticResource EntryWindowsNavigationCommandStyle}"
+                                             Text="Create another account"/>
+
+                    </StackPanel>
+
+                </Grid>
 
             </StackPanel>
 
-        </Grid>
+        </Viewbox>
 
-        <Grid>
-
-            <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"
-                                              Background="Transparent"/>
-
-            <StackPanel Margin="16" 
-                        HorizontalAlignment="Center">
-
-                <userControls:Button Command="{Binding NavigateToRegistrationCommand}"
-                                     Style="{StaticResource EntryWindowsNavigationCommandStyle}"
-                                     Text="Create another account"/>
-
-            </StackPanel>
-
-        </Grid>
-
-    </StackPanel>
+    </Grid>
 
 </UserControl>

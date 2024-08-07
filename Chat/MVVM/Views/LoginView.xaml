@@ -23,7 +23,7 @@
                  VerticalAlignment="Top" 
                  Stretch="Uniform">
 
-            <StackPanel Width="400">
+            <StackPanel Width="500">
 
                 <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}" 
                            Text="Sign In"/>
