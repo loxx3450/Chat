@@ -7,7 +7,7 @@
         xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
         xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
         mc:Ignorable="d"
-        Height="720" Width="1200"
+        Height="720" Width="1080"
         MinHeight="540" MinWidth="480"
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}"
         Style="{StaticResource NonDefaultWindowStyle}"
