@@ -6,6 +6,7 @@ using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using ServerSide.Core.Services;
 using ServerSide.Core.Services.DbHelpers;
+using System.Configuration;
 using System.Security.Cryptography;
 
 namespace ServerSide.Core.Handlers
@@ -67,6 +68,7 @@ namespace ServerSide.Core.Handlers
         {
             EmailBodyConfigurator.AddHtmlBody(@"\Html\reset_password.html");
             EmailBodyConfigurator.AddImage(@"\Images\logo.png", "EmbeddedImage");
+            EmailBodyConfigurator.AddSmthToHtml("&APP_NAME", ConfigurationManager.AppSettings["appName"]);
             EmailBodyConfigurator.AddSmthToHtml("&CODE", code);
 
             return EmailBodyConfigurator.GetMessageBody();

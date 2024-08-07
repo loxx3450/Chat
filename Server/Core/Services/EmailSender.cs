@@ -11,7 +11,7 @@ namespace ServerSide.Core.Services
 {
     internal static class EmailSender
     {
-        private const string SenderName = "Comett";
+        private static string SenderName = ConfigurationManager.AppSettings["appName"];
         private static string SenderEmail = ConfigurationManager.AppSettings["email"];
         private static string Password = ConfigurationManager.AppSettings["emailPass"];
 

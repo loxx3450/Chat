@@ -106,6 +106,7 @@ namespace ServerSide.Core.Handlers
         {
             EmailBodyConfigurator.AddHtmlBody(@"\Html\verify_email.html");
             EmailBodyConfigurator.AddImage(@"\Images\logo.png", "EmbeddedImage");
+            EmailBodyConfigurator.AddSmthToHtml("&APP_NAME", ConfigurationManager.AppSettings["appName"]);
             EmailBodyConfigurator.AddSmthToHtml("&CODE", code);
 
             return EmailBodyConfigurator.GetMessageBody();
