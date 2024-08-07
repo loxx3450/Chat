@@ -7,7 +7,7 @@
 
         <Style.Resources>
             <converters:WidthAndHeightToGridLengthConverter x:Key="Converter"/>
-            <converterParameters:WidthAndHeightToGridLengthConverterParameters x:Key="ConverterParams" HorizontalScreenValue="0.4" SquareScreenValue="0.35" VerticalScreenValue="0.3"/>
+            <converterParameters:WidthAndHeightToGridLengthConverterParameters x:Key="ConverterParams" HorizontalScreenValue="0.375" SquareScreenValue="0.325" VerticalScreenValue="0.3"/>
         </Style.Resources>
 
         <Setter Property="Width">
