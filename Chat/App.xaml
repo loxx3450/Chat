@@ -23,6 +23,8 @@
                 <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsCaptionStyle.xaml" />
                 <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsActionCommandStyle.xaml" />
                 <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsNavigationCommandStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsMainColumnStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsSideColumnStyle.xaml" />
 
                 
                 <!--MainWindow styles-->

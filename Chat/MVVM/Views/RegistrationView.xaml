@@ -6,105 +6,116 @@
              xmlns:local="clr-namespace:Chat.MVVM.Views"
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls"
              xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
-             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:Width="1920" d:Height="1080"
              d:DataContext="{d:DesignInstance Type=viewModels:RegistrationViewModel}"
              >
 
     <Grid Background="{DynamicResource MainBackground}">
-        <StackPanel HorizontalAlignment="Center">
 
-            <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}" 
-                       Text="Sign up"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Style="{StaticResource EntryWindowsSideColumnStyle}"/>
+            <ColumnDefinition Style="{StaticResource EntryWindowsMainColumnStyle}"/>
+            <ColumnDefinition Style="{StaticResource EntryWindowsSideColumnStyle}"/>
+        </Grid.ColumnDefinitions>
 
-            <userControls:Logotype Height="80"/>
+        <Viewbox Grid.Column="1" 
+                 VerticalAlignment="Top" 
+                 Stretch="Uniform">
+        
+            <StackPanel Width="500">
 
-            <Grid Margin="0,30" Width="400">
+                <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}" 
+                           Text="Sign up"/>
 
-                <userControls:FilledRoundedBorder Style="{DynamicResource EntryWindowsFilledRoundedBorderStyle}"/>
+                <userControls:Logotype Height="100"/>
 
-                <StackPanel Margin="24">
+                <Grid Margin="0,30">
 
-                    <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
-                               Margin="3, 0"
-                               Text="Username"/>
+                    <userControls:FilledRoundedBorder Style="{DynamicResource EntryWindowsFilledRoundedBorderStyle}"/>
+
+                    <StackPanel Margin="24">
+
+                        <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                                   Margin="3, 0"
+                                   Text="Username"/>
                     
 
-                    <userControls:ClearableTextBox Text="{Binding Username, Mode=TwoWay, ValidatesOnExceptions=True}" 
-                                                   Style="{DynamicResource EntryWindowsTextBoxStyle}"
-                                                   TabIndex="0"
-                                                   Margin="0, 10, 0, 20"
-                                                   PlaceholderText="Enter username..."/>
-
-                    <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
-                               Margin="3, 0"
-                               Text="Email"/>
-
-
-                    <userControls:ClearableTextBox Text="{Binding Email, Mode=TwoWay, ValidatesOnExceptions=True}" 
-                                                   Style="{DynamicResource EntryWindowsTextBoxStyle}"
-                                                   TabIndex="1"
-                                                   Margin="0, 10, 0, 20"
-                                                   PlaceholderText="Enter email..."/>
-
-
-                    <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
-                               Margin="3, 0"
-                               Text="Password"/>
-
-
-                    <userControls:ClearablePasswordBox x:Name="mainPassBox" 
-                                                       Password="{Binding Password, Mode=TwoWay, ValidatesOnExceptions=True}" 
-                                                       RelatedPasswordBox="{Binding ElementName=confirmPassBox, UpdateSourceTrigger=PropertyChanged}"
-                                                       Style="{DynamicResource EntryWindowsPasswordBoxStyle}"
-                                                       TabIndex="2"
+                        <userControls:ClearableTextBox Text="{Binding Username, Mode=TwoWay, ValidatesOnExceptions=True}" 
+                                                       Style="{DynamicResource EntryWindowsTextBoxStyle}"
+                                                       TabIndex="0"
                                                        Margin="0, 10, 0, 20"
-                                                       PlaceholderText="Enter password..."/>
-                    
+                                                       PlaceholderText="Enter username..."/>
 
-                    <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
-                               Margin="3, 0"
-                               Text="Confirm Password"/>
-                    
+                        <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                                   Margin="3, 0"
+                                   Text="Email"/>
 
-                    <userControls:ClearablePasswordBox x:Name="confirmPassBox" 
-                                                       Password="{Binding ConfirmationPassword, Mode=TwoWay, ValidatesOnExceptions=True}" 
-                                                       RelatedPasswordBox="{Binding ElementName=mainPassBox, UpdateSourceTrigger=PropertyChanged}"
-                                                       Style="{DynamicResource EntryWindowsPasswordBoxStyle}"
-                                                       TabIndex="3"
+
+                        <userControls:ClearableTextBox Text="{Binding Email, Mode=TwoWay, ValidatesOnExceptions=True}" 
+                                                       Style="{DynamicResource EntryWindowsTextBoxStyle}"
+                                                       TabIndex="1"
                                                        Margin="0, 10, 0, 20"
-                                                       PlaceholderText="Enter password again..."/>
+                                                       PlaceholderText="Enter email..."/>
+
+
+                        <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                                   Margin="3, 0"
+                                   Text="Password"/>
+
+
+                        <userControls:ClearablePasswordBox x:Name="mainPassBox" 
+                                                           Password="{Binding Password, Mode=TwoWay, ValidatesOnExceptions=True}" 
+                                                           RelatedPasswordBox="{Binding ElementName=confirmPassBox, UpdateSourceTrigger=PropertyChanged}"
+                                                           Style="{DynamicResource EntryWindowsPasswordBoxStyle}"
+                                                           TabIndex="2"
+                                                           Margin="0, 10, 0, 20"
+                                                           PlaceholderText="Enter password..."/>
+                    
+
+                        <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                                   Margin="3, 0"
+                                   Text="Confirm Password"/>
+                    
+
+                        <userControls:ClearablePasswordBox x:Name="confirmPassBox" 
+                                                           Password="{Binding ConfirmationPassword, Mode=TwoWay, ValidatesOnExceptions=True}" 
+                                                           RelatedPasswordBox="{Binding ElementName=mainPassBox, UpdateSourceTrigger=PropertyChanged}"
+                                                           Style="{DynamicResource EntryWindowsPasswordBoxStyle}"
+                                                           TabIndex="3"
+                                                           Margin="0, 10, 0, 20"
+                                                           PlaceholderText="Enter password again..."/>
 
                     
-                    <userControls:Button Command="{Binding SignUpCommand}"
-                                         Style="{StaticResource EntryWindowsActionCommandStyle}"
-                                         TabIndex="4"
-                                         Margin="0, 5, 0, 0" 
-                                         Text="Sign up"/>
+                        <userControls:Button Command="{Binding SignUpCommand}"
+                                             Style="{StaticResource EntryWindowsActionCommandStyle}"
+                                             TabIndex="4"
+                                             Margin="0, 5, 0, 0" 
+                                             Text="Sign up"/>
 
-                </StackPanel>
+                    </StackPanel>
 
-            </Grid>
+                </Grid>
 
-            <Grid>
+                <Grid>
 
-                <userControls:FilledRoundedBorder Style="{DynamicResource EntryWindowsFilledRoundedBorderStyle}"
-                                                  Background="Transparent"/>
+                    <userControls:FilledRoundedBorder Style="{DynamicResource EntryWindowsFilledRoundedBorderStyle}"
+                                                      Background="Transparent"/>
 
 
-                <StackPanel Margin="16"
-                            HorizontalAlignment="Center">
+                    <StackPanel Margin="16"
+                                HorizontalAlignment="Center">
 
-                    <userControls:Button Command="{Binding NavigateToLoginCommand}"
-                                         Style="{StaticResource EntryWindowsNavigationCommandStyle}"
-                                         Text="Back to 'Sign in'"/>
+                        <userControls:Button Command="{Binding NavigateToLoginCommand}"
+                                             Style="{StaticResource EntryWindowsNavigationCommandStyle}"
+                                             Text="Back to 'Sign in'"/>
 
-                </StackPanel>
+                    </StackPanel>
 
-            </Grid>
+                </Grid>
 
-        </StackPanel>
+            </StackPanel>
+
+        </Viewbox>
     </Grid>
 </UserControl>

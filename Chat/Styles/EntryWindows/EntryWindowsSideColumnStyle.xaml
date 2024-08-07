@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Chat.MVVM.Views.AdditionalInfrastructure.Converters" 
+                    xmlns:converterParameters="clr-namespace:Chat.MVVM.Views.AdditionalInfrastructure.Converters.ConverterParameters" >
+
+    <Style x:Key="EntryWindowsSideColumnStyle" TargetType="{x:Type ColumnDefinition}">
+
+        <Style.Resources>
+            <converters:WidthAndHeightToGridLengthConverter x:Key="Converter"/>
+            <converterParameters:WidthAndHeightToGridLengthConverterParameters x:Key="ConverterParams" HorizontalScreenValue="0.375" SquareScreenValue="0.325" VerticalScreenValue="0.3"/>
+        </Style.Resources>
+
+        <Setter Property="Width">
+            <Setter.Value>
+                <MultiBinding Converter="{StaticResource Converter}" ConverterParameter="{StaticResource ConverterParams}">
+                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+</ResourceDictionary>

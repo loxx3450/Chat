@@ -8,66 +8,80 @@
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
              xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:Width="1920" d:Height="1080"
              d:DataContext="{d:DesignInstance Type=viewModels:RecoveryViewModel}"
              >
 
-    <StackPanel HorizontalAlignment="Center"
-                Background="{DynamicResource MainBackground}"
-                Width="500">
+    <Grid Background="{DynamicResource MainBackground}">
 
-        <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}"
-                   Text="Recovery of Password"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Style="{StaticResource EntryWindowsSideColumnStyle}"/>
+            <ColumnDefinition Style="{StaticResource EntryWindowsMainColumnStyle}"/>
+            <ColumnDefinition Style="{StaticResource EntryWindowsSideColumnStyle}"/>
+        </Grid.ColumnDefinitions>
 
-        <userControls:Logotype Height="80"/>
-        
+        <Viewbox Grid.Column="1"
+                 VerticalAlignment="Top"
+                 Stretch="Uniform">
 
-        <Grid Margin="0, 30">
+            <StackPanel Width="500">
 
-            <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"/>
+                <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}"
+                           Text="Password Recovery"/>
 
-            <StackPanel Margin="24">
-
-                <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}"
-                           Margin="3,0"
-                           Text="Enter your user account's email address!"/>
-
-
-                <userControls:ClearableTextBox Text="{Binding Email, Mode=TwoWay, ValidatesOnExceptions=True}"
-                                               Style="{StaticResource EntryWindowsTextBoxStyle}"
-                                               Margin="0, 10"
-                                               PlaceholderText="Enter email..."/>
+                <userControls:Logotype Height="100"/>
 
 
-                <userControls:Button Command="{Binding ResetPasswordCommand}"
-                                     Style="{StaticResource EntryWindowsActionCommandStyle}"
-                                     Margin="0, 15, 0, 0" 
-                                     Text="Reset password"/>
+                <Grid Margin="0, 30">
+
+                    <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"/>
+
+                    <StackPanel Margin="24">
+
+                        <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}"
+                                   Margin="3,0"
+                                   Text="Enter your user account's email address!"/>
+
+
+                        <userControls:ClearableTextBox Text="{Binding Email, Mode=TwoWay, ValidatesOnExceptions=True}"
+                                                       Style="{StaticResource EntryWindowsTextBoxStyle}"
+                                                       Margin="0, 10"
+                                                       PlaceholderText="Enter email..."/>
+
+
+                        <userControls:Button Command="{Binding ResetPasswordCommand}"
+                                             Style="{StaticResource EntryWindowsActionCommandStyle}"
+                                             Margin="0, 15, 0, 0" 
+                                             Text="Reset password"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid>
+
+                    <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"
+                                                      Background="Transparent"/>
+
+                    <StackPanel Margin="16" 
+                                HorizontalAlignment="Center">
+
+                        <userControls:Button Command="{Binding NavigateToLoginCommand}"
+                                             Style="{StaticResource EntryWindowsNavigationCommandStyle}"
+                                             Text="Back to 'Sign in'"/>
+
+                        <userControls:Button Command="{Binding NavigateToRegistrationCommand}"
+                                             Style="{StaticResource EntryWindowsNavigationCommandStyle}"
+                                             Text="Create an account"/>
+
+                    </StackPanel>
+
+                </Grid>
 
             </StackPanel>
 
-        </Grid>
+        </Viewbox>
 
-        <Grid>
+    </Grid>
 
-            <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"
-                                              Background="Transparent"/>
-
-            <StackPanel Margin="16" 
-                        HorizontalAlignment="Center">
-
-                <userControls:Button Command="{Binding NavigateToLoginCommand}"
-                                     Style="{StaticResource EntryWindowsNavigationCommandStyle}"
-                                     Text="Back to 'Sign in'"/>
-
-                <userControls:Button Command="{Binding NavigateToRegistrationCommand}"
-                                     Style="{StaticResource EntryWindowsNavigationCommandStyle}"
-                                     Text="Create an account"/>
-
-            </StackPanel>
-
-        </Grid>
-
-    </StackPanel>
-    
 </UserControl>
