@@ -7,13 +7,15 @@
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
              mc:Ignorable="d" 
-             WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+             WindowStartupLocation="CenterOwner" 
+             ResizeMode="NoResize"
              Style="{StaticResource NonDefaultWindowStyle}"
              Height="180" Width="450" 
-             BorderBrush="{DynamicResource WindowBorderBrush}" BorderThickness="1">
+             BorderBrush="{DynamicResource WindowBorderBrush}" 
+             BorderThickness="1">
 
     <Grid Background="{DynamicResource SecondaryBackground}" 
-          DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+          DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

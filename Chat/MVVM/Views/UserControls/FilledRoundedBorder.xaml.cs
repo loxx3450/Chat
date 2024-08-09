@@ -23,7 +23,7 @@ namespace Chat.MVVM.Views.UserControls
         //BorderThickness
         public new static readonly DependencyProperty BorderThicknessProperty =
             DependencyProperty.Register(nameof(BorderThickness), typeof(Thickness), typeof(FilledRoundedBorder),
-                new PropertyMetadata(new Thickness(), (d, e) => (d as FilledRoundedBorder).Border.BorderThickness = (Thickness)e.NewValue));
+                new PropertyMetadata(new Thickness()));
 
         public new Thickness BorderThickness
         {
@@ -35,15 +35,7 @@ namespace Chat.MVVM.Views.UserControls
         //Roundation
         public static readonly DependencyProperty RoundationProperty =
             DependencyProperty.Register(nameof(Roundation), typeof(double), typeof(FilledRoundedBorder),
-                new PropertyMetadata(0.0, (d, e) =>
-                {
-                    FilledRoundedBorder filledRoundedBorder = d as FilledRoundedBorder;
-                    double value = (double)e.NewValue;
-
-                    filledRoundedBorder.Border.CornerRadius = new CornerRadius(value);
-                    filledRoundedBorder.Rect.RadiusX = value;
-                    filledRoundedBorder.Rect.RadiusY = value;
-                }));
+                new PropertyMetadata(0.0));
 
         public double Roundation
         {
@@ -55,7 +47,7 @@ namespace Chat.MVVM.Views.UserControls
         //Background
         public new static readonly DependencyProperty BackgroundProperty =
             DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(FilledRoundedBorder),
-                new PropertyMetadata(null, (d, e) => (d as FilledRoundedBorder).Rect.Fill = (Brush)e.NewValue));
+                new PropertyMetadata(new SolidColorBrush(Colors.Wheat)));
 
         public new Brush Background
         {

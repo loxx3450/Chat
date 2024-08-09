@@ -5,7 +5,9 @@
         
         <!--Button is available in 32px of WindowChrome-->
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-        
+
+        <Setter Property="Foreground" Value="{Binding Foreground, ElementName=root}"/>
+
         <Setter Property="Template">
             
             <Setter.Value>

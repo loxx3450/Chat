@@ -22,10 +22,11 @@
         </Grid.RowDefinitions>
 
         <userControls:TitleBar Grid.Row="0" 
-                       Background="Transparent" ButtonsForeground="White">
-        </userControls:TitleBar>
+                               Background="Transparent" 
+                               Foreground="White"/>
 
         <ContentControl Grid.Row="1" Content="{Binding NavigationService.CurrentView}"/>
+        
     </Grid>
     
 </Window>

@@ -101,10 +101,7 @@ namespace Chat.MVVM.Models.Services
 
 
             //Loading Window
-            loadingWindow = new LoadingWindow()
-            {
-                Owner = background
-            };
+            loadingWindow = new LoadingWindow(background);
 
             loadingWindow.Show();
         }

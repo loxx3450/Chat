@@ -53,7 +53,7 @@ namespace Chat.MVVM.Views.UserControls
         }
 
 
-        //Handlers
+        //callbacks to events
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (TextBox.Text.Length > 0)

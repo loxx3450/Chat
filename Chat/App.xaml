@@ -32,6 +32,9 @@
                 <ResourceDictionary Source="Styles/CustomMessageBoxButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/NonDefaultWindowStyle.xaml" />
                 
+                <!--Global styles-->
+                <ResourceDictionary Source="Styles/LogotypeStyle.xaml" />
+                
                 
                 <!--ControlTemplates-->
                 <ResourceDictionary Source="Styles/ControlTemplates/ErrorTemplate.xaml"/>

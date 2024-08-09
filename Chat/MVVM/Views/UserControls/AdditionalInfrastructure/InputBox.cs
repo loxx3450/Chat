@@ -14,7 +14,7 @@ namespace Chat.MVVM.Views.UserControls.AdditionalInfrastructure
         //Background
         public new static readonly DependencyProperty BackgroundProperty =
             DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(InputBox),
-                new PropertyMetadata(null));
+                new PropertyMetadata(new SolidColorBrush(Colors.Wheat)));
 
         public new Brush Background
         {
@@ -62,7 +62,7 @@ namespace Chat.MVVM.Views.UserControls.AdditionalInfrastructure
         //PlaceholderForeground
         public static DependencyProperty PlaceholderForegroundProperty =
             DependencyProperty.Register(nameof(PlaceholderForeground), typeof(Brush), typeof(InputBox),
-                new PropertyMetadata(null));
+                new PropertyMetadata(new SolidColorBrush(Colors.Wheat)));
 
         public Brush PlaceholderForeground
         {
@@ -74,7 +74,7 @@ namespace Chat.MVVM.Views.UserControls.AdditionalInfrastructure
         //PlaceholderFontSize
         public static DependencyProperty PlaceholderFontSizeProperty =
             DependencyProperty.Register(nameof(PlaceholderFontSize), typeof(double), typeof(InputBox),
-                new PropertyMetadata(0.0));
+                new PropertyMetadata(12.0));
 
         public double PlaceholderFontSize
         {
@@ -87,7 +87,7 @@ namespace Chat.MVVM.Views.UserControls.AdditionalInfrastructure
         //ErrorMessageFontSize
         public static DependencyProperty ErrorMessageFontSizeProperty =
             DependencyProperty.Register(nameof(ErrorMessageFontSize), typeof(double), typeof(InputBox),
-                new PropertyMetadata(0.0));
+                new PropertyMetadata(10.0));
 
         public double ErrorMessageFontSize
         {
