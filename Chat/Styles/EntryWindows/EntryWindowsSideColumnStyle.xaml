@@ -1,15 +1,23 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:Chat.MVVM.Views.AdditionalInfrastructure.Converters" 
-                    xmlns:converterParameters="clr-namespace:Chat.MVVM.Views.AdditionalInfrastructure.Converters.ConverterParameters" >
+                    xmlns:converterParameters="clr-namespace:Chat.MVVM.Views.AdditionalInfrastructure.Converters.ConverterParameters" 
+                    xmlns:configs="clr-namespace:Chat.MVVM.Models.Instances.Configs">
 
     <Style x:Key="EntryWindowsSideColumnStyle" TargetType="{x:Type ColumnDefinition}">
 
         <Style.Resources>
+            
             <converters:WidthAndHeightToGridLengthConverter x:Key="Converter"/>
-            <converterParameters:WidthAndHeightToGridLengthConverterParameters x:Key="ConverterParams" HorizontalScreenValue="0.375" SquareScreenValue="0.325" VerticalScreenValue="0.3"/>
+            
+            <converterParameters:WidthAndHeightToGridLengthConverterParameters x:Key="ConverterParams" 
+                                                                               HorizontalScreenValue="{x:Static configs:EntryWindowsConfig.SideColumnHorizontalScreenValue}" 
+                                                                               SquareScreenValue="{x:Static configs:EntryWindowsConfig.SideColumnSquareScreenValue}" 
+                                                                               VerticalScreenValue="{x:Static configs:EntryWindowsConfig.SideColumnVerticalScreenValue}"/>
+            
         </Style.Resources>
 
+        
         <Setter Property="Width">
             <Setter.Value>
                 <MultiBinding Converter="{StaticResource Converter}" ConverterParameter="{StaticResource ConverterParams}">

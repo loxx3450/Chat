@@ -7,6 +7,7 @@
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
              xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
+             xmlns:configs="clr-namespace:Chat.MVVM.Models.Instances.Configs" 
              mc:Ignorable="d" 
              d:Width="1920" d:Height="1080"
              d:DataContext="{d:DesignInstance Type=viewModels:EmailVerificationViewModel}">
@@ -23,12 +24,13 @@
                  VerticalAlignment="Top"
                  Stretch="Uniform">
 
-            <StackPanel Width="500">
+            <StackPanel Width="{x:Static configs:EntryWindowsConfig.ContentWidth}">
 
                 <TextBlock Style="{StaticResource EntryWindowsCaptionStyle}"
                            Text="Email Verification"/>
 
-                <svgc:SvgViewbox Style="{StaticResource LogotypeStyle}" Height="100"/>
+                <svgc:SvgViewbox Style="{StaticResource LogotypeStyle}"
+                                 Height="{x:Static configs:EntryWindowsConfig.LogotypeHeight}"/>
 
                 <Grid Margin="0,30">
 
