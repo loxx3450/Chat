@@ -12,7 +12,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chat.MVVM.ViewModels
+namespace Chat.MVVM.ViewModels.EntryWindows
 {
     public class RegistrationViewModel : ViewModelBase
     {

@@ -10,7 +10,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chat.MVVM.ViewModels
+namespace Chat.MVVM.ViewModels.EntryWindows
 {
     public class RecoveryViewModel : ViewModelBase
     {

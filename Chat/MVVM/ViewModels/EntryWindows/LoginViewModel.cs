@@ -12,7 +12,7 @@ using System.Net.Http.Headers;
 using Chat.MVVM.Models.Services;
 using Chat.MVVM.Models.Handlers;
 
-namespace Chat.MVVM.ViewModels
+namespace Chat.MVVM.ViewModels.EntryWindows
 {
     public class LoginViewModel : ViewModelBase
     {

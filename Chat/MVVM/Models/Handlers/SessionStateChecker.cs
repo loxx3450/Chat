@@ -1,5 +1,6 @@
 ﻿using Chat.MVVM.Models.Services;
 using Chat.MVVM.ViewModels;
+using Chat.MVVM.ViewModels.EntryWindows;
 using CommonLibrary;
 using CommonLibrary.Payloads.SessionStateCheck;
 using ProtocolLibrary.Core;

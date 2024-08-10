@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chat.MVVM.ViewModels
+namespace Chat.MVVM.ViewModels.EntryWindows
 {
     internal class ChangePasswordViewModel : ViewModelBase
     {

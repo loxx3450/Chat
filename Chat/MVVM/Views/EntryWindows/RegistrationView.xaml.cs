@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Chat.MVVM.Views
+namespace Chat.MVVM.Views.EntryWindows
 {
     /// <summary>
-    /// Логика взаимодействия для ChangePasswordView.xaml
+    /// Логика взаимодействия для RegistrationView.xaml
     /// </summary>
-    public partial class ChangePasswordView : UserControl
+    public partial class RegistrationView : UserControl
     {
-        public ChangePasswordView()
+        public RegistrationView()
         {
             InitializeComponent();
         }

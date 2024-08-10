@@ -11,6 +11,7 @@ using ProtocolLibrary.Core;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using Chat.MVVM.ViewModels;
 using Chat.MVVM.Models.Services;
+using Chat.MVVM.ViewModels.EntryWindows;
 
 namespace Chat.MVVM.Models.Handlers
 {

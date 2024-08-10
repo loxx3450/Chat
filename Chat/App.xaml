@@ -4,7 +4,9 @@
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:local="clr-namespace:Chat"
              xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels"
-             xmlns:views="clr-namespace:Chat.MVVM.Views">
+             xmlns:entryWindowsViewModels="clr-namespace:Chat.MVVM.ViewModels.EntryWindows"
+             xmlns:views="clr-namespace:Chat.MVVM.Views"
+             xmlns:entryWindowsViews="clr-namespace:Chat.MVVM.Views.EntryWindows">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -49,29 +51,29 @@
                     <DataTemplate DataType="{x:Type viewModels:ChatViewModel}">
                         <views:ChatView/>
                     </DataTemplate>
-                    
-                    <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
-                        <views:LoginView/>
+
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:LoginViewModel}">
+                        <entryWindowsViews:LoginView/>
                     </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type viewModels:RegistrationViewModel}">
-                        <views:RegistrationView/>
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:RegistrationViewModel}">
+                        <entryWindowsViews:RegistrationView/>
                     </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type viewModels:RecoveryViewModel}">
-                        <views:RecoveryView/>
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:RecoveryViewModel}">
+                        <entryWindowsViews:RecoveryView/>
                     </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type viewModels:RecoveryCodeConfirmationViewModel}">
-                        <views:RecoveryCodeConfirmationView/>
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:RecoveryCodeConfirmationViewModel}">
+                        <entryWindowsViews:RecoveryCodeConfirmationView/>
                     </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type viewModels:ChangePasswordViewModel}">
-                        <views:ChangePasswordView/>
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:ChangePasswordViewModel}">
+                        <entryWindowsViews:ChangePasswordView/>
                     </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type viewModels:EmailVerificationViewModel}">
-                        <views:EmailVerificationView/>
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:EmailVerificationViewModel}">
+                        <entryWindowsViews:EmailVerificationView/>
                     </DataTemplate>
 
                 </ResourceDictionary>
