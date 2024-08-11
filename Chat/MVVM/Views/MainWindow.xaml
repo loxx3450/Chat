@@ -22,8 +22,10 @@
         </Grid.RowDefinitions>
 
         <userControls:TitleBar Grid.Row="0" 
-                               Background="Transparent" 
-                               Foreground="White"/>
+                               Background="{DynamicResource TitleBarBackground}" 
+                               Foreground="White"
+                               BorderBrush="{DynamicResource TitleBarBorderBrush}"
+                               BorderThickness="0,0,0,0.8"/>
 
         <ContentControl Grid.Row="1" Content="{Binding NavigationService.CurrentView}"/>
         
