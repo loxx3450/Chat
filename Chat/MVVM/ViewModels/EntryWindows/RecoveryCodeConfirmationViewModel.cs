@@ -12,6 +12,7 @@ namespace Chat.MVVM.ViewModels.EntryWindows
 {
     internal class RecoveryCodeConfirmationViewModel : ViewModelBase
     {
+        // ============= Properties for Binding =============
         private string _code = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
@@ -23,6 +24,7 @@ namespace Chat.MVVM.ViewModels.EntryWindows
         }
 
 
+        // ============= Commands =============
         public RelayCommand ConfirmCommand { get; set; }
         public RelayCommand NavigateToLoginCommand { get; set; }
         public RelayCommand NavigateToRegistrationCommand { get; set; }
@@ -36,6 +38,8 @@ namespace Chat.MVVM.ViewModels.EntryWindows
             ConfirmCommand = new RelayCommand(Confirm, CanConfirm);
         }
 
+
+        // ============= private methods =============
         private void Confirm(object obj)
         {
             CodeVerifierForResetPassword.VerifyCode(Code);
@@ -47,6 +51,8 @@ namespace Chat.MVVM.ViewModels.EntryWindows
                 && !string.IsNullOrEmpty(_code);
         }
 
+
+        // ============= default methods =============
         public override void ResetData()
         {
             _code = string.Empty;

@@ -12,6 +12,7 @@ namespace Chat.MVVM.ViewModels.EntryWindows
 {
     internal class ChangePasswordViewModel : ViewModelBase
     {
+        // ============= Properties for Binding =============
         private string _password = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
@@ -33,6 +34,8 @@ namespace Chat.MVVM.ViewModels.EntryWindows
             set => SetValidatedField(ref _confirmationPassword, value, nameof(ConfirmationPassword));
         }
 
+
+        // ============= Commands =============
         public RelayCommand SubmitCommand { get; set; }
         public RelayCommand NavigateToLoginCommand { get; set; }
 
@@ -44,6 +47,8 @@ namespace Chat.MVVM.ViewModels.EntryWindows
             SubmitCommand = new RelayCommand(Submit, CanSubmit);
         }
 
+
+        // ============= private methods =============
         private void Submit(object obj)
         {
             PasswordChanger.ChangePassword(Password);
@@ -56,6 +61,8 @@ namespace Chat.MVVM.ViewModels.EntryWindows
                 && !string.IsNullOrEmpty(ConfirmationPassword);
         }
 
+
+        // ============= default methods =============
         public override void ResetData()
         {
             _password = string.Empty;

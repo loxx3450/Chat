@@ -12,6 +12,7 @@ namespace Chat.MVVM.ViewModels.EntryWindows
 {
     internal class EmailVerificationViewModel : ViewModelBase
     {
+        // ============= Properties for Binding =============
         private string _code = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
@@ -23,6 +24,7 @@ namespace Chat.MVVM.ViewModels.EntryWindows
         }
 
 
+        // ============= Commands =============
         public RelayCommand VerifyCommand { get; set; }
         public RelayCommand NavigateToRegistrationCommand { get; set; }
 
@@ -34,6 +36,8 @@ namespace Chat.MVVM.ViewModels.EntryWindows
             VerifyCommand = new RelayCommand(Verify, CanVerify);
         }
 
+
+        // ============= private methods =============
         private void Verify(object obj)
         {
             EmailVerifier.Verify(Code);
@@ -45,6 +49,8 @@ namespace Chat.MVVM.ViewModels.EntryWindows
                 && !string.IsNullOrEmpty(_code);
         }
 
+
+        // ============= default methods =============
         public override void ResetData()
         {
             _code = string.Empty;
