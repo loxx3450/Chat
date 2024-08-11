@@ -1,6 +1,6 @@
 ﻿using CommonLibrary;
 using CommonLibrary.Models;
-using CommonLibrary.Payloads.ResetingPassword;
+using CommonLibrary.Payloads.ResetingPassword.VerifyCode;
 using Npgsql;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;

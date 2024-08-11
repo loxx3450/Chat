@@ -1,5 +1,5 @@
 ﻿using CommonLibrary;
-using CommonLibrary.Payloads.ResetingPassword;
+using CommonLibrary.Payloads.ResetingPassword.ResetPassword;
 using MimeKit;
 using Npgsql;
 using ProtocolLibrary.Core;

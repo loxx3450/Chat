@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace CommonLibrary.Payloads.Registration
+namespace CommonLibrary.Payloads.Registration.Registration
 {
     public class RegistrationRequestPayload : JSONPayload
     {

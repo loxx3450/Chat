@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 using Npgsql;
 using System.Configuration;
 using CommonLibrary;
-using CommonLibrary.Payloads.Registration;
 using System.Security.Cryptography;
 using ServerSide.Core.Services;
 using MimeKit;
 using ServerSide.Core.Services.DbHelpers;
+using CommonLibrary.Payloads.Registration.Registration;
 
 namespace ServerSide.Core.Handlers
 {

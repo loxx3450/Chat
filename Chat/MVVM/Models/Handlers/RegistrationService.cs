@@ -6,7 +6,7 @@ using Chat.MVVM.Views.UserControls;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary;
 using CommonLibrary.Models;
-using CommonLibrary.Payloads.Registration;
+using CommonLibrary.Payloads.Registration.Registration;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using ProtocolLibrary.Payload;

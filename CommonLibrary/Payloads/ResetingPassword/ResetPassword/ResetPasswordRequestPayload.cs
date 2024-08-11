@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonLibrary.Payloads.ResetingPassword
+namespace CommonLibrary.Payloads.ResetingPassword.ResetPassword
 {
-    public class ResetPasswordRequestPayload : JSONPayload 
+    public class ResetPasswordRequestPayload : JSONPayload
     {
         public string Email { get; set; }
 
-        public ResetPasswordRequestPayload(string email) 
-        { 
+        public ResetPasswordRequestPayload(string email)
+        {
             Email = email;
         }
     }

@@ -5,7 +5,7 @@ using Chat.MVVM.ViewModels.EntryWindows;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary;
 using CommonLibrary.Payloads.Registration;
-using CommonLibrary.Payloads.ResetingPassword;
+using CommonLibrary.Payloads.ResetingPassword.ResetPassword;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using System;

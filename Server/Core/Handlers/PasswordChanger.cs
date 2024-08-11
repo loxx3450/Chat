@@ -1,5 +1,5 @@
 ﻿using CommonLibrary;
-using CommonLibrary.Payloads.ResetingPassword;
+using CommonLibrary.Payloads.ResetingPassword.ChangePassword;
 using Npgsql;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;

@@ -4,7 +4,7 @@ using Chat.MVVM.ViewModels;
 using Chat.MVVM.ViewModels.EntryWindows;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary;
-using CommonLibrary.Payloads.Registration;
+using CommonLibrary.Payloads.Registration.EmailVerification;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using System;

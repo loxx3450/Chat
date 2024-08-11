@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonLibrary.Payloads.ResetingPassword
+namespace CommonLibrary.Payloads.ResetingPassword.VerifyCode
 {
     public enum VerifyCodeForResetPasswordResponseType
     {

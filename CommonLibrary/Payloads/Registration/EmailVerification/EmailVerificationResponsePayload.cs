@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonLibrary.Payloads.Registration
+namespace CommonLibrary.Payloads.Registration.EmailVerification
 {
     public enum EmailVerificationResponseType
     {

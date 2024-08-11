@@ -1,5 +1,5 @@
 ﻿using CommonLibrary;
-using CommonLibrary.Payloads.Registration;
+using CommonLibrary.Payloads.Registration.EmailVerification;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
 using ServerSide.Core.Services.DbHelpers;

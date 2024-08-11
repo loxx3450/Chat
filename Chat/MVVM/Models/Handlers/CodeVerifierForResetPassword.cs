@@ -1,5 +1,4 @@
-﻿using CommonLibrary.Payloads.ResetingPassword;
-using CommonLibrary;
+﻿using CommonLibrary;
 using ProtocolLibrary.Message;
 using System;
 using System.Collections.Generic;
@@ -12,6 +11,7 @@ using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using Chat.MVVM.ViewModels;
 using Chat.MVVM.Models.Services;
 using Chat.MVVM.ViewModels.EntryWindows;
+using CommonLibrary.Payloads.ResetingPassword.VerifyCode;
 
 namespace Chat.MVVM.Models.Handlers
 {
