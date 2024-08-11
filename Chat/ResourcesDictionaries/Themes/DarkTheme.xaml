@@ -2,19 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <!--Global-->
-    <SolidColorBrush x:Key="MainBackground">#0d1117</SolidColorBrush>
-    <SolidColorBrush x:Key="SecondaryBackground">#161b22</SolidColorBrush>
-    <SolidColorBrush x:Key="MainForeground">#FFFFFF</SolidColorBrush>
-    <SolidColorBrush x:Key="MainBorderBrush">#30363d</SolidColorBrush>
-    <SolidColorBrush x:Key="MainButtonBackground">#f0f8ff</SolidColorBrush>
+    <SolidColorBrush x:Key="MainBackground"                     Color="#0d1117"/>
+    <SolidColorBrush x:Key="SecondaryBackground"                Color="#161b22"/>
+    <SolidColorBrush x:Key="MainForeground"                     Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="MainBorderBrush"                    Color="#30363d"/>
+    <SolidColorBrush x:Key="MainButtonBackground"               Color="#f0f8ff"/> 
     
     <!--TitleBar-->
-    <SolidColorBrush x:Key="TitleBarBackground">#11171f</SolidColorBrush>
-    <SolidColorBrush x:Key="TitleBarBorderBrush">#000000</SolidColorBrush>
-    <SolidColorBrush x:Key="MouseOverTitleBarButtonColor">#474747</SolidColorBrush>
-    <SolidColorBrush x:Key="IsPressedTitleBarButtonColor">#965659</SolidColorBrush>
+    <SolidColorBrush x:Key="TitleBarBackground"                 Color="#11171f"/>
+    <SolidColorBrush x:Key="TitleBarBorderBrush"                Color="#000000"/>
+    <SolidColorBrush x:Key="MouseOverTitleBarButtonColor"       Color="#474747"/>
+    <SolidColorBrush x:Key="IsPressedTitleBarButtonColor"       Color="#965659"/> 
     
     <!--MainWindow-->
-    <SolidColorBrush x:Key="WindowBorderBrush">#000000</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowBorderBrush"                  Color="#000000"/> 
+    
+    <!--ChatView-->
+    <SolidColorBrush x:Key="ChatGridSplitter"                   Color="#0b0d12"/> 
 
 </ResourceDictionary>
