@@ -27,7 +27,7 @@
 
             <StackPanel Width="{x:Static configs:EntryWindowsConfig.ContentWidth}">
 
-                <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}"
+                <TextBlock Style="{StaticResource EntryWindowsCaptionStyle}"
                            Text="Password Recovery"/>
 
                 <svgc:SvgViewbox Style="{StaticResource LogotypeStyle}"

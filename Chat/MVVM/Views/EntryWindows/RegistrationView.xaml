@@ -27,7 +27,7 @@
 
             <StackPanel Width="{x:Static configs:EntryWindowsConfig.ContentWidth}">
 
-                <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}" 
+                <TextBlock Style="{StaticResource EntryWindowsCaptionStyle}" 
                            Text="Sign up"/>
 
                 <svgc:SvgViewbox Style="{StaticResource LogotypeStyle}"
@@ -35,34 +35,34 @@
 
                 <Grid Margin="0,30">
 
-                    <userControls:FilledRoundedBorder Style="{DynamicResource EntryWindowsFilledRoundedBorderStyle}"/>
+                    <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"/>
 
                     <StackPanel Margin="24">
 
-                        <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                        <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}"
                                    Margin="3, 0"
                                    Text="Username"/>
                     
 
                         <userControls:ClearableTextBox Text="{Binding Username, Mode=TwoWay, ValidatesOnExceptions=True}" 
-                                                       Style="{DynamicResource EntryWindowsTextBoxStyle}"
+                                                       Style="{StaticResource EntryWindowsTextBoxStyle}"
                                                        TabIndex="0"
                                                        Margin="0, 10, 0, 20"
                                                        PlaceholderText="Enter username..."/>
 
-                        <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                        <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}"
                                    Margin="3, 0"
                                    Text="Email"/>
 
 
                         <userControls:ClearableTextBox Text="{Binding Email, Mode=TwoWay, ValidatesOnExceptions=True}" 
-                                                       Style="{DynamicResource EntryWindowsTextBoxStyle}"
+                                                       Style="{StaticResource EntryWindowsTextBoxStyle}"
                                                        TabIndex="1"
                                                        Margin="0, 10, 0, 20"
                                                        PlaceholderText="Enter email..."/>
 
 
-                        <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                        <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}"
                                    Margin="3, 0"
                                    Text="Password"/>
 
@@ -70,13 +70,13 @@
                         <userControls:ClearablePasswordBox x:Name="mainPassBox" 
                                                            Password="{Binding Password, Mode=TwoWay, ValidatesOnExceptions=True}" 
                                                            RelatedPasswordBox="{Binding ElementName=confirmPassBox, UpdateSourceTrigger=PropertyChanged}"
-                                                           Style="{DynamicResource EntryWindowsPasswordBoxStyle}"
+                                                           Style="{StaticResource EntryWindowsPasswordBoxStyle}"
                                                            TabIndex="2"
                                                            Margin="0, 10, 0, 20"
                                                            PlaceholderText="Enter password..."/>
-                    
 
-                        <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+
+                        <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}"
                                    Margin="3, 0"
                                    Text="Confirm Password"/>
                     
@@ -84,7 +84,7 @@
                         <userControls:ClearablePasswordBox x:Name="confirmPassBox" 
                                                            Password="{Binding ConfirmationPassword, Mode=TwoWay, ValidatesOnExceptions=True}" 
                                                            RelatedPasswordBox="{Binding ElementName=mainPassBox, UpdateSourceTrigger=PropertyChanged}"
-                                                           Style="{DynamicResource EntryWindowsPasswordBoxStyle}"
+                                                           Style="{StaticResource EntryWindowsPasswordBoxStyle}"
                                                            TabIndex="3"
                                                            Margin="0, 10, 0, 20"
                                                            PlaceholderText="Enter password again..."/>
@@ -102,7 +102,7 @@
 
                 <Grid>
 
-                    <userControls:FilledRoundedBorder Style="{DynamicResource EntryWindowsFilledRoundedBorderStyle}"
+                    <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"
                                                       Background="Transparent"/>
 
 

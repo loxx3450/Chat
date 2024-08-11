@@ -27,7 +27,7 @@
 
             <StackPanel Width="{x:Static configs:EntryWindowsConfig.ContentWidth}">
 
-                <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}" 
+                <TextBlock Style="{StaticResource EntryWindowsCaptionStyle}" 
                            Text="Sign In"/>
 
                 <svgc:SvgViewbox Style="{StaticResource LogotypeStyle}" 
@@ -39,7 +39,7 @@
 
                     <StackPanel Margin="24">
 
-                        <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}" 
+                        <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}" 
                                    Margin="3,0" 
                                    Text="Email"/>
 
@@ -51,13 +51,13 @@
                                                        PlaceholderText="Enter email..."/>
 
 
-                        <TextBlock Style="{DynamicResource EntryWindowsTextBlockStyle}"
+                        <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}"
                                    Margin="3,10" 
                                    Text="Password"/>
 
 
                         <userControls:ClearablePasswordBox Password="{Binding Password, Mode=TwoWay, ValidatesOnExceptions=True}" 
-                                                           Style="{DynamicResource EntryWindowsPasswordBoxStyle}"
+                                                           Style="{StaticResource EntryWindowsPasswordBoxStyle}"
                                                            TabIndex="1"
                                                            PlaceholderText="Enter password..."/>
 
@@ -85,7 +85,7 @@
 
                 <Grid>
 
-                    <userControls:FilledRoundedBorder Style="{DynamicResource EntryWindowsFilledRoundedBorderStyle}"
+                    <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"
                                                       Background="Transparent"/>
 
 
