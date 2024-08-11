@@ -1,6 +1,7 @@
 ﻿using Chat.Core;
 using Chat.MVVM.Core;
 using Chat.MVVM.Models.Handlers;
+using Chat.MVVM.Models.Instances.Configs;
 using Chat.MVVM.Models.Services;
 using CommonLibrary.Models;
 using System;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.ViewModels.EntryWindows
 {
-    public class RegistrationViewModel : ViewModelBase
+    public class RegistrationViewModel : EntryWindowsViewModelBase
     {
         // ============= Properties for Binding =============
         private string _username = string.Empty;

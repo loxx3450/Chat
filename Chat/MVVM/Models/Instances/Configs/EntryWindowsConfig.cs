@@ -7,18 +7,24 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.Models.Instances.Configs
 {
-    public static class EntryWindowsConfig
+    public class EntryWindowsConfig : IConfig
     {
-        private static ExeConfigurationFileMap configMap = new ExeConfigurationFileMap
-        {
-            ExeConfigFilename = @"C:\Users\egork\source\repos\Chat\Chat\ResourcesDictionaries\Configs\EntryWindows.config"
-        };
-
-        private static Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
-
+        //Config object
+        private Configuration config;
 
         //Views parameters
-        public static double ContentWidth => Convert.ToDouble(config.AppSettings.Settings[nameof(ContentWidth)].Value);
-        public static double LogotypeHeight => Convert.ToDouble(config.AppSettings.Settings[nameof(LogotypeHeight)].Value);
+        public double ContentWidth => Convert.ToDouble(config.AppSettings.Settings[nameof(ContentWidth)].Value);
+        public double LogotypeHeight => Convert.ToDouble(config.AppSettings.Settings[nameof(LogotypeHeight)].Value);
+
+
+        public EntryWindowsConfig()
+        {
+            var configMap = new ExeConfigurationFileMap
+            {
+                ExeConfigFilename = @"C:\Users\egork\source\repos\Chat\Chat\ResourcesDictionaries\Configs\EntryWindows.config"
+            };
+
+            config = ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
+        }
     }
 }

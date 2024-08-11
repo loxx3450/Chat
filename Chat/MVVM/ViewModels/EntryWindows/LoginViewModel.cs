@@ -14,7 +14,7 @@ using Chat.MVVM.Models.Handlers;
 
 namespace Chat.MVVM.ViewModels.EntryWindows
 {
-    public class LoginViewModel : ViewModelBase
+    public class LoginViewModel : EntryWindowsViewModelBase
     {
         // ============= Properties for Binding =============
         public bool RememberUser { get; set; }

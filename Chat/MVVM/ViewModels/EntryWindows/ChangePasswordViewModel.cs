@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.ViewModels.EntryWindows
 {
-    internal class ChangePasswordViewModel : ViewModelBase
+    internal class ChangePasswordViewModel : EntryWindowsViewModelBase
     {
         // ============= Properties for Binding =============
         private string _password = string.Empty;

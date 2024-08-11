@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.ViewModels.EntryWindows
 {
-    internal class EmailVerificationViewModel : ViewModelBase
+    internal class EmailVerificationViewModel : EntryWindowsViewModelBase
     {
         // ============= Properties for Binding =============
         private string _code = string.Empty;

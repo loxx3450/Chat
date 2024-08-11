@@ -1,4 +1,5 @@
 ﻿using Chat.Core;
+using Chat.MVVM.Models.Instances.Configs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,9 @@ namespace Chat.MVVM.Core
 {
     public abstract class ViewModelBase : ObservableObject
     {
+        public abstract IConfig? Config { get; }
+
+
         protected Dictionary<string, bool> propertyErrors = [];
 
         public bool HasErrors => propertyErrors.Count > 0;

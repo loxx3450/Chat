@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.ViewModels.EntryWindows
 {
-    internal class RecoveryCodeConfirmationViewModel : ViewModelBase
+    internal class RecoveryCodeConfirmationViewModel : EntryWindowsViewModelBase
     {
         // ============= Properties for Binding =============
         private string _code = string.Empty;

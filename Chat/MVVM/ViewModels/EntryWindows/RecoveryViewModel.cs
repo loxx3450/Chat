@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Chat.MVVM.ViewModels.EntryWindows
 {
-    public class RecoveryViewModel : ViewModelBase
+    public class RecoveryViewModel : EntryWindowsViewModelBase
     {
         // ============= Properties for Binding =============
         private string _email = string.Empty;
