@@ -29,7 +29,7 @@ namespace Chat.MVVM.Models.Handlers
         {
             TransitionManager.RemoveWaiting();
 
-            ChangePasswordResponsePayload payload = PayloadBuilder.GetPayload<ChangePasswordResponsePayload>(message.PayloadStream);
+            var payload = PayloadBuilder.GetPayload<ChangePasswordResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)
             {

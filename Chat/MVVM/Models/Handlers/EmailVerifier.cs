@@ -29,7 +29,7 @@ namespace Chat.MVVM.Models.Handlers
         {
             TransitionManager.RemoveWaiting();
 
-            EmailVerificationResponsePayload payload = PayloadBuilder.GetPayload<EmailVerificationResponsePayload>(message.PayloadStream);
+            var payload = PayloadBuilder.GetPayload<EmailVerificationResponsePayload>(message.PayloadStream);
             
             switch (payload.ResponseType)
             {

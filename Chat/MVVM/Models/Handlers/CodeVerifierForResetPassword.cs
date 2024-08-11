@@ -30,7 +30,7 @@ namespace Chat.MVVM.Models.Handlers
         {
             TransitionManager.RemoveWaiting();
 
-            VerifyCodeForResetPasswordResponsePayload payload = PayloadBuilder.GetPayload<VerifyCodeForResetPasswordResponsePayload>(message.PayloadStream);
+            var payload = PayloadBuilder.GetPayload<VerifyCodeForResetPasswordResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)
             {

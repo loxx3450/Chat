@@ -34,7 +34,7 @@ namespace Chat.MVVM.Models.Handlers
         {
             TransitionManager.RemoveWaiting();
 
-            RegistrationResponsePayload responsePayload = PayloadBuilder.GetPayload<RegistrationResponsePayload>(message.PayloadStream);
+            var responsePayload = PayloadBuilder.GetPayload<RegistrationResponsePayload>(message.PayloadStream);
 
             switch (responsePayload.ResponseType)
             {

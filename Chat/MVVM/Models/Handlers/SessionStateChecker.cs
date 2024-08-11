@@ -27,7 +27,7 @@ namespace Chat.MVVM.Models.Handlers
         {
             TransitionManager.RemoveWaiting();
 
-            SessionStateCheckResponsePayload payload = PayloadBuilder.GetPayload<SessionStateCheckResponsePayload>(message.PayloadStream);
+            var payload = PayloadBuilder.GetPayload<SessionStateCheckResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)
             {
