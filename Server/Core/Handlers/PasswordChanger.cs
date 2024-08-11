@@ -14,11 +14,12 @@ namespace ServerSide.Core.Handlers
 {
     internal class PasswordChanger : IResponsibleHandler
     {
+        //Response data
         private static ChangePasswordResponseType responseType;
 
         public static void ChangePassword(ProtocolMessage message)
         {
-            ChangePasswordRequestPayload payload = PayloadBuilder.GetPayload<ChangePasswordRequestPayload>(message.PayloadStream);
+            var payload = PayloadBuilder.GetPayload<ChangePasswordRequestPayload>(message.PayloadStream);
 
             try
             {

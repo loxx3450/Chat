@@ -14,6 +14,7 @@ namespace ServerSide.Core.Services.DbHelpers
 
         private static NpgsqlConnection conn = null!;
 
+
         public static void OpenConnection()
         {
             conn = new NpgsqlConnection(connString);
@@ -24,6 +25,7 @@ namespace ServerSide.Core.Services.DbHelpers
         {
             conn.Close();
         }
+
 
         public static object? ExecuteScalar(NpgsqlCommand cmd)
         {
@@ -45,6 +47,7 @@ namespace ServerSide.Core.Services.DbHelpers
 
             return cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
         }
+
 
         public static string FormulateBooleanRequest(string commandText)
         {

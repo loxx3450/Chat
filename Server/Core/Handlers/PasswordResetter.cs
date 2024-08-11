@@ -16,7 +16,7 @@ namespace ServerSide.Core.Handlers
     /// </summary>
     public class PasswordResetter : IResponsibleHandler
     {
-        //Response
+        //Response data
         private static ResetPasswordResponseType responseType;
         private static int associatedUserId;
 
@@ -24,7 +24,7 @@ namespace ServerSide.Core.Handlers
         {
             try
             {
-                ResetPasswordRequestPayload payload = PayloadBuilder.GetPayload<ResetPasswordRequestPayload>(message.PayloadStream);
+                var payload = PayloadBuilder.GetPayload<ResetPasswordRequestPayload>(message.PayloadStream);
 
                 if (UserDbHelper.UserExists(payload.Email))
                 {

@@ -13,11 +13,12 @@ namespace ServerSide.Core.Handlers
 {
     internal class EmailVerifier : IResponsibleHandler
     {
+        //Response data
         private static EmailVerificationResponseType responseType;
 
         public static void Verify(ProtocolMessage message)
         {
-            EmailVerificationRequestPayload payload = PayloadBuilder.GetPayload<EmailVerificationRequestPayload>(message.PayloadStream);
+            var payload = PayloadBuilder.GetPayload<EmailVerificationRequestPayload>(message.PayloadStream);
 
             try
             {

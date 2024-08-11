@@ -16,13 +16,13 @@ namespace ServerSide.Core.Handlers
 {
     public class SessionStateChecker : IResponsibleHandler
     {
-        //Will be used as a part of response
+        //Response data
         private static SessionStateCheckResponseType responseType;
 
         //TODO: get user_id
         public static void Check(ProtocolMessage protocolMessage)
         {
-            SessionStateCheckRequestPayload payload = PayloadBuilder.GetPayload<SessionStateCheckRequestPayload>(protocolMessage.PayloadStream);
+            var payload = PayloadBuilder.GetPayload<SessionStateCheckRequestPayload>(protocolMessage.PayloadStream);
 
             if (SessionDbHelper.IsActualSessionFounded(payload.IP))
                 responseType = SessionStateCheckResponseType.UserIsLoggedIn;

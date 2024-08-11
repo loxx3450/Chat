@@ -21,7 +21,7 @@ namespace ServerSide.Core.Handlers
 
     internal class RegistrationHandler : IResponsibleHandler
     {
-        //Response
+        //Response data
         private static RegistrationResponseType responseType;
         private static int associatedUserId;
 
@@ -30,7 +30,7 @@ namespace ServerSide.Core.Handlers
             //analyzing protocol Message
             try
             {
-                RegistrationRequestPayload payload = PayloadBuilder.GetPayload<RegistrationRequestPayload>(protocolMessage.PayloadStream);
+                var payload = PayloadBuilder.GetPayload<RegistrationRequestPayload>(protocolMessage.PayloadStream);
 
                 if (UserDbHelper.UserExists(payload.User.Email))
                 {
@@ -63,6 +63,7 @@ namespace ServerSide.Core.Handlers
 
             return new SocketEventProtocolMessage(MessageType.RegistrationResponse, response);
         }
+
 
         private static bool CreateUser(User user)
         {

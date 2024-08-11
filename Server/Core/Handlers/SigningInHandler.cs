@@ -18,13 +18,14 @@ namespace ServerSide.Core.Handlers
 {
     internal class SigningInHandler : IResponsibleHandler
     {
+        //Response data
         private static SigningInResponseType responseType;
 
         public static void TryToSignIn(ProtocolMessage message)
         {
             try
             {
-                SigningInRequestPayload payload = PayloadBuilder.GetPayload<SigningInRequestPayload>(message.PayloadStream);
+                var payload = PayloadBuilder.GetPayload<SigningInRequestPayload>(message.PayloadStream);
                 
                 if (UserDbHelper.UserExists(payload.Email) && ArePasswordsEqual(payload.Email, payload.Password))
                 {
@@ -42,16 +43,6 @@ namespace ServerSide.Core.Handlers
             }
         }
 
-        private static bool ArePasswordsEqual(string email, string password)
-        {
-            //Getting hash from DB
-            string? hashedPassword = UserDbHelper.GetPassword(email);
-
-            //Hasher compares given password with the hash from DB
-            return PasswordHasher.Verify(password, hashedPassword);
-        }
-
-
         public static SocketEventProtocolMessage GetResponse()
         {
             ProtocolMessage response = new ProtocolMessage();
@@ -60,6 +51,15 @@ namespace ServerSide.Core.Handlers
             return new SocketEventProtocolMessage(MessageType.SigningInResponse, response);
         }
 
+
+        private static bool ArePasswordsEqual(string email, string password)
+        {
+            //Getting hash from DB
+            string? hashedPassword = UserDbHelper.GetPassword(email);
+
+            //Hasher compares given password with the hash from DB
+            return PasswordHasher.Verify(password, hashedPassword);
+        }
 
 
         private static void SaveSessionState(string email, string ip)

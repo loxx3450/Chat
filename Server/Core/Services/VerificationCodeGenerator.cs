@@ -11,7 +11,6 @@ namespace ServerSide.Core.Services
     {
         private const int DEFAULT_CODE_LENGTH = 6;
 
-
         public static string GetCode()
         {
             return RandomNumberGenerator.GetString("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", DEFAULT_CODE_LENGTH);

@@ -15,11 +15,12 @@ namespace ServerSide.Core.Handlers
 {
     internal class CodeVerifierForResetPassword : IResponsibleHandler
     {
+        //Response data
         private static VerifyCodeForResetPasswordResponseType responseType;
 
         public static void VerifyCode(ProtocolMessage message)
         {
-            VerifyCodeForResetPasswordRequestPayload payload = PayloadBuilder.GetPayload<VerifyCodeForResetPasswordRequestPayload>(message.PayloadStream);
+            var payload = PayloadBuilder.GetPayload<VerifyCodeForResetPasswordRequestPayload>(message.PayloadStream);
 
             if (VerificationCodeDbHelper.IsCodeValid(payload.AssociatedUserId, payload.Code))
             {
