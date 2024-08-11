@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:Chat.MVVM.Views.EntryWindows"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
-             xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
+             xmlns:entryWindowsViewModels="clr-namespace:Chat.MVVM.ViewModels.EntryWindows" 
              xmlns:configs="clr-namespace:Chat.MVVM.Models.Instances.Configs" 
              mc:Ignorable="d" 
              d:Width="1920" d:Height="1080"
-             d:DataContext="{d:DesignInstance Type=viewModels:EmailVerificationViewModel}">
+             d:DataContext="{d:DesignInstance Type=entryWindowsViewModels:EmailVerificationViewModel}">
 
     <Grid Background="{DynamicResource MainBackground}">
 
