@@ -10,6 +10,6 @@ namespace Chat.MVVM.ViewModels.EntryWindows
 {
     public abstract class EntryWindowsViewModelBase : ViewModelBase
     {
-        public override IConfig? Config => new EntryWindowsConfig();
+        public override EntryWindowsConfig? Config => new EntryWindowsConfig();
     }
 }
