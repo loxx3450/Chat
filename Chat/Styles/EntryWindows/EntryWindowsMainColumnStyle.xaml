@@ -11,9 +11,9 @@
             <converters:WidthAndHeightToGridLengthConverter x:Key="Converter"/>
             
             <converterParameters:WidthAndHeightToGridLengthConverterParameters x:Key="ConverterParams" 
-                                                                               HorizontalScreenValue="{x:Static configs:EntryWindowsConfig.MainColumnHorizontalScreenValue}" 
-                                                                               SquareScreenValue="{x:Static configs:EntryWindowsConfig.MainColumnSquareScreenValue}" 
-                                                                               VerticalScreenValue="{x:Static configs:EntryWindowsConfig.MainColumnVerticalScreenValue}"/>
+                                                                               HorizontalScreenValue="0.25" 
+                                                                               SquareScreenValue="0.35" 
+                                                                               VerticalScreenValue="0.4"/>
             
         </Style.Resources>
 
