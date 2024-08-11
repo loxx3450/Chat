@@ -1,15 +1,15 @@
-﻿<UserControl x:Class="Chat.MVVM.Views.RecoveryView"
+﻿<UserControl x:Class="Chat.MVVM.Views.EntryWindows.RecoveryView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Chat.MVVM.Views"
-             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:local="clr-namespace:Chat.MVVM.Views.EntryWindows"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
-             xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
+             xmlns:entryWindowsViewModels="clr-namespace:Chat.MVVM.ViewModels.EntryWindows" 
              mc:Ignorable="d" 
              d:Width="1920" d:Height="1080"
-             d:DataContext="{d:DesignInstance Type=viewModels:RecoveryViewModel}"
+             d:DataContext="{d:DesignInstance Type=entryWindowsViewModels:RecoveryViewModel}"
              >
 
     <Grid Background="{DynamicResource MainBackground}">
@@ -24,12 +24,13 @@
                  VerticalAlignment="Top"
                  Stretch="Uniform">
 
-            <StackPanel Width="500">
+            <StackPanel Width="{Binding Config.ContentWidth}">
 
-                <TextBlock Style="{DynamicResource EntryWindowsCaptionStyle}"
+                <TextBlock Style="{StaticResource EntryWindowsCaptionStyle}"
                            Text="Password Recovery"/>
 
-                <userControls:Logotype Height="100"/>
+                <svgc:SvgViewbox Style="{StaticResource LogotypeStyle}"
+                                 Height="{Binding Config.LogotypeHeight}"/>
 
 
                 <Grid Margin="0, 30">

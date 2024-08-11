@@ -23,7 +23,8 @@ namespace Chat.MVVM.Views.UserControls
     {
         //Command
         public static DependencyProperty CommandProperty =
-            DependencyProperty.Register(nameof(Command), typeof(ICommand), typeof(Button));
+            DependencyProperty.Register(nameof(Command), typeof(ICommand), typeof(Button),
+                new PropertyMetadata(null));
 
         public ICommand Command
         {
@@ -34,7 +35,8 @@ namespace Chat.MVVM.Views.UserControls
 
         //Background
         public static new DependencyProperty BackgroundProperty =
-            DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(Button));
+            DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(Button),
+                new PropertyMetadata(new SolidColorBrush(Colors.Wheat)));
 
         public new Brush Background
         {
@@ -45,7 +47,8 @@ namespace Chat.MVVM.Views.UserControls
 
         //Appearance
         public static DependencyProperty AppearanceProperty =
-            DependencyProperty.Register(nameof(Appearance), typeof(ControlAppearance), typeof(Button));
+            DependencyProperty.Register(nameof(Appearance), typeof(ControlAppearance), typeof(Button),
+                new PropertyMetadata(ControlAppearance.Info));
 
         public ControlAppearance Appearance
         {
@@ -56,7 +59,8 @@ namespace Chat.MVVM.Views.UserControls
 
         //Text
         public static DependencyProperty TextProperty =
-            DependencyProperty.Register(nameof(Text), typeof(string), typeof(Button));
+            DependencyProperty.Register(nameof(Text), typeof(string), typeof(Button),
+                new PropertyMetadata(string.Empty));
 
         public string Text
         {

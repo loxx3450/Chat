@@ -23,29 +23,11 @@ namespace Chat.MVVM.Views.UserControls
     /// </summary>
     public partial class TitleBar : UserControl
     {
-        public static readonly DependencyProperty ButtonsForegroundProperty =
-            DependencyProperty.Register(nameof(ButtonsForeground), typeof(Brush), typeof(TitleBar),
-                new PropertyMetadata(null, (d, e) =>
-                {
-                    TitleBar titleBar = d as TitleBar;
-                    Brush value = (Brush)e.NewValue;
-
-                    titleBar.buttonCloseIcon.Foreground = value;
-                    titleBar.buttonMaximizeIcon.Foreground = value;
-                    titleBar.buttonMinimizeIcon.Foreground = value;
-                    titleBar.buttonRestoreIcon.Foreground = value;
-                }));
-
-        public Brush ButtonsForeground
-        {
-            get => (Brush)GetValue(ButtonsForegroundProperty);
-            set => SetValue(ButtonsForegroundProperty, value);
-        }
-
         private Window Window
         {
             get => Window.GetWindow(this);
         }
+
 
         public TitleBar()
         {
@@ -56,6 +38,8 @@ namespace Chat.MVVM.Views.UserControls
             Loaded += OnSourceInitialized;
         }
 
+
+        //callbacks to events
         private void buttonMaximize_Click(object sender, RoutedEventArgs e)
         {
             if (Window.WindowState == WindowState.Maximized)
@@ -77,6 +61,7 @@ namespace Chat.MVVM.Views.UserControls
         {
             Window.WindowState = WindowState.Minimized;
         }
+
 
         private void RefreshMaximizeRestoreButton()
         {
@@ -109,6 +94,7 @@ namespace Chat.MVVM.Views.UserControls
 
 
         //Service methods to render Control correctly, when Window will be maximized
+        #region ServiceInfo
         public static IntPtr HookProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             if (msg == WM_GETMINMAXINFO)
@@ -199,5 +185,6 @@ namespace Chat.MVVM.Views.UserControls
             public POINT ptMinTrackSize;
             public POINT ptMaxTrackSize;
         }
+        #endregion
     }
 }

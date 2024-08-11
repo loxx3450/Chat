@@ -1,6 +1,7 @@
 ﻿using Chat.MVVM.Models.Instances;
 using Chat.MVVM.Models.Services;
 using Chat.MVVM.ViewModels;
+using Chat.MVVM.ViewModels.EntryWindows;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary;
 using CommonLibrary.Payloads.ResetingPassword;
@@ -28,7 +29,7 @@ namespace Chat.MVVM.Models.Handlers
         {
             TransitionManager.RemoveWaiting();
 
-            ChangePasswordResponsePayload payload = PayloadBuilder.GetPayload<ChangePasswordResponsePayload>(message.PayloadStream);
+            var payload = PayloadBuilder.GetPayload<ChangePasswordResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)
             {

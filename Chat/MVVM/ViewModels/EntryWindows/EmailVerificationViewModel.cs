@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chat.MVVM.ViewModels
+namespace Chat.MVVM.ViewModels.EntryWindows
 {
-    internal class RecoveryCodeConfirmationViewModel : ViewModelBase
+    internal class EmailVerificationViewModel : EntryWindowsViewModelBase
     {
+        // ============= Properties for Binding =============
         private string _code = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
@@ -23,30 +24,33 @@ namespace Chat.MVVM.ViewModels
         }
 
 
-        public RelayCommand ConfirmCommand { get; set; }
-        public RelayCommand NavigateToLoginCommand { get; set; }
+        // ============= Commands =============
+        public RelayCommand VerifyCommand { get; set; }
         public RelayCommand NavigateToRegistrationCommand { get; set; }
 
 
-        public RecoveryCodeConfirmationViewModel()
+        public EmailVerificationViewModel()
         {
-            NavigateToLoginCommand = new RelayCommand((o) => Navigator.NavigateTo<LoginViewModel>());
             NavigateToRegistrationCommand = new RelayCommand((o) => Navigator.NavigateTo<RegistrationViewModel>());
 
-            ConfirmCommand = new RelayCommand(Confirm, CanConfirm);
+            VerifyCommand = new RelayCommand(Verify, CanVerify);
         }
 
-        private void Confirm(object obj)
+
+        // ============= private methods =============
+        private void Verify(object obj)
         {
-            CodeVerifierForResetPassword.VerifyCode(Code);
+            EmailVerifier.Verify(Code);
         }
 
-        private bool CanConfirm(object obj) 
+        private bool CanVerify(object obj)
         {
             return !HasErrors
                 && !string.IsNullOrEmpty(_code);
         }
 
+
+        // ============= default methods =============
         public override void ResetData()
         {
             _code = string.Empty;

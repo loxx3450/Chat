@@ -1,6 +1,7 @@
 ﻿using Chat.MVVM.Models.Instances;
 using Chat.MVVM.Models.Services;
 using Chat.MVVM.ViewModels;
+using Chat.MVVM.ViewModels.EntryWindows;
 using Chat.MVVM.Views.UserControls;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary;
@@ -33,7 +34,7 @@ namespace Chat.MVVM.Models.Handlers
         {
             TransitionManager.RemoveWaiting();
 
-            RegistrationResponsePayload responsePayload = PayloadBuilder.GetPayload<RegistrationResponsePayload>(message.PayloadStream);
+            var responsePayload = PayloadBuilder.GetPayload<RegistrationResponsePayload>(message.PayloadStream);
 
             switch (responsePayload.ResponseType)
             {

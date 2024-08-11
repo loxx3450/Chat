@@ -11,6 +11,7 @@ using ProtocolLibrary.Core;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using Chat.MVVM.ViewModels;
 using Chat.MVVM.Models.Services;
+using Chat.MVVM.ViewModels.EntryWindows;
 
 namespace Chat.MVVM.Models.Handlers
 {
@@ -29,7 +30,7 @@ namespace Chat.MVVM.Models.Handlers
         {
             TransitionManager.RemoveWaiting();
 
-            VerifyCodeForResetPasswordResponsePayload payload = PayloadBuilder.GetPayload<VerifyCodeForResetPasswordResponsePayload>(message.PayloadStream);
+            var payload = PayloadBuilder.GetPayload<VerifyCodeForResetPasswordResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)
             {

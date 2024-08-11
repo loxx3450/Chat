@@ -1,6 +1,7 @@
 ﻿using Chat.Core;
 using Chat.MVVM.Core;
 using Chat.MVVM.Models.Handlers;
+using Chat.MVVM.Models.Instances.Configs;
 using Chat.MVVM.Models.Services;
 using CommonLibrary.Models;
 using System;
@@ -12,10 +13,11 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chat.MVVM.ViewModels
+namespace Chat.MVVM.ViewModels.EntryWindows
 {
-    public class RegistrationViewModel : ViewModelBase
+    public class RegistrationViewModel : EntryWindowsViewModelBase
     {
+        // ============= Properties for Binding =============
         private string _username = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
@@ -50,7 +52,6 @@ namespace Chat.MVVM.ViewModels
         }
 
 
-        //TODO: do i even need this???
         private string _confirmationPassword = string.Empty;
 
         [Compare(nameof(Password), ErrorMessage = "The password and confirmation password do not match")]
@@ -60,8 +61,11 @@ namespace Chat.MVVM.ViewModels
             set => SetValidatedField(ref _confirmationPassword, value, nameof(ConfirmationPassword));
         }
 
+
+        // ============= Commands =============
         public RelayCommand SignUpCommand { get; set; }
         public RelayCommand NavigateToLoginCommand { get; set; }
+
 
         public RegistrationViewModel()
         {
@@ -69,6 +73,8 @@ namespace Chat.MVVM.ViewModels
             SignUpCommand = new RelayCommand(SignUp, CanSignUp);
         }
 
+
+        // ============= private methods =============
         private void SignUp(object obj)
         {
             RegistrationService.Register(new User(Username, Email, Password));
@@ -83,6 +89,8 @@ namespace Chat.MVVM.ViewModels
                 && !string.IsNullOrEmpty(_confirmationPassword);
         }
 
+
+        // ============= default methods =============
         public override void ResetData()
         {
             _username = string.Empty;

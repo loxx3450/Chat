@@ -8,24 +8,31 @@
              WindowStartupLocation="CenterOwner" 
              ResizeMode="NoResize"
              WindowStyle="None"
-             ShowInTaskbar="False"
-             Height="180" Width="360">
+             ShowInTaskbar="False">
 
-    <Grid Background="{DynamicResource SecondaryBackground}">
 
-        <Border BorderBrush="{DynamicResource MainBorderBrush}"
-                BorderThickness="2"/>
+    <Viewbox Stretch="Uniform">
 
-        <StackPanel Margin="20" HorizontalAlignment="Center">
+        <Grid Background="{DynamicResource SecondaryBackground}" Height="180" Width="360">
 
-            <TextBlock Foreground="{DynamicResource MainForeground}"
+            <Border BorderBrush="{DynamicResource MainBorderBrush}"
+                    BorderThickness="2"/>
+
+            <StackPanel Margin="20" 
+                        HorizontalAlignment="Center">
+
+                <TextBlock Foreground="{DynamicResource MainForeground}"
                            FontSize="28"
                            Text="Loading..."/>
 
-            <local:LoadingSpinner Margin="0, 20" Diameter="75" StrokeThickness="3"/>
+                <local:LoadingSpinner Margin="0, 20" 
+                                      Diameter="75" 
+                                      StrokeThickness="3"/>
 
-        </StackPanel>
+            </StackPanel>
 
-    </Grid>
+        </Grid>
+        
+    </Viewbox>
 
 </Window>

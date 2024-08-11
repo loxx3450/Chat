@@ -20,9 +20,16 @@ namespace Chat.MVVM.Views.UserControls
     /// </summary>
     public partial class LoadingWindow : Window
     {
-        public LoadingWindow()
+        private const double OWNER_WIDTH_TO_WIDTH_RATIO = 5.0;
+        private const double WIDTH_TO_HEIGHT_RATIO = 2.0;
+
+        public LoadingWindow(Window owner)
         {
             InitializeComponent();
+
+            Owner = owner;
+            Width = owner.Width / OWNER_WIDTH_TO_WIDTH_RATIO;
+            Height = Width / WIDTH_TO_HEIGHT_RATIO;
         }
     }
 }

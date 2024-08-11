@@ -40,6 +40,7 @@ namespace Chat.MVVM.Views.UserControls
             set => SetValue(RelatedPasswordBoxProperty, value);
         }
 
+
         public ClearablePasswordBox()
         {
             InitializeComponent();
@@ -60,6 +61,7 @@ namespace Chat.MVVM.Views.UserControls
         }
 
 
+        //callbacks to events
         private void ClearTextBtn_Click(object sender, RoutedEventArgs e)
         {
             PassBox.Clear();
@@ -81,6 +83,7 @@ namespace Chat.MVVM.Views.UserControls
                 Placehold.Visibility = Visibility.Visible;
             }
 
+            //Making RelatedPasswordBox active to give him a chance to validate himself
             if (RelatedPasswordBox is not null && PassBox.Password != string.Empty)
             {
                 BoundPasswordBox.PasswordChanged(PassBox, new RoutedEventArgs());

@@ -1,5 +1,6 @@
 ﻿using Chat.MVVM.Core;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
+using CommonLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Chat.MVVM.Views.UserControls
     public partial class CustomMessageBox : Window
     {
         //Timer
-        private Timer _timeoutTimer;
+        private Timer timeoutTimer;
 
 
         //Caption
@@ -49,7 +50,17 @@ namespace Chat.MVVM.Views.UserControls
             Message = message;
             Caption = messageType.ToString();
 
-            //Initializing Commands
+            InitializeCommands();
+
+            ConfigureMessageBox(messageType);
+
+            //Setting timer (opt.)
+            if (timeout >= 0)
+                timeoutTimer = new Timer(OnTimerElapsed, null, timeout, Timeout.Infinite);
+        }
+
+        private void InitializeCommands()
+        {
             ClickPositiveCommand = new RelayCommand((o) =>
             {
                 DialogResult = true;
@@ -61,9 +72,11 @@ namespace Chat.MVVM.Views.UserControls
                 DialogResult = false;
                 Close();
             });
+        }
 
-            //Showing buttons depending on MessageBox's type
-            switch (messageType) 
+        private void ConfigureMessageBox(MessageBoxType messageType)
+        {
+            switch (messageType)
             {
                 case MessageBoxType.Info:
                     btnOk.Visibility = Visibility.Visible;
@@ -92,10 +105,6 @@ namespace Chat.MVVM.Views.UserControls
                     CaptionBrush = new SolidColorBrush(Colors.Blue);
                     break;
             }
-
-            //Setting timer (opt.)
-            if (timeout >= 0)
-                _timeoutTimer = new Timer(OnTimerElapsed, null, timeout, Timeout.Infinite);
         }
 
         private void OnTimerElapsed(object state)

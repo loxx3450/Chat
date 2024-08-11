@@ -12,10 +12,11 @@ using System.Net.Http.Headers;
 using Chat.MVVM.Models.Services;
 using Chat.MVVM.Models.Handlers;
 
-namespace Chat.MVVM.ViewModels
+namespace Chat.MVVM.ViewModels.EntryWindows
 {
-    public class LoginViewModel : ViewModelBase
+    public class LoginViewModel : EntryWindowsViewModelBase
     {
+        // ============= Properties for Binding =============
         public bool RememberUser { get; set; }
 
 
@@ -42,9 +43,11 @@ namespace Chat.MVVM.ViewModels
         }
 
 
+        // ============= Commands =============
         public RelayCommand SignInCommand { get; set; }
         public RelayCommand NavigateToRegistrationCommand { get; set; }
         public RelayCommand NavigateToRecoveryCommand { get; set; }
+
 
         public LoginViewModel()
         {
@@ -54,6 +57,8 @@ namespace Chat.MVVM.ViewModels
             SignInCommand = new RelayCommand(SignIn, CanSignIn);
         }
 
+
+        // ============= private methods =============
         private void SignIn(object obj)
         {
             SigningInService.SignIn(Email, Password, RememberUser);
@@ -66,6 +71,8 @@ namespace Chat.MVVM.ViewModels
                 && !string.IsNullOrEmpty(_password);
         }
 
+
+        // ============= default methods =============
         public override void ResetData()
         {
             _email = string.Empty;

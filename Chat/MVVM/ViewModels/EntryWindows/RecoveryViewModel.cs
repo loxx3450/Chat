@@ -10,10 +10,11 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chat.MVVM.ViewModels
+namespace Chat.MVVM.ViewModels.EntryWindows
 {
-    public class RecoveryViewModel : ViewModelBase
+    public class RecoveryViewModel : EntryWindowsViewModelBase
     {
+        // ============= Properties for Binding =============
         private string _email = string.Empty;
 
         [Required(ErrorMessage = "Can not be empty")]
@@ -25,6 +26,7 @@ namespace Chat.MVVM.ViewModels
         }
 
 
+        // ============= Commands =============
         public RelayCommand ResetPasswordCommand { get; set; }
         public RelayCommand NavigateToLoginCommand { get; set; }
         public RelayCommand NavigateToRegistrationCommand { get; set; }
@@ -38,6 +40,8 @@ namespace Chat.MVVM.ViewModels
             ResetPasswordCommand = new RelayCommand(ResetPassword, CanResetPassword);
         }
 
+
+        // ============= private methods =============
         private void ResetPassword(object obj)
         {
             PasswordResetter.ResetPassword(Email);
@@ -49,6 +53,8 @@ namespace Chat.MVVM.ViewModels
                 && !string.IsNullOrEmpty(_email);
         }
 
+
+        // ============= default methods =============
         public override void ResetData()
         {
             _email = string.Empty;

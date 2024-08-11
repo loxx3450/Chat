@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Chat.MVVM.Views.UserControls
+namespace Chat.MVVM.Views.EntryWindows
 {
     /// <summary>
-    /// Логика взаимодействия для Logotype.xaml
+    /// Логика взаимодействия для EmailVerificationView.xaml
     /// </summary>
-    public partial class Logotype : UserControl
+    public partial class EmailVerificationView : UserControl
     {
-        public Logotype()
+        public EmailVerificationView()
         {
             InitializeComponent();
         }

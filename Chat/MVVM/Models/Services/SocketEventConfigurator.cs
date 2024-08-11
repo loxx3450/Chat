@@ -18,9 +18,6 @@ namespace Chat.MVVM.Models.Services
             socket.AddSupportedMessageType<SocketEventProtocolMessage>();
 
             //2. Subscribes on Events from Client
-            //TODO:
-            //
-            //
             socket.On(MessageType.RegistrationResponse, 
                 (mes) => RegistrationService.HandleResponse((ProtocolMessage)mes));
 

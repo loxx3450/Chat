@@ -30,7 +30,7 @@ namespace Chat.MVVM.Models.Handlers
         {
             TransitionManager.RemoveWaiting();
 
-            SigningInResponsePayload payload = PayloadBuilder.GetPayload<SigningInResponsePayload>(message.PayloadStream);
+            var payload = PayloadBuilder.GetPayload<SigningInResponsePayload>(message.PayloadStream);
 
             switch (payload.ResponseType)
             {

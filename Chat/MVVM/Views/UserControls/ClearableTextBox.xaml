@@ -9,8 +9,7 @@
              xmlns:infrastucture="clr-namespace:Chat.MVVM.Views.UserControls.AdditionalInfrastructure"
              mc:Ignorable="d" 
              x:Name="root"
-             Validation.ErrorTemplate="{StaticResource errorTemplate}"
-             >
+             Validation.ErrorTemplate="{StaticResource errorTemplate}">
 
     <Grid GotFocus="Grid_GotFocus"
           LostFocus="Grid_LostFocus"
@@ -42,30 +41,30 @@
 
 
         <TextBox x:Name="TextBox" 
-                Panel.ZIndex="1"
+                 Panel.ZIndex="1"
                  TabIndex="0"
-                Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                CaretBrush="{Binding Foreground}" 
-                Foreground="{Binding Foreground}"
-                FontSize="{Binding FontSize}"
-                TextChanged="TextBox_TextChanged"/>
+                 Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 CaretBrush="{Binding Foreground}" 
+                 Foreground="{Binding Foreground}"
+                 FontSize="{Binding FontSize}"
+                 TextChanged="TextBox_TextChanged"/>
 
 
         <TextBox x:Name="Placehold" 
-                Panel.ZIndex="0" 
-                VerticalAlignment="Center"
+                 Panel.ZIndex="0" 
+                 VerticalAlignment="Center"
                  FontSize="{Binding PlaceholderFontSize}"
                  Foreground="{Binding PlaceholderForeground}"
                  Text="{Binding PlaceholderText}"/>
 
 
         <Button x:Name="ClearTextBtn" 
-            Grid.Column="1" 
-            Visibility="Collapsed"
-            Click="ClearTextBtn_Click">
+                Grid.Column="1" 
+                Visibility="Collapsed"
+                Click="ClearTextBtn_Click">
 
             <ui:SymbolIcon Symbol="Dismiss16" 
-                        Foreground="{Binding Foreground}"/>
+                           Foreground="{Binding Foreground}"/>
 
         </Button>
 
