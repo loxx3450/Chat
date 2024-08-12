@@ -8,7 +8,7 @@
         xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels" 
         mc:Ignorable="d"
         Height="720" Width="1080"
-        MinHeight="540" MinWidth="480"
+        MinHeight="720" MinWidth="640"
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}"
         Style="{StaticResource NonDefaultWindowStyle}"
         Icon="../../Images/logo.png"
