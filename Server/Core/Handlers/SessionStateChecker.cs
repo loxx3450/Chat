@@ -18,6 +18,7 @@ namespace ServerSide.Core.Handlers
     {
         //Response data
         private static SessionStateCheckResponseType responseType;
+        private static int associatedUserId;
 
         //TODO: get user_id
         public static void Check(ProtocolMessage protocolMessage)
@@ -25,7 +26,11 @@ namespace ServerSide.Core.Handlers
             var payload = PayloadBuilder.GetPayload<SessionStateCheckRequestPayload>(protocolMessage.PayloadStream);
 
             if (SessionDbHelper.IsActualSessionFounded(payload.IP))
+            {
+                associatedUserId = SessionDbHelper.GetUserId(payload.IP);
+
                 responseType = SessionStateCheckResponseType.UserIsLoggedIn;
+            }
             else
                 responseType = SessionStateCheckResponseType.UserIsLoggedOut;
         }
@@ -33,7 +38,7 @@ namespace ServerSide.Core.Handlers
         public static SocketEventProtocolMessage GetResponse()
         {
             ProtocolMessage response = new ProtocolMessage();
-            response.SetPayload(new SessionStateCheckResponsePayload(responseType));
+            response.SetPayload(new SessionStateCheckResponsePayload(responseType, associatedUserId));
 
             return new SocketEventProtocolMessage(MessageType.SessionStateCheckResponse, response);
         }

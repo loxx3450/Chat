@@ -52,6 +52,25 @@ namespace ServerSide.Core.Services.DbHelpers
         }
 
 
+        // =============== SELECT Requests ===============
+        public static int GetUserId(string ip)
+        {
+            NpgsqlCommand cmd = new NpgsqlCommand();
+
+            cmd.CommandText = "SELECT user_id " +
+                              "FROM sessions " +
+                              $"WHERE ip = @ip " +
+                                  $"AND status_id = @loggedIn " +
+                                  $"AND EXTRACT(day FROM age(@now, updated_at)) <= 3";
+
+            cmd.Parameters.AddWithValue("@ip", ip);
+            cmd.Parameters.AddWithValue("@loggedIn", LOGGED_IN);
+            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
+
+            return Convert.ToInt32(DbHelper.ExecuteScalar(cmd));
+        }
+
+
         // =============== INSERT Requests ===============
         public static void CreateNewSession(int user_id, string ip)
         {

@@ -16,10 +16,12 @@ namespace CommonLibrary.Payloads.SessionStateCheck
     public class SessionStateCheckResponsePayload: JSONPayload
     {
         public SessionStateCheckResponseType ResponseType { get; set; }
+        public int AssociatedUserId { get; set; }
 
-        public SessionStateCheckResponsePayload(SessionStateCheckResponseType responseType)
+        public SessionStateCheckResponsePayload(SessionStateCheckResponseType responseType, int associatedUserId)
         {
             ResponseType = responseType;
+            AssociatedUserId = associatedUserId;
         }
     }
 }

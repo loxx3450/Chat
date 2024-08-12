@@ -1,4 +1,5 @@
-﻿using Chat.MVVM.Models.Services;
+﻿using Chat.MVVM.Models.Instances;
+using Chat.MVVM.Models.Services;
 using Chat.MVVM.ViewModels;
 using Chat.MVVM.ViewModels.EntryWindows;
 using CommonLibrary;
@@ -32,6 +33,7 @@ namespace Chat.MVVM.Models.Handlers
             switch (payload.ResponseType)
             {
                 case SessionStateCheckResponseType.UserIsLoggedIn:
+                    Client.AssociatedUserId = payload.AssociatedUserId;
                     Navigator.NavigateTo<ChatViewModel>();
                     break;
 
