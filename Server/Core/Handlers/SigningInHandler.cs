@@ -20,6 +20,7 @@ namespace ServerSide.Core.Handlers
     {
         //Response data
         private static SigningInResponseType responseType;
+        private static int associatedUserId;
 
         public static void TryToSignIn(ProtocolMessage message)
         {
@@ -31,6 +32,8 @@ namespace ServerSide.Core.Handlers
                 {
                     if (payload.RememberUser)
                         SaveSessionState(payload.Email, payload.IP);
+
+                    associatedUserId = UserDbHelper.GetUserId(payload.Email);
 
                     responseType = SigningInResponseType.Successed;
                 }
@@ -46,7 +49,7 @@ namespace ServerSide.Core.Handlers
         public static SocketEventProtocolMessage GetResponse()
         {
             ProtocolMessage response = new ProtocolMessage();
-            response.SetPayload(new SigningInResponsePayload(responseType));
+            response.SetPayload(new SigningInResponsePayload(responseType, associatedUserId));
 
             return new SocketEventProtocolMessage(MessageType.SigningInResponse, response);
         }

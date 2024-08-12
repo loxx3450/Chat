@@ -17,10 +17,12 @@ namespace CommonLibrary.Payloads.SigningIn
     public class SigningInResponsePayload : JSONPayload
     {
         public SigningInResponseType ResponseType { get; set; }
+        public int AssociatedUserId { get; set; }
 
-        public SigningInResponsePayload(SigningInResponseType responseType)
+        public SigningInResponsePayload(SigningInResponseType responseType, int associatedUserId)
         {
             ResponseType = responseType;
+            AssociatedUserId = associatedUserId;
         }
     }
 }

@@ -13,6 +13,7 @@ using CommonLibrary.Payloads.Registration;
 using Chat.MVVM.ViewModels;
 using System.Net;
 using Chat.MVVM.Models.Services;
+using Chat.MVVM.Models.Instances;
 
 namespace Chat.MVVM.Models.Handlers
 {
@@ -35,6 +36,7 @@ namespace Chat.MVVM.Models.Handlers
             switch (payload.ResponseType)
             {
                 case SigningInResponseType.Successed:
+                    Client.AssociatedUserId = payload.AssociatedUserId;
                     Navigator.NavigateTo<ChatViewModel>();
                     break;
 
