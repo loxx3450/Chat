@@ -1,6 +1,7 @@
 ﻿using MimeKit;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace ServerSide.Core.Services
         private static BodyBuilder bodyBuilder = new BodyBuilder();
 
         //Additional variables
-        private static string storagePath = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.Parent.ToString() + "\\Storage";
+        private static string storagePath = ConfigurationManager.AppSettings["storagePath"];
 
 
         public static void AddHtmlBody(string path)
