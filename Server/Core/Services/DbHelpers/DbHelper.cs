@@ -29,6 +29,9 @@ namespace ServerSide.Core.Services.DbHelpers
 
         public static object? ExecuteScalar(NpgsqlCommand cmd)
         {
+            if (conn.State != System.Data.ConnectionState.Open)
+                OpenConnection();
+
             cmd.Connection = conn;
 
             return cmd.ExecuteScalar();
@@ -36,6 +39,9 @@ namespace ServerSide.Core.Services.DbHelpers
 
         public static void ExecuteNonQuery(NpgsqlCommand cmd)
         {
+            if (conn.State != System.Data.ConnectionState.Open)
+                OpenConnection();
+
             cmd.Connection = conn;
 
             cmd.ExecuteNonQuery();
@@ -43,6 +49,9 @@ namespace ServerSide.Core.Services.DbHelpers
 
         public static NpgsqlDataReader ExecuteReader(NpgsqlCommand cmd)
         {
+            if (conn.State != System.Data.ConnectionState.Open)
+                OpenConnection();
+
             cmd.Connection = conn;
 
             return cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
