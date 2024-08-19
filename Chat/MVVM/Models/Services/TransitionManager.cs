@@ -18,9 +18,8 @@ namespace Chat.MVVM.Models.Services
         private static Window currentWindow = null!;
 
 
-        //Flags for controlling Windows's states
-        private static bool isOpened = false;
-        private static bool isActual = true;
+        //Counter for controlling Windows's states
+        private static int stateCounter = 0;
 
 
         //Lock
@@ -36,16 +35,13 @@ namespace Chat.MVVM.Models.Services
         {
             lock (lockObj)
             {
-                if (!isActual)
+                if (stateCounter == 0)
                 {
-                    isActual = true;
-                    return;
+                    //Calling method in Dispatcher's Thread
+                    Application.Current.Dispatcher.Invoke(SetupAndOpenWindows);
                 }
 
-                //Calling method in Dispatcher's Thread
-                Application.Current.Dispatcher.Invoke(SetupAndOpenWindows);
-
-                isOpened = true;
+                stateCounter++;
             }
         }
 
@@ -53,16 +49,13 @@ namespace Chat.MVVM.Models.Services
         {
             lock (lockObj)
             {
-                if (!isOpened)
+                stateCounter--;
+
+                if (stateCounter == 0)
                 {
-                    isActual = false;
-                    return;
+                    //Calling method in Dispatcher's Thread
+                    Application.Current.Dispatcher.Invoke(CloseWindows);
                 }
-
-                //Calling method in Dispatcher's Thread
-                Application.Current.Dispatcher.Invoke(CloseWindows);
-
-                isOpened = false;
             }
         }
 
