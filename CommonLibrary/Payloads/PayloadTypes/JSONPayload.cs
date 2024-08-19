@@ -11,11 +11,6 @@ namespace CommonLibrary.Payloads.PayloadTypes
 {
     public class JSONPayload : IPayload
     {
-        public string GetPayloadType()
-        {
-            return "json";
-        }
-
         public MemoryStream GetStream()
         {
             byte[] bytes = UTF8Encoding.UTF8.GetBytes(GetJson());
