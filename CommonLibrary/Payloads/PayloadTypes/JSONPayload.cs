@@ -4,39 +4,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CommonLibrary.Payloads.PayloadTypes
 {
     public class JSONPayload : IPayload
     {
-        public string GetPayloadType()
-        {
-            return "json";
-        }
-
         public MemoryStream GetStream()
         {
             byte[] bytes = UTF8Encoding.UTF8.GetBytes(GetJson());
 
-            MemoryStream stream = new MemoryStream();
-
-            stream.Write(bytes, 0, bytes.Length);
-
-            stream.Position = 0;
+            MemoryStream stream = new MemoryStream(bytes);
 
             return stream;
         }
 
         public string GetJson()
         {
-            return JsonSerializer.Serialize(this, this.GetType());
+            var options = new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            };
+
+            return JsonSerializer.Serialize(this, this.GetType(), options);
         }
 
         public static object GetPayload(MemoryStream memoryStream, Type returnType)
         {
-            using StreamReader reader = new StreamReader(memoryStream, leaveOpen: true);
-            string json = reader.ReadToEnd();
+            string json = null!;
+
+            using (StreamReader reader = new StreamReader(memoryStream, leaveOpen: true))
+            {
+                json = reader.ReadToEnd();
+            }
 
             memoryStream.Position = 0;
 

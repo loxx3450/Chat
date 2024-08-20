@@ -20,7 +20,6 @@ namespace ServerSide.Core.Handlers
         private static SessionStateCheckResponseType responseType;
         private static int associatedUserId;
 
-        //TODO: get user_id
         public static void Check(ProtocolMessage protocolMessage)
         {
             var payload = PayloadBuilder.GetPayload<SessionStateCheckRequestPayload>(protocolMessage.PayloadStream);

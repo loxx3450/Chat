@@ -40,6 +40,7 @@
                 
                 <!--ControlTemplates-->
                 <ResourceDictionary Source="Styles/ControlTemplates/ErrorTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/ControlTemplates/DialogueCardTemplate.xaml"/>
 
                 <!--from NuGet-->
                 <ui:ControlsDictionary />

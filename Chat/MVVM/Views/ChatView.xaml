@@ -4,20 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Chat.MVVM.Views"
+             xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls"
+             xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance viewModels:ChatViewModel}">
+
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.33*" MinWidth="240"/>
+            <ColumnDefinition Width="0.3*" MinWidth="240"/>
             <ColumnDefinition Width="3"/>
-            <ColumnDefinition Width="0.67*" MinWidth="400"/>
+            <ColumnDefinition Width="0.7*" MinWidth="400"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0"
               Background="{DynamicResource SecondaryBackground}">
-            
+
+            <ListView ItemsSource="{Binding DialoguesCards}" 
+                      ItemContainerStyle="{StaticResource DialogueCardTemplate}"
+                      BorderThickness="0"
+                      Background="Transparent"/>
+
         </Grid>
 
         <GridSplitter Grid.Column="1" 
@@ -27,7 +35,9 @@
 
         <Grid Grid.Column="2" 
               Background="{DynamicResource MainBackground}">
+
             
+
         </Grid>
         
     </Grid>
