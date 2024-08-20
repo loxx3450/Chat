@@ -45,6 +45,10 @@ namespace CommonLibrary.Payloads.GettingDialogues
                     writer.Write(dialogueCard.DialogueName);
 
 
+                    // ====== IsGroup ======
+                    writer.Write(dialogueCard.IsGroup);
+
+
                     // ====== IconStream ======
                     if (dialogueCard.IconStream is not null)
                     {
@@ -97,6 +101,10 @@ namespace CommonLibrary.Payloads.GettingDialogues
                     string dialogueName = reader.ReadString();
 
 
+                    //====== IsGroup ======
+                    bool isGroup = reader.ReadBoolean();
+
+
                     // ====== IconStream ======
                     int iconPathLength = reader.ReadInt32();
 
@@ -124,7 +132,7 @@ namespace CommonLibrary.Payloads.GettingDialogues
                         lastMessage = new Message(text, sentAt, hasFiles);
                     }
 
-                    dialoguesCards.Add(new DialogueCard(dialogueName, iconStream, lastMessage));
+                    dialoguesCards.Add(new DialogueCard(dialogueName, isGroup, iconStream, lastMessage));
                 }
 
                 return new GettingDialoguesCardsResponsePayload(responseType, dialoguesCards);

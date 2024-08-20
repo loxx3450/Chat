@@ -12,13 +12,17 @@ namespace CommonLibrary.Models
     {
         public string DialogueName { get; set; }
 
+        public bool IsGroup { get; set; }
+
         public byte[]? IconStream { get; set; }
 
         public Message? LastMessage { get; set; }
 
-        public DialogueCard(string dialogueName, byte[]? iconStream = null, Message? lastMessage = null)
+        public DialogueCard(string dialogueName, bool isGroup, byte[]? iconStream = null, Message? lastMessage = null)
         {
             DialogueName = dialogueName;
+
+            IsGroup = isGroup;
 
             IconStream = iconStream;
 

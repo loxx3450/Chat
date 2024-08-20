@@ -62,6 +62,7 @@ namespace ServerSide.Core.Handlers
 
             string dialogue_name;
             string icon_path;
+            bool isGroup;
             Message? last_message = null;
 
             while (reader.Read())
@@ -72,12 +73,16 @@ namespace ServerSide.Core.Handlers
                     //Taking info about companion
                     dialogue_name = reader.GetString(0);
                     icon_path = reader.IsDBNull(1) ? string.Empty : reader.GetString(1);
+
+                    isGroup = false;
                 }
                 else
                 {
                     //Taking info about group
                     dialogue_name = reader.GetString(2);
                     icon_path = reader.IsDBNull(3) ? string.Empty : reader.GetString(3);
+
+                    isGroup = true;
                 }
 
 
@@ -107,7 +112,7 @@ namespace ServerSide.Core.Handlers
                     last_message = new Message(message_text, sent_at, hasFiles);
                 }
 
-                dialoguesCards.Add(new DialogueCard(dialogue_name, iconBytes, last_message));
+                dialoguesCards.Add(new DialogueCard(dialogue_name, isGroup, iconBytes, last_message));
             }
 
             reader.Close();
