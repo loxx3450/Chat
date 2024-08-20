@@ -66,6 +66,12 @@ namespace ServerSide.Core
                 socket.Emit(PasswordChanger.GetResponse());
             });
 
+            socket.On(MessageType.GettingDialoguesCardsRequest, (message) =>
+            {
+                DialoguesCardsProvider.FormulateListOfDialogues((ProtocolMessage)message);
+                socket.Emit(DialoguesCardsProvider.GetResponse());
+            });
+
             //3. Subscribes on service Events
             socket.OnDisconnecting += () => DisconnectionHandler.Disconnect(client);
             socket.OnOtherSideIsDisconnected += () => BreakUpHandler.HandleBreakUp(client);

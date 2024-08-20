@@ -399,3 +399,6 @@ FodyWeavers.xsd
 
 #Other
 App.config
+
+#Users's Storage
+Server/Storage/Users/
