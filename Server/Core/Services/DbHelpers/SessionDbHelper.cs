@@ -10,8 +10,8 @@ namespace ServerSide.Core.Services.DbHelpers
     internal static class SessionDbHelper
     {
         //Status_id's
-        private const int LOGGED_IN = 1;
-        private const int LOGGED_OUT = 2;
+        private const bool LOGGED_IN = true;
+        private const bool LOGGED_OUT = false;
 
 
         // =============== BooleanRequests ===============
@@ -22,7 +22,7 @@ namespace ServerSide.Core.Services.DbHelpers
             string cmdText = "SELECT 1 " +
                              "FROM sessions " +
                              $"WHERE ip = @ip " +
-                                 $"AND status_id = @loggedIn " +
+                                 $"AND is_logged_in = @loggedIn " +
                                  $"AND EXTRACT(day FROM age(@now, updated_at)) <= 3";               //after 3 days session will be expired
 
             cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
@@ -60,7 +60,7 @@ namespace ServerSide.Core.Services.DbHelpers
             cmd.CommandText = "SELECT user_id " +
                               "FROM sessions " +
                               $"WHERE ip = @ip " +
-                                  $"AND status_id = @loggedIn " +
+                                  $"AND is_logged_in = @loggedIn " +
                                   $"AND EXTRACT(day FROM age(@now, updated_at)) <= 3";
 
             cmd.Parameters.AddWithValue("@ip", ip);
@@ -77,7 +77,7 @@ namespace ServerSide.Core.Services.DbHelpers
             NpgsqlCommand cmd = new NpgsqlCommand();
 
             cmd.CommandText = "INSERT INTO sessions " +
-                  "(user_id, ip, status_id, updated_at) " +
+                  "(user_id, ip, is_logged_in, updated_at) " +
                   $"VALUES(@id, @ip, @loggedIn, @now);";
 
             cmd.Parameters.AddWithValue("@id", user_id);
@@ -95,7 +95,7 @@ namespace ServerSide.Core.Services.DbHelpers
             NpgsqlCommand cmd = new NpgsqlCommand();
 
             cmd.CommandText = "UPDATE sessions " +
-                                  $"SET updated_at = @now, status_id = @loggedIn " +
+                                  $"SET updated_at = @now, is_logged_in = @loggedIn " +
                                   $"WHERE user_id = @id " +
                                       $"AND ip = @ip;";
 
