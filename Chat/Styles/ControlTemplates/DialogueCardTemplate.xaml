@@ -84,7 +84,7 @@
                         </Trigger>
 
                         <Trigger Property="IsSelected" Value="False">
-                            <Setter Property="Foreground" Value="{DynamicResource NotSelectedDialogueCardForeground}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource SecondaryForeground}"/>
                         </Trigger>
                         
                         <MultiTrigger>

@@ -5,6 +5,7 @@
     <SolidColorBrush x:Key="MainBackground"                                         Color="#0d1117"/>
     <SolidColorBrush x:Key="SecondaryBackground"                                    Color="#161b22"/>
     <SolidColorBrush x:Key="MainForeground"                                         Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="SecondaryForeground"                                    Color="#6d7e9c"/>
     <SolidColorBrush x:Key="MainBorderBrush"                                        Color="#30363d"/>
     <SolidColorBrush x:Key="MainButtonBackground"                                   Color="#f0f8ff"/> 
     
@@ -18,13 +19,12 @@
     <SolidColorBrush x:Key="WindowBorderBrush"                                      Color="#000000"/> 
     
     <!--ChatView-->
-    <SolidColorBrush x:Key="ChatGridSplitter"                                       Color="#0b0d12"/>
+    <SolidColorBrush x:Key="ChatGridSplitter"                                       Color="#0f1317"/>
     
     
     <!--DialogueCardTemplate-->
     <SolidColorBrush x:Key="MouseOverDialogueCardBackground"                        Color="#1d232b"/>
     <SolidColorBrush x:Key="SelectedDialogueCardBackground"                         Color="#223142"/>
-    <SolidColorBrush x:Key="NotSelectedDialogueCardForeground"                      Color="#6d7e9c"/>
     <SolidColorBrush x:Key="MouseOverSelectedDialogueCardBackground"                Color="#2c3b4d"/>
 
 </ResourceDictionary>
