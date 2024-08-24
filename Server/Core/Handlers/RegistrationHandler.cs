@@ -15,6 +15,7 @@ using ServerSide.Core.Services;
 using MimeKit;
 using ServerSide.Core.Services.DbHelpers;
 using CommonLibrary.Payloads.Registration.Registration;
+using CommonLibrary.Models.EF;
 
 namespace ServerSide.Core.Handlers
 {

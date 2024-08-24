@@ -1,4 +1,7 @@
-﻿using Npgsql;
+﻿using CommonLibrary.Models;
+using CommonLibrary.Models.EF;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,94 +20,60 @@ namespace ServerSide.Core.Services.DbHelpers
         // =============== BooleanRequests ===============
         public static bool IsActualSessionFounded(string ip)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            string cmdText = "SELECT 1 " +
-                             "FROM sessions " +
-                             $"WHERE ip = @ip " +
-                                 $"AND is_logged_in = @loggedIn " +
-                                 $"AND EXTRACT(day FROM age(@now, updated_at)) <= 3";               //after 3 days session will be expired
-
-            cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
-
-            cmd.Parameters.AddWithValue("@ip", ip);
-            cmd.Parameters.AddWithValue("@loggedIn", LOGGED_IN);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
+            return dbContext.Sessions
+                            .Any(sess => sess.Ip == ip
+                                && sess.IsLoggedIn == LOGGED_IN
+                                && sess.UpdatedAt >= DateTime.UtcNow.AddDays(-3));                  //after 3 days session will be expired
         }
 
         public static bool IsSessionFounded(int user_id, string ip)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            string cmdText = "SELECT 1 " +
-                             "FROM sessions " +
-                             $"WHERE user_id = @id " +
-                                 $"AND ip = @ip";
-
-            cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
-
-            cmd.Parameters.AddWithValue("@id", user_id);
-            cmd.Parameters.AddWithValue("@ip", ip);
-
-            return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
+            return dbContext.Sessions
+                            .Any(sess => sess.UserId == user_id && sess.Ip == ip);
         }
 
 
         // =============== SELECT Requests ===============
         public static int GetUserId(string ip)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            cmd.CommandText = "SELECT user_id " +
-                              "FROM sessions " +
-                              $"WHERE ip = @ip " +
-                                  $"AND is_logged_in = @loggedIn " +
-                                  $"AND EXTRACT(day FROM age(@now, updated_at)) <= 3";
-
-            cmd.Parameters.AddWithValue("@ip", ip);
-            cmd.Parameters.AddWithValue("@loggedIn", LOGGED_IN);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            return Convert.ToInt32(DbHelper.ExecuteScalar(cmd));
+            return dbContext.Sessions
+                            .Where(sess => sess.Ip == ip
+                                && sess.IsLoggedIn == LOGGED_IN)
+                            .Select(sess => sess.UserId)
+                            .SingleOrDefault();
         }
 
 
         // =============== INSERT Requests ===============
         public static void CreateNewSession(int user_id, string ip)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            cmd.CommandText = "INSERT INTO sessions " +
-                  "(user_id, ip, is_logged_in, updated_at) " +
-                  $"VALUES(@id, @ip, @loggedIn, @now);";
+            dbContext.Sessions
+                     .Add(new Session(user_id, ip));
 
-            cmd.Parameters.AddWithValue("@id", user_id);
-            cmd.Parameters.AddWithValue("@ip", ip);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-            cmd.Parameters.AddWithValue("@loggedIn", LOGGED_IN);
-
-            DbHelper.ExecuteNonQuery(cmd);
+            dbContext.SaveChanges();
         }
 
 
         // =============== UPDATE Requests ===============
         public static void UpdateExistedSession(int user_id, string ip)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            cmd.CommandText = "UPDATE sessions " +
-                                  $"SET updated_at = @now, is_logged_in = @loggedIn " +
-                                  $"WHERE user_id = @id " +
-                                      $"AND ip = @ip;";
+            dbContext.Sessions
+                     .Where(sess => sess.UserId == user_id && sess.Ip == ip)
+                     .ExecuteUpdate(setter => setter
+                         .SetProperty(sess => sess.IsLoggedIn, LOGGED_IN)
+                         .SetProperty(sess => sess.UpdatedAt, DateTime.UtcNow));
 
-            cmd.Parameters.AddWithValue("@id", user_id);
-            cmd.Parameters.AddWithValue("@ip", ip);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-            cmd.Parameters.AddWithValue("@loggedIn", LOGGED_IN);
-
-            DbHelper.ExecuteNonQuery(cmd);
+            dbContext.SaveChanges();
         }
     }
 }

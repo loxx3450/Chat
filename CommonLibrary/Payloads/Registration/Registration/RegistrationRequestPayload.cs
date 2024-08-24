@@ -1,4 +1,4 @@
-﻿using CommonLibrary.Models;
+﻿using CommonLibrary.Models.EF;
 using CommonLibrary.Payloads.PayloadTypes;
 using ProtocolLibrary.Payload;
 using System;

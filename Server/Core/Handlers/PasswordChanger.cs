@@ -3,6 +3,7 @@ using CommonLibrary.Payloads.ResetingPassword.ChangePassword;
 using Npgsql;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;
+using ServerSide.Core.Services;
 using ServerSide.Core.Services.DbHelpers;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace ServerSide.Core.Handlers
 
             try
             {
-                UserDbHelper.UpdatePassword(payload.AssociatedUserId, payload.NewPassword);
+                UserDbHelper.UpdatePassword(payload.AssociatedUserId, PasswordHasher.Hash(payload.NewPassword));
 
                 responseType = ChangePasswordResponseType.Success;
             }

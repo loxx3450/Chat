@@ -1,4 +1,7 @@
-﻿using Npgsql;
+﻿using CommonLibrary.Models;
+using CommonLibrary.Models.EF;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,57 +13,41 @@ namespace ServerSide.Core.Services.DbHelpers
     internal static class VerificationCodeDbHelper
     {
         // =============== BooleanRequests ===============
-        public static bool IsCodeValid(int userId, string code)
+        public static bool IsCodeValid(int userId, string verificationCode)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            string cmdText = "SELECT 1 " +
-                             "FROM verification_codes " +
-                             $"WHERE user_id = @id " +
-                                 $"AND code = @code " +
-                                 $"AND used = false " +
-                                 $"AND EXTRACT(epoch FROM age(@now, created_at)) / 60 <= 15";           //if code is not expired
-
-            cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
-
-            cmd.Parameters.AddWithValue("@id", userId);
-            cmd.Parameters.AddWithValue("@code", code);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
+            return dbContext.VerificationCodes
+                            .Any(code => code.UserId == userId 
+                                && code.Code == verificationCode 
+                                && code.Used == false 
+                                && code.CreatedAt >= DateTime.UtcNow.AddMinutes(-15));            //if code is not expired
         }
 
 
         // =============== INSERT Requests ===============
-        public static void SaveVerificationCode(string email, string code)
+        public static void SaveVerificationCode(string email, string verificationCode)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            cmd.CommandText = "INSERT INTO verification_codes(user_id, code, created_at)" +
-                              $"VALUES(@id, @code, @now);";
+            dbContext.VerificationCodes
+                     .Add(new VerificationCode(UserDbHelper.GetUserId(email), verificationCode));
 
-            cmd.Parameters.AddWithValue("@id", UserDbHelper.GetUserId(email));
-            cmd.Parameters.AddWithValue("@code", code);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            DbHelper.ExecuteNonQuery(cmd);
+            dbContext.SaveChanges();
         }
 
 
         // =============== UPDATE Requests ===============
-        public static void ChangeCodeStateToUsed(int userId, string code)
+        public static void ChangeCodeStateToUsed(int userId, string verificationCode)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            cmd.CommandText = "UPDATE verification_codes " +
-                              "SET used = true " +
-                              $"WHERE user_id = @id " +
-                                  $"AND code = @code";
+            dbContext.VerificationCodes
+                     .Where(code => code.UserId == userId && code.Code == verificationCode)
+                     .ExecuteUpdate(setter => setter
+                         .SetProperty(code => code.Used, true));
 
-            cmd.Parameters.AddWithValue("@id", userId);
-            cmd.Parameters.AddWithValue("@code", code);
-
-            DbHelper.ExecuteNonQuery(cmd);
+            dbContext.SaveChanges();
         }
     }
 }

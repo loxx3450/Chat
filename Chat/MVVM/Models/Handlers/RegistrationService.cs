@@ -5,7 +5,7 @@ using Chat.MVVM.ViewModels.EntryWindows;
 using Chat.MVVM.Views.UserControls;
 using Chat.MVVM.Views.UserControls.AdditionalInfrastructure;
 using CommonLibrary;
-using CommonLibrary.Models;
+using CommonLibrary.Models.EF;
 using CommonLibrary.Payloads.Registration.Registration;
 using ProtocolLibrary.Core;
 using ProtocolLibrary.Message;

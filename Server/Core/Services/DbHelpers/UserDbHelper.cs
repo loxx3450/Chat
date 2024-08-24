@@ -1,4 +1,6 @@
 ﻿using CommonLibrary.Models;
+using CommonLibrary.Models.EF;
+using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -13,129 +15,94 @@ namespace ServerSide.Core.Services.DbHelpers
         // =============== BooleanRequests ===============
         public static bool UserExists(string email)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            string cmdText = "SELECT 1 " +
-                             "FROM users " +
-                             $"WHERE email = @email " +
-                                $"AND verified_email = @verified_email";
-
-            cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
-
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@verified_email", true);
-
-            return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
+            return dbContext.Users
+                            .Any(user => user.Email == email && user.VerifiedEmail == true);
         }
 
         public static bool EmailExists(string email)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            string cmdText = "SELECT 1 " +
-                             "FROM users " +
-                             $"WHERE email = @email";
-
-            cmd.CommandText = DbHelper.FormulateBooleanRequest(cmdText);
-
-            cmd.Parameters.AddWithValue("@email", email);
-
-            return Convert.ToBoolean(DbHelper.ExecuteScalar(cmd));
+            return dbContext.Users
+                            .Any(user => user.Email == email);
         }
 
 
         // =============== SELECT Requests ===============
         public static int GetUserId(string email)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            cmd.CommandText = "SELECT id " +
-                              "FROM users " +
-                              $"WHERE email = @email;";
-
-            cmd.Parameters.AddWithValue("@email", email);
-
-            return Convert.ToInt32(DbHelper.ExecuteScalar(cmd));
+            return dbContext.Users
+                            .Where(user => user.Email == email)
+                            .Select(user => user.Id)
+                            .SingleOrDefault();
         }
 
         public static string? GetPassword(string email)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            cmd.CommandText = "SELECT password " +
-                              "FROM users " +
-                              $"WHERE email = @email";
-
-            cmd.Parameters.AddWithValue("@email", email);
-
-            return Convert.ToString(DbHelper.ExecuteScalar(cmd));
+            return dbContext.Users
+                            .Where(user => user.Email == email)
+                            .Select(user => user.Password)
+                            .SingleOrDefault();
         }
 
 
         // =============== INSERT Requests ===============
         public static void CreateNewUser(string email, string username, string password)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            cmd.CommandText = "INSERT INTO users " +
-                              "(username, email, password, verified_email, created_at, updated_at)" +
-                              $"VALUES(@username, @email, @password, @verified_email, @now, @now);";
+            dbContext.Users
+                     .Add(new User(username, email, password));
 
-            cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@password", password);
-            cmd.Parameters.AddWithValue("@verified_email", false);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            DbHelper.ExecuteNonQuery(cmd);
+            dbContext.SaveChanges();
         }
 
 
         // =============== UPDATE Requests
         public static void CreateNewUserOnUnverifiedEmail(string email, string username, string password)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            cmd.CommandText = "UPDATE users " +
-                              "SET username = @username, password = @password, created_at = @now, updated_at = @now " +
-                              $"WHERE email = @email";
+            dbContext.Users
+                     .Where(user => user.Email == email)
+                     .ExecuteUpdate(setter => setter
+                         .SetProperty(user => user.Username, username)
+                         .SetProperty(user => user.Password, password)
+                         .SetProperty(user => user.CreatedAt, DateTime.UtcNow)
+                         .SetProperty(user => user.UpdatedAt, DateTime.UtcNow));
 
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@password", password);
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            DbHelper.ExecuteNonQuery(cmd);
+            dbContext.SaveChanges();
         }
 
         public static void MarkUserAsVerified(int userId)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            cmd.CommandText = "UPDATE users " +
-                              "SET verified_email = @verified_email " +
-                              $"WHERE id = @id";
+            dbContext.Users
+                     .Where(user => user.Id == userId)
+                     .ExecuteUpdate(setter => setter
+                         .SetProperty(user => user.VerifiedEmail, true));
 
-            cmd.Parameters.AddWithValue("@id", userId);
-            cmd.Parameters.AddWithValue("@verified_email", true);
-
-            DbHelper.ExecuteNonQuery(cmd);
+            dbContext.SaveChanges();
         }
 
         public static void UpdatePassword(int userId, string newPassword)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            using ChatDbContext dbContext = new ChatDbContext();
 
-            cmd.CommandText = "UPDATE users " +
-                              $"SET password = @password, " +
-                                  $"updated_at = @now " +
-                              $"WHERE id = @id;";
+            dbContext.Users
+                     .Where(user => user.Id == userId)
+                     .ExecuteUpdate(setter => setter
+                         .SetProperty(user => user.Password, newPassword)
+                         .SetProperty(user => user.UpdatedAt, DateTime.UtcNow));
 
-            cmd.Parameters.AddWithValue("@id", userId);
-            cmd.Parameters.AddWithValue("@password", PasswordHasher.Hash(newPassword));
-            cmd.Parameters.AddWithValue("@now", DateTime.UtcNow);
-
-            DbHelper.ExecuteNonQuery(cmd);
+            dbContext.SaveChanges();
         }
     }
 }

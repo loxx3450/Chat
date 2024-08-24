@@ -4,6 +4,7 @@ using Chat.MVVM.Models.Handlers;
 using Chat.MVVM.Models.Instances.Configs;
 using Chat.MVVM.Models.Services;
 using CommonLibrary.Models;
+using CommonLibrary.Models.EF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
