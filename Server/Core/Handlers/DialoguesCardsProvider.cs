@@ -1,5 +1,6 @@
 ﻿using CommonLibrary;
-using CommonLibrary.Models;
+using CommonLibrary.Models.Custom;
+using CommonLibrary.Models.EF;
 using CommonLibrary.Payloads.GettingDialogues;
 using Npgsql;
 using ProtocolLibrary.Core;
@@ -11,6 +12,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using File = System.IO.File;
 
 namespace ServerSide.Core.Handlers
 {
@@ -60,10 +62,10 @@ namespace ServerSide.Core.Handlers
         {
             dialoguesCards = new List<DialogueCard>();
 
-            string dialogue_name;
-            string icon_path;
+            string dialogueName;
+            string iconPath;
             bool isGroup;
-            Message? last_message = null;
+            MessageInfo? lastMessageInfo = null;
 
             while (reader.Read())
             {
@@ -71,16 +73,16 @@ namespace ServerSide.Core.Handlers
                 if (reader.IsDBNull(2))
                 {
                     //Taking info about companion
-                    dialogue_name = reader.GetString(0);
-                    icon_path = reader.IsDBNull(1) ? string.Empty : reader.GetString(1);
+                    dialogueName = reader.GetString(0);
+                    iconPath = reader.IsDBNull(1) ? string.Empty : reader.GetString(1);
 
                     isGroup = false;
                 }
                 else
                 {
                     //Taking info about group
-                    dialogue_name = reader.GetString(2);
-                    icon_path = reader.IsDBNull(3) ? string.Empty : reader.GetString(3);
+                    dialogueName = reader.GetString(2);
+                    iconPath = reader.IsDBNull(3) ? string.Empty : reader.GetString(3);
 
                     isGroup = true;
                 }
@@ -88,13 +90,13 @@ namespace ServerSide.Core.Handlers
 
                 byte[]? iconBytes = null;
 
-                if (!string.IsNullOrEmpty(icon_path))
+                if (!string.IsNullOrEmpty(iconPath))
                 {
-                    iconBytes = File.ReadAllBytes(iconsStoragePath + icon_path);
+                    iconBytes = File.ReadAllBytes(iconsStoragePath + iconPath);
                 }
 
 
-                last_message = null;
+                lastMessageInfo = null;
 
                 //If message is attached
                 if (!reader.IsDBNull(4))
@@ -109,10 +111,10 @@ namespace ServerSide.Core.Handlers
                         message_text = reader.GetString(5);
                     }
 
-                    last_message = new Message(message_text, sent_at, hasFiles);
+                    lastMessageInfo = new MessageInfo(message_text, sent_at, hasFiles);
                 }
 
-                dialoguesCards.Add(new DialogueCard(dialogue_name, isGroup, iconBytes, last_message));
+                dialoguesCards.Add(new DialogueCard(dialogueName, isGroup, iconBytes, lastMessageInfo));
             }
 
             reader.Close();

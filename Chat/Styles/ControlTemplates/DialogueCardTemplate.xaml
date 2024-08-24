@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:converters="clr-namespace:Chat.MVVM.Views.AdditionalInfrastructure.Converters"
-                    xmlns:models="clr-namespace:CommonLibrary.Models;assembly=CommonLibrary">
+                    xmlns:converters="clr-namespace:Chat.MVVM.Views.AdditionalInfrastructure.Converters">
 
     <Style x:Key="DialogueCardTemplate" TargetType="{x:Type ListViewItem}">
 
@@ -56,13 +55,13 @@
                                 <TextBlock HorizontalAlignment="Right"
                                            Margin="12,0"
                                            FontSize="14"
-                                           Text="{Binding LastMessage.SentAt, Converter={StaticResource MessageSendingTimeConverter}}"
+                                           Text="{Binding LastMessageInfo.SentAt, Converter={StaticResource MessageSendingTimeConverter}}"
                                            Foreground="{TemplateBinding Foreground}"/>
 
                                 
                                 <TextBlock Grid.Row="1" 
                                            FontSize="14"
-                                           Text="{Binding LastMessage.Text}" 
+                                           Text="{Binding LastMessageInfo.Text}" 
                                            Foreground="{TemplateBinding Foreground}"
                                            TextTrimming="CharacterEllipsis"/>
 

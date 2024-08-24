@@ -2,7 +2,7 @@
 using Chat.MVVM.Core;
 using Chat.MVVM.Models.Handlers;
 using Chat.MVVM.Models.Instances.Configs;
-using CommonLibrary.Models;
+using CommonLibrary.Models.Custom;
 using System;
 using System.Collections.Generic;
 using System.Linq;

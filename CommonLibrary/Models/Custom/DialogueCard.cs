@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonLibrary.Models
+namespace CommonLibrary.Models.Custom
 {
     public class DialogueCard
     {
@@ -16,9 +16,10 @@ namespace CommonLibrary.Models
 
         public byte[]? IconStream { get; set; }
 
-        public Message? LastMessage { get; set; }
+        public MessageInfo? LastMessageInfo { get; set; }
 
-        public DialogueCard(string dialogueName, bool isGroup, byte[]? iconStream = null, Message? lastMessage = null)
+
+        public DialogueCard(string dialogueName, bool isGroup, byte[]? iconStream = null, MessageInfo? lastMessageInfo = null)
         {
             DialogueName = dialogueName;
 
@@ -26,7 +27,7 @@ namespace CommonLibrary.Models
 
             IconStream = iconStream;
 
-            LastMessage = lastMessage;
+            LastMessageInfo = lastMessageInfo;
         }
     }
 }

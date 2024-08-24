@@ -1,4 +1,4 @@
-﻿using CommonLibrary.Models;
+﻿using CommonLibrary.Models.Custom;
 using CommonLibrary.Payloads.PayloadTypes;
 using ProtocolLibrary.Payload;
 using System;
@@ -62,13 +62,13 @@ namespace CommonLibrary.Payloads.GettingDialogues
 
 
                     // ====== LastMessage ======
-                    if (dialogueCard.LastMessage is not null)
+                    if (dialogueCard.LastMessageInfo is not null)
                     {
                         writer.Write(true);
 
-                        writer.Write(dialogueCard.LastMessage.Text ?? string.Empty);
-                        writer.Write(dialogueCard.LastMessage.SentAt.ToBinary());
-                        writer.Write(dialogueCard.LastMessage.HasFiles);
+                        writer.Write(dialogueCard.LastMessageInfo.Text ?? string.Empty);
+                        writer.Write(dialogueCard.LastMessageInfo.SentAt.ToBinary());
+                        writer.Write(dialogueCard.LastMessageInfo.HasFiles);
                     }
                     else
                     {
@@ -113,7 +113,7 @@ namespace CommonLibrary.Payloads.GettingDialogues
 
 
                     // ====== LastMessage ======
-                    Message? lastMessage = null;
+                    MessageInfo? lastMessageInfo = null;
 
                     //If LastMessage is attached
                     if (reader.ReadBoolean())
@@ -129,10 +129,10 @@ namespace CommonLibrary.Payloads.GettingDialogues
                         bool hasFiles = reader.ReadBoolean();
 
                         //Creating message
-                        lastMessage = new Message(text, sentAt, hasFiles);
+                        lastMessageInfo = new MessageInfo(text, sentAt, hasFiles);
                     }
 
-                    dialoguesCards.Add(new DialogueCard(dialogueName, isGroup, iconStream, lastMessage));
+                    dialoguesCards.Add(new DialogueCard(dialogueName, isGroup, iconStream, lastMessageInfo));
                 }
 
                 return new GettingDialoguesCardsResponsePayload(responseType, dialoguesCards);
