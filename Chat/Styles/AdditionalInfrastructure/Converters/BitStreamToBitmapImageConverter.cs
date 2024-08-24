@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace Chat.MVVM.Views.AdditionalInfrastructure.Converters
+namespace Chat.Styles.AdditionalInfrastructure.Converters
 {
     public class BitStreamToBitmapImageConverter : IMultiValueConverter
     {

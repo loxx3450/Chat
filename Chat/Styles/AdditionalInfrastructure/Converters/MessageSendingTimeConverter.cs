@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Chat.MVVM.Views.AdditionalInfrastructure.Converters
+namespace Chat.Styles.AdditionalInfrastructure.Converters
 {
     internal class MessageSendingTimeConverter : IValueConverter
     {

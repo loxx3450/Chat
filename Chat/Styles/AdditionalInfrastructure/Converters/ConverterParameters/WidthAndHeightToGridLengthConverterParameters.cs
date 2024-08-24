@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chat.MVVM.Views.AdditionalInfrastructure.Converters.ConverterParameters
+namespace Chat.Styles.AdditionalInfrastructure.Converters.ConverterParameters
 {
     class WidthAndHeightToGridLengthConverterParameters
     {

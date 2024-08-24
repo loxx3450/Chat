@@ -1,4 +1,4 @@
-﻿using Chat.MVVM.Views.AdditionalInfrastructure.Converters.ConverterParameters;
+﻿using Chat.Styles.AdditionalInfrastructure.Converters.ConverterParameters;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Chat.MVVM.Views.AdditionalInfrastructure.Converters
+namespace Chat.Styles.AdditionalInfrastructure.Converters
 {
     public class WidthAndHeightToGridLengthConverter : IMultiValueConverter
     {

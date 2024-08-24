@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:converters="clr-namespace:Chat.MVVM.Views.AdditionalInfrastructure.Converters" 
-                    xmlns:converterParameters="clr-namespace:Chat.MVVM.Views.AdditionalInfrastructure.Converters.ConverterParameters" 
+                    xmlns:converters="clr-namespace:Chat.Styles.AdditionalInfrastructure.Converters" 
+                    xmlns:converterParameters="clr-namespace:Chat.Styles.AdditionalInfrastructure.Converters.ConverterParameters" 
                     xmlns:configs="clr-namespace:Chat.MVVM.Models.Instances.Configs">
 
     <Style x:Key="EntryWindowsSideColumnStyle" TargetType="{x:Type ColumnDefinition}">
