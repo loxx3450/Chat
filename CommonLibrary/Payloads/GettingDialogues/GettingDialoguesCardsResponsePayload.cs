@@ -41,6 +41,10 @@ namespace CommonLibrary.Payloads.GettingDialogues
 
                 foreach (DialogueCard dialogueCard in DialoguesCards)
                 {
+                    // ====== DialogueId ======
+                    writer.Write(dialogueCard.DialogueId);
+
+
                     // ====== DialogueName ======
                     writer.Write(dialogueCard.DialogueName);
 
@@ -97,6 +101,10 @@ namespace CommonLibrary.Payloads.GettingDialogues
 
                 while (reader.BaseStream.Position < reader.BaseStream.Length)
                 {
+                    // ====== DialogueId ======
+                    int dialogueId = reader.ReadInt32();
+
+
                     // ====== DialogueName ======
                     string dialogueName = reader.ReadString();
 
@@ -132,7 +140,7 @@ namespace CommonLibrary.Payloads.GettingDialogues
                         lastMessageInfo = new MessageInfo(text, sentAt, hasFiles);
                     }
 
-                    dialoguesCards.Add(new DialogueCard(dialogueName, isGroup, iconStream, lastMessageInfo));
+                    dialoguesCards.Add(new DialogueCard(dialogueId, dialogueName, isGroup, iconStream, lastMessageInfo));
                 }
 
                 return new GettingDialoguesCardsResponsePayload(responseType, dialoguesCards);
