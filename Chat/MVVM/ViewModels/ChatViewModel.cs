@@ -13,6 +13,8 @@ namespace Chat.MVVM.ViewModels
 {
     public class ChatViewModel : ViewModelBase
     {
+        // ============= Properties for Binding =============
+
         private List<DialogueCard> _dialoguesCards = new List<DialogueCard>();
         public List<DialogueCard> DialoguesCards
         {
@@ -20,13 +22,38 @@ namespace Chat.MVVM.ViewModels
             set => SetField(ref _dialoguesCards, value);
         }
 
+
+        private DialogueCard _selectedDialogue;
+        public DialogueCard SelectedDialogue 
+        {
+            get => _selectedDialogue;
+            set => SetField(ref _selectedDialogue, value);
+        }
+
+
         public override IConfig? Config => throw new NotImplementedException();
+
+
+        // ============= Commands =============
+        public RelayCommand UploadMessagesCommand { get; set; }
+
 
         public ChatViewModel() 
         {
             DialoguesCardsProvider.RequestDialogues();
+
+            UploadMessagesCommand = new RelayCommand(UploadMessages);
         }
 
+
+        // ============= private methods =============
+        private void UploadMessages(object obj)
+        {
+            MessagesProvider.RequestMessages(SelectedDialogue.DialogueId);
+        }
+
+
+        // ============= default methods =============
         public override void ResetData()
         {
             throw new NotImplementedException();
