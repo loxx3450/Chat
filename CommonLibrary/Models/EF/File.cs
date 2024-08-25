@@ -11,7 +11,7 @@ public partial class File
 
     public string FilePath { get; set; } = null!;
 
-    public string FileName { get; set; } = null!;
+    public string? FileName { get; set; }
 
     public virtual Message Message { get; set; } = null!;
 }
