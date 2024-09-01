@@ -7,10 +7,12 @@
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls"
              xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels"
              xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:converters="clr-namespace:Chat.Styles.AdditionalInfrastructure.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance viewModels:ChatViewModel}">
 
+    
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -46,7 +48,111 @@
         <Grid Grid.Column="2" 
               Background="{DynamicResource MainBackground}">
 
-            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto" MinHeight="45"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" 
+                  Background="{DynamicResource SecondaryBackground}">
+
+                <TextBlock VerticalAlignment="Center"
+                           Margin="10,0" 
+                           Foreground="{DynamicResource MainForeground}"
+                           FontSize="18"
+                           Text="{Binding SelectedDialogue.DialogueName}"/>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+
+                <ListView BorderThickness="0" 
+                          Background="Transparent" 
+                          ItemsSource="{Binding Messages}" 
+                          VerticalAlignment="Bottom">
+
+                    <ListView.Resources>
+                        <converters:IsMyMessageConverter x:Key="IsMyMessageConverter"/>
+                    </ListView.Resources>
+
+                    <ListView.ItemContainerStyle>
+                        
+                        <Style TargetType="{x:Type ListViewItem}">
+
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="DockPanel.Dock" Value="Bottom"/>
+
+                            <Setter Property="Template">
+                                
+                                <Setter.Value>
+                                    
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+
+                                        <Grid Background="Transparent" 
+                                              MaxWidth="600" 
+                                              HorizontalAlignment="Left" 
+                                              Margin="4,0,0,8">
+                                            
+                                            
+                                            <userControls:FilledRoundedBorder Roundation="10">
+                                                
+                                                <userControls:FilledRoundedBorder.Style>
+                                                    
+                                                    <Style TargetType="{x:Type userControls:FilledRoundedBorder}">
+                                                        
+                                                        <Style.Triggers>
+                                                            
+                                                            <DataTrigger Binding="{Binding Path=DataContext.UserId, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource IsMyMessageConverter}}" Value="true">
+                                                                <Setter Property="Background" Value="{DynamicResource MyMessageBackground}"/>
+                                                            </DataTrigger>
+
+                                                            <DataTrigger Binding="{Binding Path=DataContext.UserId, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource IsMyMessageConverter}}" Value="false">
+                                                                <Setter Property="Background" Value="{DynamicResource NotMyMessageBackground}"/>
+                                                            </DataTrigger>
+                                                            
+                                                        </Style.Triggers>
+                                                        
+                                                    </Style>
+                                                    
+                                                </userControls:FilledRoundedBorder.Style>
+                                                
+                                            </userControls:FilledRoundedBorder>
+
+                                            
+                                            <TextBlock Padding="10" 
+                                                       Text="{Binding Text}" 
+                                                       Foreground="{DynamicResource MainForeground}" 
+                                                       FontSize="16"/>
+
+                                        </Grid>
+
+                                    </ControlTemplate>
+                                    
+                                </Setter.Value>
+                                
+                            </Setter>
+                            
+                        </Style>
+                        
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <DockPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                </ListView>
+
+            </Grid>
+
+            <Grid Grid.Row="2" 
+                  Background="{DynamicResource SecondaryBackground}">
+
+                
+
+            </Grid>
 
         </Grid>
         

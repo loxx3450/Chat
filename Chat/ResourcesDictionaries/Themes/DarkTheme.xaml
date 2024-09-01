@@ -20,6 +20,8 @@
     
     <!--ChatView-->
     <SolidColorBrush x:Key="ChatGridSplitter"                                       Color="#0f1317"/>
+    <SolidColorBrush x:Key="MyMessageBackground"                                              Color="#284866"/>
+    <SolidColorBrush x:Key="NotMyMessageBackground"                                           Color="#1a242e"/>
     
     
     <!--DialogueCardTemplate-->
