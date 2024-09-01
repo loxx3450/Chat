@@ -3,8 +3,10 @@ using Chat.MVVM.Core;
 using Chat.MVVM.Models.Handlers;
 using Chat.MVVM.Models.Instances.Configs;
 using CommonLibrary.Models.Custom;
+using CommonLibrary.Models.EF;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +30,14 @@ namespace Chat.MVVM.ViewModels
         {
             get => _selectedDialogue;
             set => SetField(ref _selectedDialogue, value);
+        }
+
+
+        private List<MessageDto> _messages = new List<MessageDto>();
+        public List<MessageDto> Messages
+        {
+            get => _messages;
+            set => SetField(ref _messages, value);
         }
 
 
