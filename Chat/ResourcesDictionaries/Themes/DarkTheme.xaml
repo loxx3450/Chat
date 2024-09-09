@@ -20,10 +20,11 @@
     
     <!--ChatView-->
     <SolidColorBrush x:Key="ChatGridSplitter"                                       Color="#0f1317"/>
-    <SolidColorBrush x:Key="MyMessageBackground"                                              Color="#284866"/>
-    <SolidColorBrush x:Key="NotMyMessageBackground"                                           Color="#1a242e"/>
-    
-    
+    <SolidColorBrush x:Key="MyMessageBackground"                                    Color="#284866"/>
+    <SolidColorBrush x:Key="NotMyMessageBackground"                                 Color="#1a242e"/>
+    <SolidColorBrush x:Key="MessageTimeForeground"                                  Color="#929ca8"/>
+
+
     <!--DialogueCardTemplate-->
     <SolidColorBrush x:Key="MouseOverDialogueCardBackground"                        Color="#1d232b"/>
     <SolidColorBrush x:Key="SelectedDialogueCardBackground"                         Color="#223142"/>

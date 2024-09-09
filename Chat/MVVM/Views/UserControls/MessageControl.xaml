@@ -24,12 +24,30 @@
                                    Background="{Binding Background, ElementName=root}" 
                                    Roundation="10"/>
 
-        <TextBlock Grid.Column="1" 
-                   Padding="10" 
-                   FontSize="16"
-                   TextWrapping="WrapWithOverflow"
-                   Foreground="{DynamicResource MainForeground}" 
-                   Text="{Binding Text, ElementName=root}" />
+        <Grid Grid.Column="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Padding="10" 
+                       FontSize="16" 
+                       TextWrapping="WrapWithOverflow"
+                       Foreground="{DynamicResource MainForeground}" 
+                       Text="{Binding Text, ElementName=root}" />
+
+
+            <TextBlock Grid.Column="1" 
+                       VerticalAlignment="Bottom"
+                       Margin="0,0,6,6"
+                       FontSize="14" 
+                       Foreground="{DynamicResource MessageTimeForeground}"
+                       Text="{Binding Time, ElementName=root}"/>
+
+        </Grid>
+        
+        
 
     </Grid>
     

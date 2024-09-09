@@ -76,6 +76,7 @@
 
                     <ListView.Resources>
                         <converters:IsMyMessageConverter x:Key="IsMyMessageConverter"/>
+                        <converters:DateTimeToTimeConverter x:Key="DateTimeToTimeConverter"/>
                     </ListView.Resources>
 
                     <ListView.ItemContainerStyle>
@@ -96,6 +97,7 @@
                                         <Grid>
 
                                             <userControls:MessageControl Text="{Binding Text}"
+                                                                         Time="{Binding SentAt, Converter={StaticResource DateTimeToTimeConverter}}"
                                                                          HorizontalAlignment="Left"
                                                                          Margin="4,0,0,8">
 

@@ -46,6 +46,17 @@ namespace Chat.MVVM.Views.UserControls
         }
 
 
+        //Time 
+        public static readonly DependencyProperty TimeProperty = 
+            DependencyProperty.Register(nameof(Time), typeof(string), typeof(MessageControl),
+                new PropertyMetadata(string.Empty));
+
+        public string Time
+        {
+            get => (string)GetValue(TimeProperty);
+            set => SetValue(TimeProperty, value);
+        }
+
         public MessageControl()
         {
             InitializeComponent();
