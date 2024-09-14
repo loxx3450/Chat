@@ -11,43 +11,43 @@
     <Grid SizeChanged="Grid_SizeChanged">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="7"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-
-        <Polygon Grid.ColumnSpan="2" 
-                 x:Name="polygon" 
-                 StrokeThickness="0" 
-                 Fill="{Binding Background, ElementName=root}"/>
-
-        <local:FilledRoundedBorder Grid.Column="1" 
-                                   Background="{Binding Background, ElementName=root}" 
-                                   Roundation="10"/>
-
-        <Grid Grid.Column="1">
-
+        
+        <Grid Grid.Column="0" x:Name="mainGrid">
+            
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="7"/>
+                <ColumnDefinition Width="*" MaxWidth="600"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Padding="10" 
+            <Polygon Grid.ColumnSpan="2" 
+                     x:Name="polygon" 
+                     StrokeThickness="0" 
+                     Fill="{Binding Background, ElementName=root}"/>
+
+            <local:FilledRoundedBorder Grid.Column="1" 
+                                       Background="{Binding Background, ElementName=root}" 
+                                       Roundation="10"/>
+
+            <TextBlock Grid.Column="1" 
+                       Padding="10" 
                        FontSize="16" 
                        TextWrapping="WrapWithOverflow"
                        Foreground="{DynamicResource MainForeground}" 
                        Text="{Binding Text, ElementName=root}" />
-
-
-            <TextBlock Grid.Column="1" 
-                       VerticalAlignment="Bottom"
-                       Margin="0,0,6,6"
-                       FontSize="14" 
-                       Foreground="{DynamicResource MessageTimeForeground}"
-                       Text="{Binding Time, ElementName=root}"/>
-
+            
         </Grid>
-        
-        
+
+
+        <TextBlock Grid.Column="1" 
+                   FontSize="14" 
+                   Margin="0,0,0,5"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Right"
+                   Foreground="{DynamicResource MessageTimeForeground}"
+                   Text="{Binding Time, ElementName=root}"/>
 
     </Grid>
     
