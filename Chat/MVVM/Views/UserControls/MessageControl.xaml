@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
 
-    <Grid SizeChanged="Grid_SizeChanged">
+    <Grid>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -16,17 +16,31 @@
         </Grid.ColumnDefinitions>
         
         <Grid Grid.Column="0" x:Name="mainGrid">
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="7"/>
                 <ColumnDefinition Width="*" MaxWidth="600"/>
             </Grid.ColumnDefinitions>
 
-            <Polygon Grid.ColumnSpan="2" 
-                     x:Name="polygon" 
-                     StrokeThickness="0" 
-                     Fill="{Binding Background, ElementName=root}"/>
+            <Canvas>
 
+                <Polygon Canvas.Left="0"
+                         Canvas.Bottom="0"
+                         StrokeThickness="0"
+                         Fill="{Binding Background, ElementName=root}">
+
+                    <Polygon.Points>
+
+                        <Point X="7" Y="-11"/>
+                        <Point X="20" Y="0"/>
+                        <Point X="0" Y="0"/>
+
+                    </Polygon.Points>
+                    
+                </Polygon>
+
+            </Canvas>
+            
             <local:FilledRoundedBorder Grid.Column="1" 
                                        Background="{Binding Background, ElementName=root}" 
                                        Roundation="10"/>

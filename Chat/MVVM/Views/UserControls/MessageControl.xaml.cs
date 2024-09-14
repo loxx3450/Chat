@@ -61,18 +61,5 @@ namespace Chat.MVVM.Views.UserControls
         {
             InitializeComponent();
         }
-
-        //TEMP
-        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            polygon.Points.Clear();
-
-            if (e.HeightChanged)
-            {
-                polygon.Points.Add(new Point(7, ActualHeight - 11));
-                polygon.Points.Add(new Point(20, ActualHeight));
-                polygon.Points.Add(new Point(0, ActualHeight));
-            }
-        }
     }
 }
