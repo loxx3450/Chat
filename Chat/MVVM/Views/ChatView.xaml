@@ -72,64 +72,8 @@
                           Background="Transparent" 
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ItemsSource="{Binding Messages}" 
+                          ItemContainerStyle="{StaticResource MessageControlAsListViewItemStyle}"
                           VerticalAlignment="Bottom">
-
-                    <ListView.Resources>
-                        <converters:IsMyMessageConverter x:Key="IsMyMessageConverter"/>
-                        <converters:DateTimeToTimeConverter x:Key="DateTimeToTimeConverter"/>
-                    </ListView.Resources>
-
-                    <ListView.ItemContainerStyle>
-                        
-                        <Style TargetType="{x:Type ListViewItem}">
-
-                            <Setter Property="BorderThickness" Value="0"/>
-                            <Setter Property="DockPanel.Dock" Value="Bottom"/>
-
-                            <Setter Property="Width" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ListView}}"/>
-
-                            <Setter Property="Template">
-                                
-                                <Setter.Value>
-
-                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
-
-                                        <Grid>
-
-                                            <userControls:MessageControl Text="{Binding Text}"
-                                                                         Time="{Binding SentAt, Converter={StaticResource DateTimeToTimeConverter}}"
-                                                                         HorizontalAlignment="Left"
-                                                                         Margin="4,0,0,8">
-
-                                                <userControls:MessageControl.Style>
-                                                    <Style TargetType="{x:Type userControls:MessageControl}">
-                                                        <Style.Triggers>
-
-                                                            <DataTrigger Binding="{Binding Path=DataContext.UserId, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource IsMyMessageConverter}}" Value="true">
-                                                                <Setter Property="Background" Value="{DynamicResource MyMessageBackground}"/>
-                                                            </DataTrigger>
-
-                                                            <DataTrigger Binding="{Binding Path=DataContext.UserId, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource IsMyMessageConverter}}" Value="false">
-                                                                <Setter Property="Background" Value="{DynamicResource NotMyMessageBackground}"/>
-                                                            </DataTrigger>
-
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </userControls:MessageControl.Style>
-
-                                            </userControls:MessageControl>
-
-                                        </Grid>
-
-                                    </ControlTemplate>
-                                    
-                                </Setter.Value>
-                                
-                            </Setter>
-                            
-                        </Style>
-                        
-                    </ListView.ItemContainerStyle>
 
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
