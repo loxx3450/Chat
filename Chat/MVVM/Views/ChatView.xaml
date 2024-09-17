@@ -24,10 +24,8 @@
         <Grid Grid.Column="0"
               Background="{DynamicResource SecondaryBackground}">
 
-            <ListView BorderThickness="0" 
-                      Background="Transparent" 
+            <ListView Style="{StaticResource CustomListViewStyle}"
                       ItemContainerStyle="{StaticResource DialogueCardTemplate}" 
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       ItemsSource="{Binding DialoguesCards}" 
                       SelectedItem="{Binding SelectedDialogue}">
 
@@ -68,9 +66,7 @@
 
             <Grid Grid.Row="1">
 
-                <ListView BorderThickness="0" 
-                          Background="Transparent" 
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                <ListView Style="{StaticResource CustomListViewStyle}"
                           ItemsSource="{Binding Messages}" 
                           ItemContainerStyle="{StaticResource MessageControlAsListViewItemStyle}"
                           VerticalAlignment="Bottom">
