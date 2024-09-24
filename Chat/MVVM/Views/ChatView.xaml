@@ -6,25 +6,36 @@
              xmlns:local="clr-namespace:Chat.MVVM.Views"
              xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls"
              xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels"
+             xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:converters="clr-namespace:Chat.Styles.AdditionalInfrastructure.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance viewModels:ChatViewModel}">
-
+    
+    
     <Grid>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*" MinWidth="240"/>
             <ColumnDefinition Width="3"/>
-            <ColumnDefinition Width="0.7*" MinWidth="400"/>
+            <ColumnDefinition Width="0.7*" MinWidth="300"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0"
               Background="{DynamicResource SecondaryBackground}">
 
-            <ListView ItemsSource="{Binding DialoguesCards}" 
-                      ItemContainerStyle="{StaticResource DialogueCardTemplate}"
-                      BorderThickness="0"
-                      Background="Transparent"/>
+            <ListView Style="{StaticResource CustomListViewStyle}"
+                      ItemContainerStyle="{StaticResource DialogueCardTemplate}" 
+                      ItemsSource="{Binding DialoguesCards}" 
+                      SelectedItem="{Binding SelectedDialogue}">
+
+                <behaviors:Interaction.Triggers>
+                    <behaviors:EventTrigger EventName="SelectionChanged">
+                        <behaviors:InvokeCommandAction Command="{Binding UploadMessagesCommand}"/>
+                    </behaviors:EventTrigger>
+                </behaviors:Interaction.Triggers>
+                
+            </ListView>
 
         </Grid>
 
@@ -36,7 +47,46 @@
         <Grid Grid.Column="2" 
               Background="{DynamicResource MainBackground}">
 
-            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto" MinHeight="45"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" 
+                  Background="{DynamicResource SecondaryBackground}">
+
+                <TextBlock VerticalAlignment="Center"
+                           Margin="10,0" 
+                           Foreground="{DynamicResource MainForeground}"
+                           FontSize="18"
+                           Text="{Binding SelectedDialogue.DialogueName}"/>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+
+                <ListView Style="{StaticResource CustomListViewStyle}"
+                          ItemsSource="{Binding Messages}" 
+                          ItemContainerStyle="{StaticResource MessageControlAsListViewItemStyle}"
+                          VerticalAlignment="Bottom">
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <DockPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                </ListView>
+
+            </Grid>
+
+            <Grid Grid.Row="2" 
+                  Background="{DynamicResource SecondaryBackground}">
+
+                
+
+            </Grid>
 
         </Grid>
         

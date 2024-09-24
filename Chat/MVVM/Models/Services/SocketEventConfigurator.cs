@@ -42,6 +42,9 @@ namespace Chat.MVVM.Models.Services
             socket.On(MessageType.GettingDialoguesCardsResponse,
                 (mes) => DialoguesCardsProvider.HandleResponse((ProtocolMessage)mes));
 
+            socket.On(MessageType.MessagesUploadResponse,
+                (mes) => MessagesProvider.HandleResponse((ProtocolMessage)mes));
+
             //3. Subscribes on service Events
             //TODO:
             //

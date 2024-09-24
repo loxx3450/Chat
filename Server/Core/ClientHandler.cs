@@ -72,6 +72,12 @@ namespace ServerSide.Core
                 socket.Emit(DialoguesCardsProvider.GetResponse());
             });
 
+            socket.On(MessageType.MessagesUploadRequest, (message) =>
+            {
+                MessagesProvider.FormulateListOfMessages((ProtocolMessage)message);
+                socket.Emit(MessagesProvider.GetResponse());
+            });
+
             //3. Subscribes on service Events
             socket.OnDisconnecting += () => DisconnectionHandler.Disconnect(client);
             socket.OnOtherSideIsDisconnected += () => BreakUpHandler.HandleBreakUp(client);

@@ -51,7 +51,8 @@
                                 
                                 <TextBlock FontSize="16" 
                                            Foreground="{DynamicResource MainForeground}"
-                                           Text="{Binding DialogueName}" />
+                                           Text="{Binding DialogueName}" 
+                                           FontWeight="Medium"/>
 
                                 
                                 <TextBlock HorizontalAlignment="Right"

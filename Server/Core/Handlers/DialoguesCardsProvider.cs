@@ -62,6 +62,7 @@ namespace ServerSide.Core.Handlers
         {
             dialoguesCards = new List<DialogueCard>();
 
+            int dialogueId;
             string dialogueName;
             string iconPath;
             bool isGroup;
@@ -69,20 +70,22 @@ namespace ServerSide.Core.Handlers
 
             while (reader.Read())
             {
+                dialogueId = reader.GetInt32(0);
+
                 //If dialogue is not a group
-                if (reader.IsDBNull(2))
+                if (reader.IsDBNull(3))
                 {
                     //Taking info about companion
-                    dialogueName = reader.GetString(0);
-                    iconPath = reader.IsDBNull(1) ? string.Empty : reader.GetString(1);
+                    dialogueName = reader.GetString(1);
+                    iconPath = reader.IsDBNull(2) ? string.Empty : reader.GetString(2);
 
                     isGroup = false;
                 }
                 else
                 {
                     //Taking info about group
-                    dialogueName = reader.GetString(2);
-                    iconPath = reader.IsDBNull(3) ? string.Empty : reader.GetString(3);
+                    dialogueName = reader.GetString(3);
+                    iconPath = reader.IsDBNull(4) ? string.Empty : reader.GetString(4);
 
                     isGroup = true;
                 }
@@ -99,22 +102,22 @@ namespace ServerSide.Core.Handlers
                 lastMessageInfo = null;
 
                 //If message is attached
-                if (!reader.IsDBNull(4))
+                if (!reader.IsDBNull(5))
                 {
                     string? message_text = null;
-                    DateTime sent_at = reader.GetDateTime(4);
-                    bool hasFiles = reader.GetBoolean(6);
+                    DateTime sent_at = reader.GetDateTime(5);
+                    bool hasFiles = reader.GetBoolean(7);
 
                     //If message contains some text
-                    if (!reader.IsDBNull(5))
+                    if (!reader.IsDBNull(6))
                     {
-                        message_text = reader.GetString(5);
+                        message_text = reader.GetString(6);
                     }
 
                     lastMessageInfo = new MessageInfo(message_text, sent_at, hasFiles);
                 }
 
-                dialoguesCards.Add(new DialogueCard(dialogueName, isGroup, iconBytes, lastMessageInfo));
+                dialoguesCards.Add(new DialogueCard(dialogueId, dialogueName, isGroup, iconBytes, lastMessageInfo));
             }
 
             reader.Close();

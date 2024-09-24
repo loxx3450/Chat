@@ -33,6 +33,8 @@
                 <ResourceDictionary Source="Styles/TitleBarButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/CustomMessageBoxButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/NonDefaultWindowStyle.xaml" />
+                <ResourceDictionary Source="Styles/MessageControlAsListViewItemStyle.xaml" />
+                <ResourceDictionary Source="Styles/CustomListViewStyle.xaml" />
                 
                 <!--Global styles-->
                 <ResourceDictionary Source="Styles/LogotypeStyle.xaml" />

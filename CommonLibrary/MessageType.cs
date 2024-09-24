@@ -24,6 +24,9 @@
         EmailVerificationResponse,
 
         GettingDialoguesCardsRequest,
-        GettingDialoguesCardsResponse
+        GettingDialoguesCardsResponse,
+
+        MessagesUploadRequest,
+        MessagesUploadResponse
     }
 }
