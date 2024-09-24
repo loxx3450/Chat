@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls">
+
+    <Style x:Key="EntryWindowsNavigationCommandStyle" TargetType="{x:Type userControls:Button}">
+
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+
+        <Setter Property="Appearance" Value="Dark"/>
+
+        <Setter Property="Background" Value="Transparent"/>
+
+        <Setter Property="FontSize" Value="20"/>
+
+        <Setter Property="Foreground" Value="{StaticResource HyperlinkForeground}"/>
+
+    </Style>
+    
+</ResourceDictionary>

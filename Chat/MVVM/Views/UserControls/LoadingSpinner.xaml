@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Chat.MVVM.Views.UserControls.LoadingSpinner"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chat.MVVM.Views.UserControls"
+             xmlns:converters="clr-namespace:Chat.MVVM.Views.UserControls.AdditionalInfrastructure.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="root">
+
+    <UserControl.Resources>
+        <converters:DiameterAndThicknessToStrokeDashArrayConverter x:Key="converter"/>
+    </UserControl.Resources>
+    
+    <Ellipse x:Name="Spinner"
+             DataContext="{Binding ElementName=root}"
+             RenderTransformOrigin="0.5 0.5"
+             Width="{Binding Diameter}"
+             Height="{Binding Diameter}"
+             Stroke="{Binding Stroke}"
+             StrokeThickness="{Binding StrokeThickness}"
+             Visibility="Visible">
+
+        
+        <Ellipse.StrokeDashArray>
+            <MultiBinding Converter="{StaticResource converter}">
+                <Binding Path="Diameter" RelativeSource="{RelativeSource AncestorType=local:LoadingSpinner}"/>
+                <Binding Path="StrokeThickness" RelativeSource="{RelativeSource AncestorType=local:LoadingSpinner}"/>
+            </MultiBinding>
+        </Ellipse.StrokeDashArray>
+        
+        <Ellipse.RenderTransform>
+            <RotateTransform x:Name="Rotation"/>
+        </Ellipse.RenderTransform>
+
+    </Ellipse>
+
+</UserControl>

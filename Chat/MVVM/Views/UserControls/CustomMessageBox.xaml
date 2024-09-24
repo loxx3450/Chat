@@ -1,0 +1,99 @@
+﻿<Window x:Class="Chat.MVVM.Views.UserControls.CustomMessageBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chat.MVVM.Views.UserControls" 
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
+             mc:Ignorable="d" 
+             WindowStartupLocation="CenterOwner" 
+             ResizeMode="NoResize"
+             Style="{StaticResource NonDefaultWindowStyle}"
+             Height="180" Width="450" 
+             BorderBrush="{DynamicResource WindowBorderBrush}" 
+             BorderThickness="1">
+
+    <Grid Background="{DynamicResource SecondaryBackground}" 
+          DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="{DynamicResource MainBackground}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.ColumnSpan="2" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" 
+                       Foreground="{Binding CaptionBrush}"
+                       FontSize="20" 
+                       Text="{Binding Caption}" />
+
+            <Button Grid.Column="1" 
+                    Foreground="White"
+                    Style="{StaticResource TitleBarButtonStyle}" 
+                    Click="buttonClose_Click">
+
+                <ui:SymbolIcon Symbol="Dismiss16"/>
+
+            </Button>
+        </Grid>
+
+        <TextBlock Grid.Row="1" 
+                   Margin="20,0" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center" 
+                   Foreground="{DynamicResource MainForeground}" 
+                   FontSize="17" 
+                   TextWrapping="WrapWithOverflow"
+                   Text="{Binding Message}"/>
+
+        <Grid Grid.Row="2" 
+              HorizontalAlignment="Center">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <userControls:Button x:Name="btnOk"
+                                 Style="{StaticResource CustomMessageBoxButtonStyle}"
+                                 Grid.Column="0" 
+                                 Appearance="Light" 
+                                 Text="Ok"
+                                 Command="{Binding ClickPositiveCommand}"/>
+
+            <userControls:Button x:Name="btnCancel"
+                                 Style="{StaticResource CustomMessageBoxButtonStyle}"
+                                 Grid.Column="1" 
+                                 Appearance="Danger" 
+                                 Text="Cancel"
+                                 Command="{Binding ClickNegativeCommand}"/>
+
+            <userControls:Button x:Name="btnYes"
+                                 Style="{StaticResource CustomMessageBoxButtonStyle}"
+                                 Grid.Column="0" 
+                                 Appearance="Success" 
+                                 Text="Yes"
+                                 Command="{Binding ClickPositiveCommand}"/>
+
+            <userControls:Button x:Name="btnNo"
+                                 Style="{StaticResource CustomMessageBoxButtonStyle}"
+                                 Grid.Column="1" 
+                                 Appearance="Danger" 
+                                 Text="No"
+                                 Command="{Binding ClickNegativeCommand}"/>
+
+        </Grid>
+
+    </Grid>
+
+</Window>

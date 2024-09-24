@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="Chat.MVVM.Views.EntryWindows.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chat.MVVM.Views.EntryWindows"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             xmlns:userControls="clr-namespace:Chat.MVVM.Views.UserControls" 
+             xmlns:entryWindowsViewModels="clr-namespace:Chat.MVVM.ViewModels.EntryWindows" 
+             mc:Ignorable="d" 
+             d:Height="1080" d:Width="1920"
+             d:DataContext="{d:DesignInstance Type=entryWindowsViewModels:LoginViewModel}"
+             x:Name="root">
+
+    <Grid Background="{DynamicResource MainBackground}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Style="{StaticResource EntryWindowsSideColumnStyle}"/>
+            <ColumnDefinition Style="{StaticResource EntryWindowsMainColumnStyle}"/>
+            <ColumnDefinition Style="{StaticResource EntryWindowsSideColumnStyle}"/>
+        </Grid.ColumnDefinitions>
+
+        <Viewbox Grid.Column="1" 
+                 VerticalAlignment="Top" 
+                 Stretch="Uniform">
+
+            <StackPanel Width="{Binding Config.ContentWidth}">
+
+                <TextBlock Style="{StaticResource EntryWindowsCaptionStyle}" 
+                           Text="Sign In"/>
+
+                <svgc:SvgViewbox Style="{StaticResource LogotypeStyle}" 
+                                 Height="{Binding Config.LogotypeHeight}"/>
+
+                <Grid Margin="0,30">
+
+                    <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"/>
+
+                    <StackPanel Margin="24">
+
+                        <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}" 
+                                   Margin="3,0" 
+                                   Text="Email"/>
+
+
+                        <userControls:ClearableTextBox Text="{Binding Email, Mode=TwoWay, ValidatesOnExceptions=True}"
+                                                       Style="{StaticResource EntryWindowsTextBoxStyle}" 
+                                                       TabIndex="0"
+                                                       Margin="0, 10"
+                                                       PlaceholderText="Enter email..."/>
+
+
+                        <TextBlock Style="{StaticResource EntryWindowsTextBlockStyle}"
+                                   Margin="3,10" 
+                                   Text="Password"/>
+
+
+                        <userControls:ClearablePasswordBox Password="{Binding Password, Mode=TwoWay, ValidatesOnExceptions=True}" 
+                                                           Style="{StaticResource EntryWindowsPasswordBoxStyle}"
+                                                           TabIndex="1"
+                                                           PlaceholderText="Enter password..."/>
+
+                        <CheckBox TabIndex="2" 
+                                  Margin="3,5,0,8" 
+                                  BorderBrush="{DynamicResource MainBorderBrush}" 
+                                  Background="{DynamicResource MainBackground}" 
+                                  Foreground="{DynamicResource MainForeground}"
+                                  IsChecked="{Binding RememberUser}">
+
+                            <TextBlock Text="Remember me" 
+                                       FontSize="18"/>
+
+                        </CheckBox>
+
+                        <userControls:Button Style="{StaticResource EntryWindowsActionCommandStyle}"
+                                             Command="{Binding SignInCommand}"
+                                             TabIndex="3"
+                                             Margin="0, 15, 0, 0" 
+                                             Text="Sign in"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid>
+
+                    <userControls:FilledRoundedBorder Style="{StaticResource EntryWindowsFilledRoundedBorderStyle}"
+                                                      Background="Transparent"/>
+
+
+                    <StackPanel Margin="16" 
+                                HorizontalAlignment="Center">
+
+                        <userControls:Button Style="{StaticResource EntryWindowsNavigationCommandStyle}"
+                                             Command="{Binding NavigateToRecoveryCommand}"
+                                             Text="Forgot password?"/>
+
+                        <userControls:Button Style="{StaticResource EntryWindowsNavigationCommandStyle}"
+                                             Command="{Binding NavigateToRegistrationCommand}"
+                                             Margin="0,6,0,0" 
+                                             Text="Create an account"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </StackPanel>
+
+        </Viewbox>
+
+    </Grid>
+
+</UserControl>

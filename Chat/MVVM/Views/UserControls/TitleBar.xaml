@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="Chat.MVVM.Views.UserControls.TitleBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chat.MVVM.Views.UserControls"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="800"
+             x:Name="root"
+             >
+
+    <Grid x:Name="TitleBarGrid" 
+          Background="{Binding Background, ElementName=root}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Button x:Name="buttonMinimize" 
+                Grid.Column="1" 
+                Style="{StaticResource TitleBarButtonStyle}" 
+                Click="buttonMinimize_Click">
+            
+            <ui:SymbolIcon x:Name="buttonMinimizeIcon" 
+                           Symbol="Subtract24"/>
+            
+        </Button>
+        
+
+        <Button x:Name="buttonMaximize" 
+                Grid.Column="2" 
+                Style="{StaticResource TitleBarButtonStyle}" 
+                Click="buttonMaximize_Click">
+            
+            <ui:SymbolIcon x:Name="buttonMaximizeIcon" 
+                           Symbol="Maximize16"/>
+            
+        </Button>
+        
+
+        <Button x:Name="buttonRestore" 
+                Grid.Column="2" 
+                Style="{StaticResource TitleBarButtonStyle}" 
+                Click="buttonMaximize_Click">
+            
+            <ui:SymbolIcon x:Name="buttonRestoreIcon" 
+                           Symbol="SquareMultiple24"/>
+            
+        </Button>
+        
+
+        <Button x:Name="buttonClose" 
+                Grid.Column="3" 
+                Style="{StaticResource TitleBarButtonStyle}" 
+                Click="buttonClose_Click">
+            
+            <ui:SymbolIcon x:Name="buttonCloseIcon" 
+                           Symbol="Dismiss16"/>
+            
+        </Button>
+        
+    </Grid>
+    
+</UserControl>

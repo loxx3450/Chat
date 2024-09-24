@@ -1,0 +1,87 @@
+﻿<Application x:Class="Chat.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:local="clr-namespace:Chat"
+             xmlns:viewModels="clr-namespace:Chat.MVVM.ViewModels"
+             xmlns:entryWindowsViewModels="clr-namespace:Chat.MVVM.ViewModels.EntryWindows"
+             xmlns:views="clr-namespace:Chat.MVVM.Views"
+             xmlns:entryWindowsViews="clr-namespace:Chat.MVVM.Views.EntryWindows">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--Themes-->
+                <ResourceDictionary Source="ResourcesDictionaries/Themes/DarkTheme.xaml" />
+                <ResourceDictionary Source="ResourcesDictionaries/Themes/CommonTheme.xaml" />
+
+                
+                <!--EntryWindows styles-->
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsTextBoxStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsFilledRoundedBorderStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsTextBlockStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsHyperlinkStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsPasswordBoxStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsCaptionStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsActionCommandStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsNavigationCommandStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsMainColumnStyle.xaml" />
+                <ResourceDictionary Source="Styles/EntryWindows/EntryWindowsSideColumnStyle.xaml" />
+
+                
+                <!--MainWindow styles-->
+                <ResourceDictionary Source="Styles/TitleBarButtonStyle.xaml" />
+                <ResourceDictionary Source="Styles/CustomMessageBoxButtonStyle.xaml" />
+                <ResourceDictionary Source="Styles/NonDefaultWindowStyle.xaml" />
+                <ResourceDictionary Source="Styles/MessageControlAsListViewItemStyle.xaml" />
+                <ResourceDictionary Source="Styles/CustomListViewStyle.xaml" />
+                
+                <!--Global styles-->
+                <ResourceDictionary Source="Styles/LogotypeStyle.xaml" />
+                
+                
+                <!--ControlTemplates-->
+                <ResourceDictionary Source="Styles/ControlTemplates/ErrorTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/ControlTemplates/DialogueCardTemplate.xaml"/>
+
+                <!--from NuGet-->
+                <ui:ControlsDictionary />
+
+                
+                <!--DataTemplates for Views-->
+                <ResourceDictionary>
+
+                    <DataTemplate DataType="{x:Type viewModels:ChatViewModel}">
+                        <views:ChatView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:LoginViewModel}">
+                        <entryWindowsViews:LoginView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:RegistrationViewModel}">
+                        <entryWindowsViews:RegistrationView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:RecoveryViewModel}">
+                        <entryWindowsViews:RecoveryView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:RecoveryCodeConfirmationViewModel}">
+                        <entryWindowsViews:RecoveryCodeConfirmationView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:ChangePasswordViewModel}">
+                        <entryWindowsViews:ChangePasswordView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type entryWindowsViewModels:EmailVerificationViewModel}">
+                        <entryWindowsViews:EmailVerificationView/>
+                    </DataTemplate>
+
+                </ResourceDictionary>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

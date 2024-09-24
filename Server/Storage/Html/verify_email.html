@@ -1,0 +1,66 @@
+<!doctype html>
+<head>
+    <style>
+        * {
+            color: black;
+            font-family: Arial;
+        }
+
+        .border {
+            border: 1px solid #dddddd;
+            padding-bottom: 10px;
+            text-align: center;
+            max-width: 560px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .footnote {
+            text-align: center;
+            font-size: 14px;
+            color: dimgray;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        b {
+            font-size: 25px;
+            border: 3px solid black;
+            padding: 4px;
+        }
+
+        p {
+            text-align: left;
+            padding-left: 24px;
+            font-size: 16px;
+        }
+
+        h1 {
+            font-size: 23px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <img width="50" src='cid:EmbeddedImage'>
+    <h1>Verify your email</h1>
+
+    <div class="border">
+        <h1>[&APP_NAME] email verification</h1>
+        <p style="margin-bottom: 24px">Use the following code in our app to verify your email:</p>
+        <b>&CODE</b>
+        <p style="margin-top: 36px">This code will expire in 15 minutes.</p>
+        <p>Thanks, <br>The &APP_NAME Team</p>
+    </div>
+
+    <p class="footnote">© 2024 &APP_NAME</p>
+
+</body>
+</html>
